@@ -5,7 +5,7 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, ZhouYong">
+    <meta name="keywords" content="Asp.Net页面生命周期, ZhouYong">
     <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | ZhouYong</title>
+    <title>Asp.Net页面生命周期 | ZhouYong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -206,13 +206,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        Asp.Net页面生命周期
                     </div>
                 </div>
             </div>
@@ -342,7 +342,7 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-29
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-27
                 </span>
             </div>
         </div>
@@ -350,18 +350,15 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+<pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
 </code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="1-什么是Asp-Net页面生命周期"><a href="#1-什么是Asp-Net页面生命周期" class="headerlink" title="1.什么是Asp.Net页面生命周期"></a>1.什么是Asp.Net页面生命周期</h2><p>当我们在浏览器地址栏中输入网址，回车查看页面时，这时会向服务器端（IIS）发送一个request请求，服务器就会判断发送过来的请求页面，  完全识别 HTTP 页面处理程序类后，ASP.NET 运行时将调用处理程序的 ProcessRequest 方法来处理请求，来创建页面对象。通常情况下，无需更改此方法的实现，因为它是由 Page 类提供的。接下来被创建页面对象的ProcessRequest方法使页面经历了各个阶段：初始化、加载视图状态信息和回发数据、加载页面的用户代码以及执行回发服务器端事件。之后，页面进入显示模式：收集更新的视图状态，生成 HTML 代码并随后将代码发送到输出控制台。最后，卸载页面，并认为请求处理完毕。其中页面对象ProcessRequest方法 完成的这一系列事件的处理过程就是Asp.Net页面生命周期。</p>
+<h2 id="2-了解Asp-Net页面生命周期的好处"><a href="#2-了解Asp-Net页面生命周期的好处" class="headerlink" title="2.了解Asp.Net页面生命周期的好处"></a>2.了解Asp.Net页面生命周期的好处</h2><p>了解个掌握ASP.NET页面生命周期是非常必要的，这有助于我们更加灵活的控制页面，以我们需要的方式编程开发。ASP.NET页运行时，此页会经历一个又一个的事件链，每个事件链中执行不同的行为，这所有的行为共同组成我们所需要的页面。了解了生命周期也更有助于我们对程序调试中发生问题的地方的定位。</p>
+<h2 id="3-详解Asp-Net页面生命周期"><a href="#3-详解Asp-Net页面生命周期" class="headerlink" title="3.详解Asp.Net页面生命周期"></a>3.详解Asp.Net页面生命周期</h2><p>（一）先看看在开始一个页面生命周期之前，请求的页面经历了那些过程。如图所示：</p>
+<p>通信处理过程:<br>当服务器运行正常的情况下,客户端（浏览器）<br>向服务器端发送请求时,服务器端负责监听的套接字(socket)，监听到有连接请求后，会为该客户端建立一个用于通信的套接字与客户端进行通信。当用户在浏览器向服务器发送请求时,浏览器会按照双方都约定好的网络传输层http协议，将请求转换成符合Http协议的请求报文。然后通过设备按照TCP协议发送到服务器。在服务器端接收到请求报文后。会按照Http协议对报文进行解析。若请求的内容为静态的数据，服务器端直接将被请求的数据，按照Http协议生成响应报文后返回给浏览器。浏览器然后解析收到的报文。将页面显示到浏览器窗口。（注：最开始仅是显示一个html 框架。经过多次请求。将CSS样式，图片………逐一的加载进来形成一个完整的页面。这个过程，有多次的交互通信。当通信结束后会把用来通信的套接字销毁，因为http协议是一种无状态的通信。这样减轻了服务器的压力）<br>当浏览器向客户端发送的请求为动态的。那么服务器（IIS）发现处理不了这种后缀名的文件时,会通过映射表到。响应实现了接口的可扩展程序asp.net_isapi.dll, 然后asp.net_isapi.dll,又将请求转交给网站程序处理.网站程序调用<br>httpRuntime类的processRequest方法来处理：<br>1．         此类会分析接收到的请求报文.将请求报文封装到名称为httpWorkerRequest的类的属性中(便于其它地方以用).<br>2．         创建HttpContext对象.这个对象是当前所请求报文的上下文环境.它包含了所有的请求数据.其中有两个最重要类的对象:http.Request和http.Response.  在httpRequest对象中又包含了两个属性.Form(通过表单请求的数据参数).Querystring(通过URL传递的数据参数); 通过索引器,可以找到参数的值. 在httpResponse 对象中有一个TextWriter对象.在它里面保存的是被请求的页面在执行过程中要向浏览器输出的数据.可以通过write 方法对其进行输出给浏览器。<br>3．         通过HttpApplicationFactory类的的一个静态方法。来为每个请求创建一个单独的httpApplication对象。在创建之前HttpApplicationFactor会到HttpApplication池中查看，有没有空闲的。若有直接用。没有的时候才创建新的HttpApplication。<br>4．         在httpApplication里运行己转换成接口IhttpHandler 的通过反射被请求页面对象的ProcessRequest 方法.<br>方法执行过程如下：先执行httpApplication中的processRequest方法。在此方法中包含了要按照先后顺序执行的１９个委托事件　当在执行到第８个事件的时候就开始创建被请求页面对象，在执行到第１１和第１２个事件之间时。就执行被创建的请求页面对象的ProcessRequest方法。</p>
+<p>（二）开始页面生命周期<br>1.页面生命周期的主要阶段包括： 阶段 事件/方法<br>页面初始化          Page_Init<br>加载View State      LoadViewState<br>回发数据处理      LoadPostData<br>页面加载          Page_Load<br>回发通知          RaisePostDataChangedEvent<br>回发事件处理     RaisePostBackEvent<br>页面预渲染       Page_PreRender<br>保存             viewstate SaveViewState<br>Page渲染         Page_Render<br>Page 卸载       Page_UnLoad<br>2.页面生命周期的主要事件：<br>PreInit:<br>1.检查IsPostBack 属性<br>2.动态设置Master Page<br>3.动态设置Theme<br>4.设置控件的默认值(UniqueId等）<br>5.重新创建动态控件（初始化控件），初始化控件的值<br>Init: 这个事件发生在所有的控件被初始化，所有的皮肤设置被应用以后。它用来读取或者初始化控件属性。它能够用来注册一些aspx页面中没有指出的控件的事件。<br>InitComplete: Use this event for processing tasks that require all initialization to be complete.<br>PreLoad: 加载页面的ViewState和所有的控件，然后处理所有的包含在Request实例中的postback数据。<br>Load: 这个事件可能是大家最熟悉的了。需要注意的是，Page对象会递归的调用子控件的onload事件直到页面和所有的子控件被加载完成。这个事件主要用来设置控件属性的值，建立数据库连接（通常不这么做）。<br>Validation： 如果你的控件要求验证，验证会在这个阶段发生，这个时候你可以检查控件的IsValid属性。跟这个阶段关联的事件是Validate，它有一个可以接受验证字符串群的重载方法(overload method)，这个重载方法执行特定控件群的验证。<br>Control events: 这个就不多说了，主要是处理控件的事件，例如click。这也就让我们明白了每次我们click一个Button的时候，实际上是要先去执行load事件然后才执行click事件的，一般我们用!IsPostBack来判断一下从而避免执行不必要的加载逻辑。<br>LoadComplete: 页面所有的控件都被加载以后执行，暂时没有想到用来干什么。。。<br>PreRender: 在HTML被生成之前这是最后一个事件。每一个页面中的控件都有PreRender的过程。在这里对将要输出的HTML结果进行最后一次修改。<br>SaveStateComplete: 在这个时间发生之前，已经保存了所有控件和页面的，任何对page或者控件的改动都不会产生左右。暂时没想到用来干啥。<br>Render: 它不是一个事件而是一个方法。工作就是把HTML写回客户端浏览器。<br>UnLoad: 页面中的每一个控件都会发生这件事。在控件中，使用这个事件来做清理工作，例如关闭数据库连接等。对与页面本身也是做清理工作，例如关闭打开的文件和数据库连接，或者结束日志或者其它指定的工作。<br>需要说明的是，每次Request都会创建一个全新的Page类的实例，所以在页面中的自己定义的字段是不能在两次request中传递值的，需要使用viewstate来存储。<br>页面处理的整体过程图解<br> <img src="https://img-blog.csdnimg.cn/20181228125946883.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="4-什么地方用到了Asp-Net-页面生命周期"><a href="#4-什么地方用到了Asp-Net-页面生命周期" class="headerlink" title="4.什么地方用到了Asp.Net 页面生命周期"></a>4.什么地方用到了Asp.Net 页面生命周期</h2><p> 1  第一张图片从全局说明从客户端发出一个Request请求，服务器windows内核中的HTTP.SYS组件接收该请求开始到IIS处理完该请求并响应到客户端结束。<br>2  第二张图片为图1中Http处理管线的详细步骤<br>3  第三张图片为图2Http处理管线中调用处理程序(HttpHandler,  此处为Page对象)的详细生命周期过程。<br><img src="https://img-blog.csdnimg.cn/20181228130202863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20181228130217277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="\\images\pasted-0.png\" alt="upload successful"></p>
 
             </div>
             <hr>
@@ -500,7 +497,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://yoursite.com" class="b-link-green">ZhouYong</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/29/hello-world/" class="b-link-green">Hello World</a>
+                    <a href="/2018/12/27/ce-shi-fu-ben-fu-ben-fu-ben-2/" class="b-link-green">Asp.Net页面生命周期</a>
                 </p>
             </div>
         </div>
@@ -524,20 +521,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2018/12/29/hello-world-fu-ben-fu-ben/">
+                <a href="/2018/12/27/ce-shi-fu-ben-fu-ben-fu-ben/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Asp.Net页面生命周期">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Asp.Net页面生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-29
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-27
                         </span>
                         <span class="publish-author">
                             
@@ -567,13 +564,13 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/12/27/hello-world-fu-ben/">
+                <a href="/2018/12/27/ce-shi-fu-ben-fu-ben-fu-ben-fu-ben/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Asp.Net页面生命周期">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Asp.Net页面生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

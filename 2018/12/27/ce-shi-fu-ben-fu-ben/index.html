@@ -358,7 +358,7 @@
 <p>通信处理过程:<br>当服务器运行正常的情况下,客户端（浏览器）<br>向服务器端发送请求时,服务器端负责监听的套接字(socket)，监听到有连接请求后，会为该客户端建立一个用于通信的套接字与客户端进行通信。当用户在浏览器向服务器发送请求时,浏览器会按照双方都约定好的网络传输层http协议，将请求转换成符合Http协议的请求报文。然后通过设备按照TCP协议发送到服务器。在服务器端接收到请求报文后。会按照Http协议对报文进行解析。若请求的内容为静态的数据，服务器端直接将被请求的数据，按照Http协议生成响应报文后返回给浏览器。浏览器然后解析收到的报文。将页面显示到浏览器窗口。（注：最开始仅是显示一个html 框架。经过多次请求。将CSS样式，图片………逐一的加载进来形成一个完整的页面。这个过程，有多次的交互通信。当通信结束后会把用来通信的套接字销毁，因为http协议是一种无状态的通信。这样减轻了服务器的压力）<br>当浏览器向客户端发送的请求为动态的。那么服务器（IIS）发现处理不了这种后缀名的文件时,会通过映射表到。响应实现了接口的可扩展程序asp.net_isapi.dll, 然后asp.net_isapi.dll,又将请求转交给网站程序处理.网站程序调用<br>httpRuntime类的processRequest方法来处理：<br>1．         此类会分析接收到的请求报文.将请求报文封装到名称为httpWorkerRequest的类的属性中(便于其它地方以用).<br>2．         创建HttpContext对象.这个对象是当前所请求报文的上下文环境.它包含了所有的请求数据.其中有两个最重要类的对象:http.Request和http.Response.  在httpRequest对象中又包含了两个属性.Form(通过表单请求的数据参数).Querystring(通过URL传递的数据参数); 通过索引器,可以找到参数的值. 在httpResponse 对象中有一个TextWriter对象.在它里面保存的是被请求的页面在执行过程中要向浏览器输出的数据.可以通过write 方法对其进行输出给浏览器。<br>3．         通过HttpApplicationFactory类的的一个静态方法。来为每个请求创建一个单独的httpApplication对象。在创建之前HttpApplicationFactor会到HttpApplication池中查看，有没有空闲的。若有直接用。没有的时候才创建新的HttpApplication。<br>4．         在httpApplication里运行己转换成接口IhttpHandler 的通过反射被请求页面对象的ProcessRequest 方法.<br>方法执行过程如下：先执行httpApplication中的processRequest方法。在此方法中包含了要按照先后顺序执行的１９个委托事件　当在执行到第８个事件的时候就开始创建被请求页面对象，在执行到第１１和第１２个事件之间时。就执行被创建的请求页面对象的ProcessRequest方法。</p>
 <p>（二）开始页面生命周期<br>1.页面生命周期的主要阶段包括： 阶段 事件/方法<br>页面初始化          Page_Init<br>加载View State      LoadViewState<br>回发数据处理      LoadPostData<br>页面加载          Page_Load<br>回发通知          RaisePostDataChangedEvent<br>回发事件处理     RaisePostBackEvent<br>页面预渲染       Page_PreRender<br>保存             viewstate SaveViewState<br>Page渲染         Page_Render<br>Page 卸载       Page_UnLoad<br>2.页面生命周期的主要事件：<br>PreInit:<br>1.检查IsPostBack 属性<br>2.动态设置Master Page<br>3.动态设置Theme<br>4.设置控件的默认值(UniqueId等）<br>5.重新创建动态控件（初始化控件），初始化控件的值<br>Init: 这个事件发生在所有的控件被初始化，所有的皮肤设置被应用以后。它用来读取或者初始化控件属性。它能够用来注册一些aspx页面中没有指出的控件的事件。<br>InitComplete: Use this event for processing tasks that require all initialization to be complete.<br>PreLoad: 加载页面的ViewState和所有的控件，然后处理所有的包含在Request实例中的postback数据。<br>Load: 这个事件可能是大家最熟悉的了。需要注意的是，Page对象会递归的调用子控件的onload事件直到页面和所有的子控件被加载完成。这个事件主要用来设置控件属性的值，建立数据库连接（通常不这么做）。<br>Validation： 如果你的控件要求验证，验证会在这个阶段发生，这个时候你可以检查控件的IsValid属性。跟这个阶段关联的事件是Validate，它有一个可以接受验证字符串群的重载方法(overload method)，这个重载方法执行特定控件群的验证。<br>Control events: 这个就不多说了，主要是处理控件的事件，例如click。这也就让我们明白了每次我们click一个Button的时候，实际上是要先去执行load事件然后才执行click事件的，一般我们用!IsPostBack来判断一下从而避免执行不必要的加载逻辑。<br>LoadComplete: 页面所有的控件都被加载以后执行，暂时没有想到用来干什么。。。<br>PreRender: 在HTML被生成之前这是最后一个事件。每一个页面中的控件都有PreRender的过程。在这里对将要输出的HTML结果进行最后一次修改。<br>SaveStateComplete: 在这个时间发生之前，已经保存了所有控件和页面的，任何对page或者控件的改动都不会产生左右。暂时没想到用来干啥。<br>Render: 它不是一个事件而是一个方法。工作就是把HTML写回客户端浏览器。<br>UnLoad: 页面中的每一个控件都会发生这件事。在控件中，使用这个事件来做清理工作，例如关闭数据库连接等。对与页面本身也是做清理工作，例如关闭打开的文件和数据库连接，或者结束日志或者其它指定的工作。<br>需要说明的是，每次Request都会创建一个全新的Page类的实例，所以在页面中的自己定义的字段是不能在两次request中传递值的，需要使用viewstate来存储。<br>页面处理的整体过程图解<br> <img src="https://img-blog.csdnimg.cn/20181228125946883.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="4-什么地方用到了Asp-Net-页面生命周期"><a href="#4-什么地方用到了Asp-Net-页面生命周期" class="headerlink" title="4.什么地方用到了Asp.Net 页面生命周期"></a>4.什么地方用到了Asp.Net 页面生命周期</h2><p> 1  第一张图片从全局说明从客户端发出一个Request请求，服务器windows内核中的HTTP.SYS组件接收该请求开始到IIS处理完该请求并响应到客户端结束。<br>2  第二张图片为图1中Http处理管线的详细步骤<br>3  第三张图片为图2Http处理管线中调用处理程序(HttpHandler,  此处为Page对象)的详细生命周期过程。<br><img src="https://img-blog.csdnimg.cn/20181228130202863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20181228130217277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5MjAwODEw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img src="\\images\pasted-0.png\" alt="upload successful"></p>
+<p><img src="/2018/12/27/ce-shi-fu-ben-fu-ben/\images\pasted-0.png\" alt="upload successful"></p>
 
             </div>
             <hr>
@@ -521,20 +521,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2018/12/27/ce-shi-fu-ben-fu-ben-fu-ben/">
+                <a href="/2018/12/29/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Asp.Net页面生命周期">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">Asp.Net页面生命周期</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-27
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-29
                         </span>
                         <span class="publish-author">
                             

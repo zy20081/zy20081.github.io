@@ -69,32 +69,6 @@
   </entry>
   
   <entry>
-    <title>Http响应码</title>
-    <link href="https://zy20081.github.io/2019/01/02/http-xiang-ying-ma/"/>
-    <id>https://zy20081.github.io/2019/01/02/http-xiang-ying-ma/</id>
-    <published>2019-01-02T06:17:11.000Z</published>
-    <updated>2019-01-02T08:10:43.207Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-Http请求&quot;&gt;&lt;a href=&quot;#1-Http请求&quot; class=&quot;headerlink&quot; title=&quot;1.Http请求&quot;&gt;&lt;/a&gt;1.Http请求&lt;/h2&gt;&lt;p&gt;&amp;emsp;浏览器 &lt;a href=&quot;http://www.baidu.com&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Web原理" scheme="https://zy20081.github.io/categories/Web%E5%8E%9F%E7%90%86/"/>
-    
-    
-      <category term="Web" scheme="https://zy20081.github.io/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Asp.Net页面生命周期</title>
     <link href="https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/"/>
     <id>https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/</id>
@@ -117,6 +91,58 @@
     
     
       <category term="ASP.NET原理" scheme="https://zy20081.github.io/tags/ASP-NET%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>orcale总结</title>
+    <link href="https://zy20081.github.io/2019/01/02/orcale-zong-jie/"/>
+    <id>https://zy20081.github.io/2019/01/02/orcale-zong-jie/</id>
+    <published>2019-01-02T06:17:11.000Z</published>
+    <updated>2019-01-03T08:05:39.111Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;orcale-导出和导入数据&quot;&gt;&lt;a href=&quot;#orcale-导出和导入数据&quot; class=&quot;headerlink&quot; title=&quot;orcale 导出和导入数据&quot;&gt;&lt;/a&gt;orcale
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://zy20081.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="orcale" scheme="https://zy20081.github.io/tags/orcale/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Http响应码</title>
+    <link href="https://zy20081.github.io/2019/01/02/http-xiang-ying-ma/"/>
+    <id>https://zy20081.github.io/2019/01/02/http-xiang-ying-ma/</id>
+    <published>2019-01-02T06:17:11.000Z</published>
+    <updated>2019-01-02T08:10:43.207Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-Http请求&quot;&gt;&lt;a href=&quot;#1-Http请求&quot; class=&quot;headerlink&quot; title=&quot;1.Http请求&quot;&gt;&lt;/a&gt;1.Http请求&lt;/h2&gt;&lt;p&gt;&amp;emsp;浏览器 &lt;a href=&quot;http://www.baidu.com&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Web原理" scheme="https://zy20081.github.io/categories/Web%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="Web" scheme="https://zy20081.github.io/tags/Web/"/>
     
   </entry>
   

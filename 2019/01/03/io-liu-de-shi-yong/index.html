@@ -1,0 +1,916 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="IO流的使用, ZhouYong">
+    <meta name="description" content="IO流的一般使用string ce=&#34;测试&#34;;
+File.WriteAllText(@&#34;12.txt&#34;,ce,Encoding.UTF8);
+ //Path类
+string s1 = @&#34;C:\a&#34;;
+string s2 = &#34;b.txt&#34;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>IO流的使用 | ZhouYong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">ZhouYong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主题</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>文章日历</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>个人信息</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZhouYong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主题
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                文章日历
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                个人信息
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        IO流的使用
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/ASP-NET/" target="_blank">
+                    <span class="chip bg-color">ASP.NET</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                        ASP.NET
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-03
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="IO流的一般使用"><a href="#IO流的一般使用" class="headerlink" title="IO流的一般使用"></a>IO流的一般使用</h2><pre class=" language-bash"><code class="language-bash">string ce<span class="token operator">=</span><span class="token string">"测试"</span><span class="token punctuation">;</span>
+File.WriteAllText<span class="token punctuation">(</span>@<span class="token string">"12.txt"</span>,ce,Encoding.UTF8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ //Path类
+string s1 <span class="token operator">=</span> @<span class="token string">"C:\a"</span><span class="token punctuation">;</span>
+string s2 <span class="token operator">=</span> <span class="token string">"b.txt"</span><span class="token punctuation">;</span>
+//combine处理末尾\问题
+string s3 <span class="token operator">=</span> Path.Combine<span class="token punctuation">(</span>s1, s2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console.WriteLine<span class="token punctuation">(</span>s3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+string g1 <span class="token operator">=</span> @<span class="token string">"c:\windows\test\a.txt"</span><span class="token punctuation">;</span>
+// 1.获取文件名
+Console.WriteLine<span class="token punctuation">(</span>Path.GetFileName<span class="token punctuation">(</span>g1<span class="token punctuation">))</span><span class="token punctuation">;</span>
+// 2.获取目录
+Console.WriteLine<span class="token punctuation">(</span>Path.GetDirectoryName<span class="token punctuation">(</span>g1<span class="token punctuation">))</span><span class="token punctuation">;</span>
+//3.获取文件名不包括扩展名
+Console.WriteLine<span class="token punctuation">(</span>Path.GetFileNameWithoutExtension<span class="token punctuation">(</span>g1<span class="token punctuation">))</span><span class="token punctuation">;</span>
+//4.获取扩展名
+Console.WriteLine<span class="token punctuation">(</span>Path.GetExtension<span class="token punctuation">(</span>g1<span class="token punctuation">))</span><span class="token punctuation">;</span>
+//5.获取完整路劲<span class="token punctuation">..</span>/获取父目录
+Console.WriteLine<span class="token punctuation">(</span>Path.GetFullPath<span class="token punctuation">(</span><span class="token string">"12.txt"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+//6.获取当前用户临时目录
+Console.WriteLine<span class="token punctuation">(</span>Path.GetTempPath<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+//7.获取一个随机的文件名（也可以用作文件夹名）
+Console.WriteLine<span class="token punctuation">(</span>Path.GetRandomFileName<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+//8.获取一个随机的文件名，并在临时目录下创建这个文件
+Console.WriteLine<span class="token punctuation">(</span>Path.GetTempFileName<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="StreamWriter字符串生成js文件"><a href="#StreamWriter字符串生成js文件" class="headerlink" title="StreamWriter字符串生成js文件"></a>StreamWriter字符串生成js文件</h2><pre class=" language-bash"><code class="language-bash"> string str <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+ string path <span class="token operator">=</span> <span class="token string">"D:/newfdc"</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory.Exists<span class="token punctuation">(</span>path<span class="token punctuation">))</span>
+ <span class="token punctuation">{</span>
+     Directory.CreateDirectory<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ string FileName <span class="token operator">=</span><span class="token string">"hello.js"</span><span class="token punctuation">;</span>
+ Encoding code <span class="token operator">=</span> Encoding.GetEncoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ StreamWriter sw <span class="token operator">=</span> new StreamWriter<span class="token punctuation">(</span>Path.Combine<span class="token punctuation">(</span>path, FileName<span class="token punctuation">)</span>, false, code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ sw.Write<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ sw.Flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ sw.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ Console.WriteLine<span class="token punctuation">(</span><span class="token string">"OK"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="file-copy使用"><a href="#file-copy使用" class="headerlink" title="file.copy使用"></a>file.copy使用</h2><pre class=" language-bash"><code class="language-bash"> string str <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+ string path <span class="token operator">=</span> <span class="token string">"D:/newfdc"</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory.Exists<span class="token punctuation">(</span>path<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+     Directory.CreateDirectory<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ string FileName <span class="token operator">=</span><span class="token string">"hello.js"</span><span class="token punctuation">;</span>
+ Encoding code <span class="token operator">=</span> Encoding.GetEncoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ string nowpath <span class="token operator">=</span> Path.Combine<span class="token punctuation">(</span>path, FileName<span class="token punctuation">)</span><span class="token punctuation">;</span>//现有文件
+ string path2 <span class="token operator">=</span> <span class="token string">"E:/new"</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory.Exists<span class="token punctuation">(</span>path2<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+     Directory.CreateDirectory<span class="token punctuation">(</span>path2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ string name <span class="token operator">=</span> <span class="token string">"copy.js"</span><span class="token punctuation">;</span>
+ File.Copy<span class="token punctuation">(</span>nowpath,Path.Combine<span class="token punctuation">(</span>path2,name<span class="token punctuation">)</span>,true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ Console.WriteLine<span class="token punctuation">(</span><span class="token string">"复制成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><pre class=" language-bash"><code class="language-bash">  <span class="token keyword">if</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+      path <span class="token operator">=</span> System.Configuration.ConfigurationSettings.AppSettings<span class="token punctuation">[</span><span class="token string">"jsupload"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory.Exists<span class="token punctuation">(</span>path<span class="token punctuation">))</span>
+      <span class="token punctuation">{</span>
+          Directory.CreateDirectory<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      File.Copy<span class="token punctuation">(</span>localfileName, Path.Combine<span class="token punctuation">(</span>path, ftpfileName<span class="token punctuation">)</span>, true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+ <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="StreamWriter和reader"><a href="#StreamWriter和reader" class="headerlink" title="StreamWriter和reader"></a>StreamWriter和reader</h2><pre class=" language-bash"><code class="language-bash"> string mobile <span class="token operator">=</span> <span class="token string">"13628611111"</span><span class="token punctuation">;</span>
+ StreamWriter writer <span class="token operator">=</span> new StreamWriter<span class="token punctuation">(</span><span class="token string">"SMS.txt"</span>, true, Encoding.UTF8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ writer.Write<span class="token punctuation">(</span>mobile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ writer.Write<span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ writer.Flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ writer.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ StreamReader reader <span class="token operator">=</span> new StreamReader<span class="token punctuation">(</span><span class="token string">"SMS.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+string read<span class="token operator">=</span> reader.ReadLine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+int i <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+int count <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>read.IndexOf<span class="token punctuation">(</span>mobile, i<span class="token punctuation">)</span> <span class="token operator">>=</span> 0<span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+ i<span class="token operator">=</span>read.IndexOf<span class="token punctuation">(</span>mobile,i<span class="token punctuation">)</span>+1<span class="token punctuation">;</span>
+  count++<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+Console.WriteLine<span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console.ReadLine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Serializable序列号案例"><a href="#Serializable序列号案例" class="headerlink" title="Serializable序列号案例"></a>Serializable序列号案例</h2><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>Serializable<span class="token punctuation">]</span>
+public class ClassToSerialize
+<span class="token punctuation">{</span>
+    public int <span class="token function">id</span> <span class="token operator">=</span> 100<span class="token punctuation">;</span>
+    public string name <span class="token operator">=</span> <span class="token string">"Name"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>NonSerialized<span class="token punctuation">]</span>
+    public string Sex <span class="token operator">=</span> <span class="token string">"男"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+public void SerializeNow<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+     ClassToSerialize c <span class="token operator">=</span> new ClassToSerialize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     FileStream fileStream <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span><span class="token string">"c:\\temp.dat"</span>, FileMode.Create<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     BinaryFormatter b <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     b.Serialize<span class="token punctuation">(</span>fileStream, c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     fileStream.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ public void DeSerializeNow<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+     ClassToSerialize c <span class="token operator">=</span> new ClassToSerialize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     c.Sex <span class="token operator">=</span> <span class="token string">"kkkk"</span><span class="token punctuation">;</span>
+     FileStream fileStream <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span><span class="token string">"c:\\temp.dat"</span>, FileMode.Open, FileAccess.Read, FileShare.Read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     BinaryFormatter b <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     c <span class="token operator">=</span> b.Deserialize<span class="token punctuation">(</span>fileStream<span class="token punctuation">)</span> as ClassToSerialize<span class="token punctuation">;</span>
+       Response.Write<span class="token punctuation">(</span>c.name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     Response.Write<span class="token punctuation">(</span>c.Sex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     fileStream.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+//////////////////////////////
+<span class="token punctuation">[</span>Serializable<span class="token punctuation">]</span>
+public class XRentManager
+<span class="token punctuation">{</span>
+   public XRentManager<span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+       m_DicMyTraffics <span class="token operator">=</span> new Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       m_DicRenteds <span class="token operator">=</span> new Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//出租集合
+   <span class="token punctuation">}</span>
+   ///字典集合：保存可以出租的车
+   private Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span> m_DicMyTraffics<span class="token punctuation">;</span>
+   internal Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span> DicMyTraffics
+   <span class="token punctuation">{</span>
+        get <span class="token punctuation">{</span> <span class="token keyword">return</span> m_DicMyTraffics<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+    /// 获取可以出租的汽车集合
+    private Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span> m_DicRenteds<span class="token punctuation">;</span>
+   /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+   /// 汽车入库或者出租的车回库
+   /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+   internal Dictionary<span class="token operator">&lt;</span>string, TrafficInfo<span class="token operator">></span> DicRenteds
+   <span class="token punctuation">{</span>
+     get <span class="token punctuation">{</span> <span class="token keyword">return</span> m_DicRenteds<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true">#region 反序列化</span>
+ FileStream fs <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span><span class="token string">"Students.bin"</span>, FileMode.OpenOrCreate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ BinaryFormatter bf <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>fs.Length <span class="token operator">></span> 0<span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+     m_RM <span class="token operator">=</span> bf.Deserialize<span class="token punctuation">(</span>fs<span class="token punctuation">)</span> as XRentManager<span class="token punctuation">;</span>//反序列化
+ <span class="token punctuation">}</span>
+ bf <span class="token operator">=</span> null<span class="token punctuation">;</span>
+ fs.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ fs.Dispose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  //正序列化
+ XRentManager m_RM <span class="token operator">=</span> new XRentManager<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#region 序列化</span>
+ FileStream fs <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span><span class="token string">"Students.bin"</span>, FileMode.OpenOrCreate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ BinaryFormatter bf <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//创建序列化
+ bf.Serialize<span class="token punctuation">(</span>fs, m_RM<span class="token punctuation">)</span><span class="token punctuation">;</span>//保存
+ bf <span class="token operator">=</span> null<span class="token punctuation">;</span>
+ fs.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ fs.Dispose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+ <span class="token comment" spellcheck="true">#endregion</span>
+</code></pre>
+<h2 id="Direcotry类（操作目录）"><a href="#Direcotry类（操作目录）" class="headerlink" title="Direcotry类（操作目录）"></a>Direcotry类（操作目录）</h2><pre class=" language-bash"><code class="language-bash">//1.创建一些目录
+Directory.CreateDirectory<span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+//2.获取当前目录下的所有的直接子目录<span class="token punctuation">(</span>文件夹<span class="token punctuation">)</span>第二个参数包含<span class="token string">"*I*"</span>，第三个参数，是当前目录还是所有搜索
+string <span class="token punctuation">[</span><span class="token punctuation">]</span> dirs<span class="token operator">=</span> Directory.GetDirectories<span class="token punctuation">(</span>@<span class="token string">"c:\");
+foreach(string item in dirs ){
+    Console.WriteLine(item);
+}
+//3.获取当前目录下的所有文件
+string[] files = Directory.GetFiles(@"</span>c:\<span class="token string">");
+foreach (string item in files) {
+   Console.WriteLine(item);
+}
+//4.判断是否有这个目录返bool
+Directory.Exists(@"</span>C:\test1<span class="token string">");
+//5.删目录
+Directory.Delete(@"</span>C:\test1<span class="token string">",true);
+//6.移动，剪切，移动到同一个地方，改名字，就是重名
+Directory.Move(@"</span>C:\a.txt<span class="token string">", @"</span>C:\a\a.txt"<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><pre class=" language-bash"><code class="language-bash">    //1.判断文件是否存在？2.删除Delete
+File.Exists<span class="token punctuation">(</span>@<span class="token string">"C:\1.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //2.读取也有对应的写入
+File.ReadAllLines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>File.ReadAllBytes<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>File.ReadAllText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="文件流-FileStream"><a href="#文件流-FileStream" class="headerlink" title="文件流 FileStream"></a>文件流 FileStream</h2><pre class=" language-bash"><code class="language-bash"> //1.创建一个文件流
+ FileStream fs <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span>@<span class="token string">"c:\txt.txt"</span>, FileMode.OpenOrCreate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ //2.读或写,每次读取的内容都有放在缓冲区中
+ byte<span class="token punctuation">[</span><span class="token punctuation">]</span> byts<span class="token operator">=</span>new byte<span class="token punctuation">[</span>fs.Length<span class="token punctuation">]</span><span class="token punctuation">;</span> //设置、字节
+ //第一个参数：文件中的字节读取到该数组中，0是从第0个索引开始放，第三个参数数最多读取的字长
+ fs.Read<span class="token punctuation">(</span>byts, 0, byts.Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ //文件流要关闭和释放
+ fs.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> fs.Dispose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">ZhouYong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/03/io-liu-de-shi-yong/" class="b-link-green">IO流的使用</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/03/io-liu-de-shi-yong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="IO流的使用">
+                        
+                        <span class="card-title">IO流的使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">IO流的一般使用string ce="测试";
+File.WriteAllText(@"12.txt",ce,Encoding.UTF8);
+ //Path类
+string s1 = @"C:\a";
+string s2 = "b.txt"</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/03/webclient-zhua-qu-wang-ye-dai-ma/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="WebClient抓取网页代码">
+                        
+                        <span class="card-title">WebClient抓取网页代码</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">WebClient类&emsp;WebClient类位于System.Net命名空间下，WebClient类提供向URI标识的任何本地、Intranet或Internet资源发送数据以及从这些资源接收数据的公共方法。源代码:
+///引用命名</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

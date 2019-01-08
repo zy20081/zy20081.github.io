@@ -1,0 +1,1058 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="XML解析demo, ZhouYong">
+    <meta name="description" content="创建xml  static void Main(string[] args)
+  {  //1.创建一个XDocument对象
+      XDocument writeXml = new XDocument();
+     //2.增加一">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>XML解析demo | ZhouYong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">ZhouYong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主题</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>文章日历</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>个人信息</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZhouYong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主题
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                文章日历
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                个人信息
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        XML解析demo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/C-Demo/" target="_blank">
+                    <span class="chip bg-color">C# Demo</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/C/" class="post-category" target="_blank">
+                        C#
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-08
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="创建xml"><a href="#创建xml" class="headerlink" title="创建xml"></a>创建xml</h2><pre class=" language-bash"><code class="language-bash">  static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>  //1.创建一个XDocument对象
+      XDocument writeXml <span class="token operator">=</span> new XDocument<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     //2.增加一个根节点
+      XElement XRoot <span class="token operator">=</span> new XElement<span class="token punctuation">(</span><span class="token string">"WebSites"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      //3.将根节点加到writeXML中
+      writeXml.Add<span class="token punctuation">(</span>XRoot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      //4.写子节点
+      XElement XeBaidu <span class="token operator">=</span> new XElement<span class="token punctuation">(</span><span class="token string">"WebSite"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      XeBaidu.SetAttributeValue<span class="token punctuation">(</span><span class="token string">"url"</span>, <span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      //5.把子节点加到根节点上
+      //快速添加子节点
+      XRoot.SetElementValue<span class="token punctuation">(</span><span class="token string">"webSiteCount"</span>,100<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      XRoot.Add<span class="token punctuation">(</span>XeBaidu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      //继续增加子元素增加子标签
+      XeBaidu.SetElementValue<span class="token punctuation">(</span><span class="token string">"name"</span>, <span class="token string">"笑笑"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      XeBaidu.SetElementValue<span class="token punctuation">(</span><span class="token string">"age"</span>, <span class="token string">"19"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      writeXml.Save<span class="token punctuation">(</span><span class="token string">"Web.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Console.WriteLine<span class="token punctuation">(</span><span class="token string">"OK"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="解析XML"><a href="#解析XML" class="headerlink" title="解析XML"></a>解析XML</h2><pre class=" language-bash"><code class="language-bash"> static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+     XDocument doc <span class="token operator">=</span> XDocument.Load<span class="token punctuation">(</span>@<span class="token string">"E:\practice\XML操作\订单练习\orders.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     XElement orderElement <span class="token operator">=</span> doc.Root<span class="token punctuation">;</span>
+     XElement customerElement<span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"CustomerName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     XElement orderNumberElement <span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"orderNumber"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     XElement orderItems <span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     List<span class="token operator">&lt;</span>string<span class="token operator">></span> orderName <span class="token operator">=</span> new List<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     List<span class="token operator">&lt;</span>string<span class="token operator">></span> orderCount <span class="token operator">=</span> new List<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     foreach <span class="token punctuation">(</span>XElement order <span class="token keyword">in</span> orderItems.Elements<span class="token punctuation">(</span><span class="token punctuation">))</span>
+         <span class="token punctuation">{</span>
+               orderName.Add<span class="token punctuation">(</span>order.Attribute<span class="token punctuation">(</span><span class="token string">"Name"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               orderCount.Add<span class="token punctuation">(</span>order.Attribute<span class="token punctuation">(</span><span class="token string">"Count"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+        Console.WriteLine<span class="token punctuation">(</span>customerElement.Value+<span class="token string">"的订单"</span>+orderNumberElement.Value+<span class="token string">"买"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       Console.WriteLine<span class="token punctuation">(</span>orderNae<span class="token punctuation">[</span>0<span class="token punctuation">]</span> +orderCount<span class="token punctuation">[</span>0<span class="token punctuation">]</span>+orderName<span class="token punctuation">[</span>1<span class="token punctuation">]</span>+orderCount<span class="token punctuation">[</span>1<span class="token punctuation">]</span>+orderName<span class="token punctuation">[</span>2<span class="token punctuation">]</span>+orderCount<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    ////////////////XML 文件
+<span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span> ?<span class="token operator">></span>
+<span class="token operator">&lt;</span>order<span class="token operator">></span>
+  <span class="token operator">&lt;</span>CustomerName<span class="token operator">></span>小肖<span class="token operator">&lt;</span>/CustomerName<span class="token operator">></span>
+  <span class="token operator">&lt;</span>orderNumber<span class="token operator">></span>BJ200888<span class="token operator">&lt;</span>/orderNumber<span class="token operator">></span>
+  <span class="token operator">&lt;</span>items<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"电脑"</span> Count<span class="token operator">=</span><span class="token string">"30"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"电视"</span> Count<span class="token operator">=</span><span class="token string">"10"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"水杯"</span> Count<span class="token operator">=</span><span class="token string">"20"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+
+  <span class="token operator">&lt;</span>/items<span class="token operator">></span>
+<span class="token operator">&lt;</span>/order<span class="token operator">></span>
+</code></pre>
+<h2 id="XML序列化"><a href="#XML序列化" class="headerlink" title="XML序列化"></a>XML序列化</h2><pre class=" language-bash"><code class="language-bash"> static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Person per <span class="token operator">=</span> new Person<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        per.name <span class="token operator">=</span> <span class="token string">"小明"</span><span class="token punctuation">;</span>
+        per.age <span class="token operator">=</span> 18<span class="token punctuation">;</span>
+        Person per1 <span class="token operator">=</span> new Person<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        per1.name <span class="token operator">=</span> <span class="token string">"dfafd"</span><span class="token punctuation">;</span>
+        per1.age <span class="token operator">=</span> 12<span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Person<span class="token operator">></span> list <span class="token operator">=</span> new List<span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list.Add<span class="token punctuation">(</span>per<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list.Add<span class="token punctuation">(</span>per1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">#region 序列号一般的类</span>
+
+        //XmlSerializer xmlSer <span class="token operator">=</span> new XmlSerializer<span class="token punctuation">(</span>typeof<span class="token punctuation">(</span>Person<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        //using <span class="token punctuation">(</span>FileStream fs <span class="token operator">=</span> File.OpenWrite<span class="token punctuation">(</span><span class="token string">"Person.xml"</span><span class="token punctuation">))</span>
+        //<span class="token punctuation">{</span>
+        //    xmlSer.Serialize<span class="token punctuation">(</span>fs, per<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //<span class="token punctuation">}</span> 
+        <span class="token comment" spellcheck="true">#endregion</span>
+        <span class="token comment" spellcheck="true">#region 序列号集合</span>
+        XmlSerializer xmlser<span class="token operator">=</span>new XmlSerializer<span class="token punctuation">(</span>typeof<span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        using <span class="token punctuation">(</span>FileStream fs <span class="token operator">=</span> File.OpenWrite<span class="token punctuation">(</span><span class="token string">"list.xml"</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+            xmlser.Serialize<span class="token punctuation">(</span>fs, list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">#endregion</span>
+        Console.WriteLine<span class="token punctuation">(</span><span class="token string">"OK"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  public  class Person <span class="token punctuation">{</span>
+        public string name <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public int age <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="studentmessage-xml文件"><a href="#studentmessage-xml文件" class="headerlink" title="studentmessage.xml文件"></a>studentmessage.xml文件</h2><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span> ?<span class="token operator">></span>
+<span class="token operator">&lt;</span>student<span class="token operator">></span>
+  <span class="token operator">&lt;</span>net09<span class="token operator">></span>
+    <span class="token operator">&lt;</span>preson id<span class="token operator">=</span><span class="token string">"cz001"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>name<span class="token operator">></span>小小<span class="token operator">&lt;</span>/name<span class="token operator">></span>
+      <span class="token operator">&lt;</span>age<span class="token operator">></span>22<span class="token operator">&lt;</span>/age<span class="token operator">></span>
+      <span class="token operator">&lt;</span>sex<span class="token operator">></span>女<span class="token operator">&lt;</span>/sex<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/preson<span class="token operator">></span>
+    <span class="token operator">&lt;</span>person id<span class="token operator">=</span><span class="token string">"cz002"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>name<span class="token operator">></span>小周<span class="token operator">&lt;</span>/name<span class="token operator">></span>
+      <span class="token operator">&lt;</span>age<span class="token operator">></span>21<span class="token operator">&lt;</span>/age<span class="token operator">></span>
+      <span class="token operator">&lt;</span>sex<span class="token operator">></span>男<span class="token operator">&lt;</span>/sex<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/person<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/net09<span class="token operator">></span>
+  <span class="token operator">&lt;</span>net08<span class="token operator">></span>
+    <span class="token operator">&lt;</span>person id<span class="token operator">=</span><span class="token string">"cx001"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>name<span class="token operator">></span>嘉怡<span class="token operator">&lt;</span>/name<span class="token operator">></span>
+      <span class="token operator">&lt;</span>age<span class="token operator">></span>16<span class="token operator">&lt;</span>/age<span class="token operator">></span>
+      <span class="token operator">&lt;</span>sex<span class="token operator">></span>女<span class="token operator">&lt;</span>/sex<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/person<span class="token operator">></span>
+    <span class="token operator">&lt;</span>person id<span class="token operator">=</span><span class="token string">"cx002"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>name<span class="token operator">></span>小肖<span class="token operator">&lt;</span>/name<span class="token operator">></span>
+      <span class="token operator">&lt;</span>age<span class="token operator">></span>18<span class="token operator">&lt;</span>/age<span class="token operator">></span>
+      <span class="token operator">&lt;</span>sex<span class="token operator">></span>男<span class="token operator">&lt;</span>/sex<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/person<span class="token operator">></span>    
+  <span class="token operator">&lt;</span>/net08<span class="token operator">></span>
+<span class="token operator">&lt;</span>/student<span class="token operator">></span>
+</code></pre>
+<h2 id="XML加载"><a href="#XML加载" class="headerlink" title="XML加载"></a>XML加载</h2><pre class=" language-bash"><code class="language-bash"> private void btnXml_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //1加载
+            XDocument docxml <span class="token operator">=</span> XDocument.Load<span class="token punctuation">(</span>@<span class="token string">"E:\practice\XML操作\XML操作\studentmessage.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //2.获取根节点
+            XElement xmlRoot <span class="token operator">=</span> docxml.Root<span class="token punctuation">;</span>
+            //3.把根节点加到TreeView上
+            TreeNode treeviewroot <span class="token operator">=</span> tvXmlShow.Nodes.Add<span class="token punctuation">(</span>xmlRoot.Name.ToString<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //4.递归加载
+            LoadNodes<span class="token punctuation">(</span>xmlRoot,treeviewroot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //foreach没了，就停止了
+        private void LoadNodes<span class="token punctuation">(</span>XElement xmlRoot, TreeNode treeviewroot<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            foreach <span class="token punctuation">(</span>XElement ele <span class="token keyword">in</span> xmlRoot.Elements<span class="token punctuation">(</span><span class="token punctuation">))</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>ele.Elements<span class="token punctuation">(</span><span class="token punctuation">)</span>.Count<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> 0<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>   //绑定的是元素本身
+                    TreeNode node <span class="token operator">=</span> treeviewroot.Nodes.Add<span class="token punctuation">(</span>ele.Name.ToString<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                    //如果有属性的话，怎遍历属性
+                    XAttribute eleAttribute<span class="token operator">=</span> ele.Attribute<span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>eleAttribute <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        node.Text +<span class="token operator">=</span> <span class="token string">"{"</span> + eleAttribute.Name + <span class="token string">"="</span> + eleAttribute.Value + <span class="token string">"}"</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    LoadNodes<span class="token punctuation">(</span>ele, node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span> <span class="token punctuation">{</span> TreeNode node <span class="token operator">=</span> treeviewroot.Nodes.Add<span class="token punctuation">(</span>ele.Value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2019/01/08/xml/1.jpg" alt="图1"></p>
+<h2 id="经典案例银行xml"><a href="#经典案例银行xml" class="headerlink" title="经典案例银行xml"></a>经典案例银行xml</h2><h3 id="ytbank-xml"><a href="#ytbank-xml" class="headerlink" title="ytbank.xml"></a>ytbank.xml</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span> ?<span class="token operator">></span> 
+<span class="token operator">&lt;</span>CFX<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000001"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"腾讯销售部"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"新浪财务部"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000002"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000003"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000004"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000005"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000006"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000007"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000008"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000009"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000010"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000011"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000012"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000013"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000014"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+        <span class="token operator">&lt;</span>MSG<span class="token operator">></span>
+            <span class="token operator">&lt;</span>交易码  val<span class="token operator">=</span><span class="token string">"1000"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>流水号  val<span class="token operator">=</span><span class="token string">"100000000000000015"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>金额  val<span class="token operator">=</span><span class="token string">"1234567890.12"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>付款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款机构  val<span class="token operator">=</span><span class="token string">"1234"</span>/<span class="token operator">></span>
+            <span class="token operator">&lt;</span>收款单位账号  val<span class="token operator">=</span><span class="token string">"12345678901234567890"</span>/<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/MSG<span class="token operator">></span>
+<span class="token operator">&lt;</span>/CFX<span class="token operator">></span>
+</code></pre>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre class=" language-bash"><code class="language-bash"> static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+        XDocument bankdoc <span class="token operator">=</span> XDocument.Load<span class="token punctuation">(</span>@<span class="token string">"E:\practice\XML操作\银行bank解析\ytbank.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        XElement bankroot <span class="token operator">=</span> bankdoc.Root<span class="token punctuation">;</span>
+        string businesscode, serialnumber, money, payorganization, payunit,  getorganization, getunit<span class="token punctuation">;</span>
+        foreach <span class="token punctuation">(</span>XElement bankmsg <span class="token keyword">in</span> bankroot.Elements<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+            businesscode <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"交易码"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            serialnumber <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"流水号"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            money <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"金额"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            payorganization <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"付款机构"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            payunit <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"付款单位账号"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            getorganization <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"收款机构"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            getunit <span class="token operator">=</span> bankmsg.Element<span class="token punctuation">(</span><span class="token string">"收款单位账号"</span><span class="token punctuation">)</span>.Attribute<span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"交易码"</span> + businesscode + <span class="token string">"流水号"</span> + serialnumber + <span class="token string">"金额"</span> + money<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"付款机构"</span> + payorganization + <span class="token string">"付款单位账号"</span> + payunit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"收款机构"</span> + getorganization + <span class="token string">"收款单位账号 "</span> + getunit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="订单练习"><a href="#订单练习" class="headerlink" title="订单练习"></a>订单练习</h2><h3 id="orders-xml"><a href="#orders-xml" class="headerlink" title="orders.xml"></a>orders.xml</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span> ?<span class="token operator">></span>
+<span class="token operator">&lt;</span>order<span class="token operator">></span>
+  <span class="token operator">&lt;</span>CustomerName<span class="token operator">></span>小肖<span class="token operator">&lt;</span>/CustomerName<span class="token operator">></span>
+  <span class="token operator">&lt;</span>orderNumber<span class="token operator">></span>BJ200888<span class="token operator">&lt;</span>/orderNumber<span class="token operator">></span>
+  <span class="token operator">&lt;</span>items<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"电脑"</span> Count<span class="token operator">=</span><span class="token string">"30"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"电视"</span> Count<span class="token operator">=</span><span class="token string">"10"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+    <span class="token operator">&lt;</span>orederItem Name<span class="token operator">=</span><span class="token string">"水杯"</span> Count<span class="token operator">=</span><span class="token string">"20"</span><span class="token operator">></span><span class="token operator">&lt;</span>/orederItem<span class="token operator">></span>
+
+  <span class="token operator">&lt;</span>/items<span class="token operator">></span>
+<span class="token operator">&lt;</span>/order<span class="token operator">></span>
+</code></pre>
+<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><pre class=" language-bash"><code class="language-bash">   static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            XDocument doc <span class="token operator">=</span> XDocument.Load<span class="token punctuation">(</span>@<span class="token string">"E:\practice\XML操作\订单练习\orders.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            XElement orderElement <span class="token operator">=</span> doc.Root<span class="token punctuation">;</span>
+            XElement customerElement<span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"CustomerName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            XElement orderNumberElement <span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"orderNumber"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            XElement orderItems <span class="token operator">=</span> orderElement.Element<span class="token punctuation">(</span><span class="token string">"items"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>string<span class="token operator">></span> orderName <span class="token operator">=</span> new List<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            List<span class="token operator">&lt;</span>string<span class="token operator">></span> orderCount <span class="token operator">=</span> new List<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>XElement order <span class="token keyword">in</span> orderItems.Elements<span class="token punctuation">(</span><span class="token punctuation">))</span>
+                <span class="token punctuation">{</span>
+                      orderName.Add<span class="token punctuation">(</span>order.Attribute<span class="token punctuation">(</span><span class="token string">"Name"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                      orderCount.Add<span class="token punctuation">(</span>order.Attribute<span class="token punctuation">(</span><span class="token string">"Count"</span><span class="token punctuation">)</span>.Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+               Console.WriteLine<span class="token punctuation">(</span>customerElement.Value+<span class="token string">"的订单"</span>+orderNumberElement.Value+<span class="token string">"买"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               Console.WriteLine<span class="token punctuation">(</span>orderName<span class="token punctuation">[</span>0<span class="token punctuation">]</span> + orderCount<span class="token punctuation">[</span>0<span class="token punctuation">]</span>+orderName<span class="token punctuation">[</span>1<span class="token punctuation">]</span>+orderCount<span class="token punctuation">[</span>1<span class="token punctuation">]</span>+orderName<span class="token punctuation">[</span>2<span class="token punctuation">]</span>+orderCount<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">ZhouYong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/08/xml/" class="b-link-green">XML解析demo</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/08/xml/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="XML解析demo">
+                        
+                        <span class="card-title">XML解析demo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">创建xml  static void Main(string[] args)
+  {  //1.创建一个XDocument对象
+      XDocument writeXml = new XDocument();
+     //2.增加一</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/08/c-shi-jian-wei-tuo-demo-san-jie-mian-tong-bu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="C#委托Demo三界面同步">
+                        
+                        <span class="card-title">C#委托Demo三界面同步</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">委托委托（delegate）“一个函数赋值给一个委托变量后，调用这个委托等价于调用那个函数委托就是能存放符合签名方法指针的容器
+
+委托是一种数据类型，引用类型，像类一样（可以声明委托类型变量）
+使用委托的时候必须new一个委托对象，即使看到</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

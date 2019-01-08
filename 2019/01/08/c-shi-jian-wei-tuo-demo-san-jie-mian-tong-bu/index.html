@@ -1,0 +1,895 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="C#委托Demo三界面同步, ZhouYong">
+    <meta name="description" content="委托委托（delegate）“一个函数赋值给一个委托变量后，调用这个委托等价于调用那个函数委托就是能存放符合签名方法指针的容器
+
+委托是一种数据类型，引用类型，像类一样（可以声明委托类型变量）
+使用委托的时候必须new一个委托对象，即使看到">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>C#委托Demo三界面同步 | ZhouYong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">ZhouYong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主题</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>文章日历</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>个人信息</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZhouYong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主题
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                文章日历
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                个人信息
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        C#委托Demo三界面同步
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/C-Demo/" target="_blank">
+                    <span class="chip bg-color">C# Demo</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/C/" class="post-category" target="_blank">
+                        C#
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-08
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h2><p>委托（delegate）“一个函数赋值给一个委托变量后，调用这个委托等价于调用那个函数<br>委托就是能存放符合签名方法指针的容器</p>
+<ol>
+<li>委托是一种数据类型，引用类型，像类一样（可以声明委托类型变量）</li>
+<li>使用委托的时候必须new一个委托对象，即使看到的代码没有new委托对象，编译器也会在编译时<br>帮我们new赋值给委托的方法，其实是存储在委托对象中的</li>
+<li>委托（在代码中动态嵌入一个方法）使用的步骤：<br>1&gt;定义一个委托类型<br> public delegate void form2delegate();<br>2&gt;声明一个委托变量<br>  form2delegate wd=new form2delegate(方法名);<br>3&gt;调用委托<br>  if(wd !=null){<br> //调用委托<br>   wd();<br>  或wd.Invoke();<br> }</li>
+<li>什么情况下用委托？委托有什么用？<br>1.有一段代码<br>2.变化（当一个类型中需要嵌入一段代码，但是这段代码具有不确定性，是根据使用这个类型的用户来确定代码的，这种情况下就可以在该类型中，使用一个委托，保证在某种情况下调用这个委托，<br>这时，用户将对应的方法传递给该委托，则就会调用这个方法）</li>
+</ol>
+<p>&emsp;自定义控件中的事件会大量使用到委托（写事件的时候会用到委托）<br>//可以把静态方法或私有方法赋值到委托变量，赋值后能使用到该委托变量的地方<br>就能使用该方法<br>–匿名方法： myDelegate md=delegate(){ console…};<br>调用： md();<br> public delegate void myDelegate();<br>–事件  ：委托可以实现事件所有功能时代<br>事件就是委托封装了add和remove方法，不会让别人捣乱 本质还是委托<br>定义事件之前要定义委托;</p>
+<pre class=" language-bash"><code class="language-bash">public delegate void myTriplechick<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+public event myTriplechick Tirpclick<span class="token punctuation">;</span>
+</code></pre>
+<p>事件只能使用+=或-=赋值，避免使用=赋值时覆盖问题<br>/<br>委托和事件区别：委托是类型，事件是对象，相当于一个委托的变量（可以理解为对委托变量的封装（私有委托）），<br>委托可以在外部调用，可以用=号赋值，事件只能在定义事件的内部来调用，只能用+=或-=赋值,委托可以实现件的所有功能，事件相对于对委托做了一个限制。<br>/<br>事件作用与委托变量一样。<br>–程序集（exe,dll）:类型元数据（代码中每一个类型和成员），程序集元数据（程序集清单），IL代码，资源文件<br>可以通过Assmblyinfo.cs文件来定义</p>
+<pre class=" language-bash"><code class="language-bash">namespace 委托
+<span class="token punctuation">{</span>
+    class Program
+    <span class="token punctuation">{</span>
+        public delegate void DGSay<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//声明委托类
+        public delegate void DGsay2<span class="token punctuation">(</span>string msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            DGSay saydelegate <span class="token operator">=</span> new DGSay<span class="token punctuation">(</span>say<span class="token punctuation">)</span><span class="token punctuation">;</span>//方法放进去
+            saydelegate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            DGsay2 say2delegat <span class="token operator">=</span> new DGsay2<span class="token punctuation">(</span>say2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            say2delegat<span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+        static void say<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+           Console.WriteLine<span class="token punctuation">(</span><span class="token string">"你好"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        static void say2<span class="token punctuation">(</span>string msg<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console.WriteLine<span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="三界面同步Demo"><a href="#三界面同步Demo" class="headerlink" title="三界面同步Demo"></a>三界面同步Demo</h2><h3 id="委托当参数"><a href="#委托当参数" class="headerlink" title="委托当参数"></a>委托当参数</h3><pre class=" language-bash"><code class="language-bash">         //定义委托，它定义了可以代表的方法的类型  
+    public delegate void GreetingDelegate<span class="token punctuation">(</span>string name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    class Program <span class="token punctuation">{</span>  
+        private static void EnglishGreeting<span class="token punctuation">(</span>string name<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+               Console.WriteLine<span class="token punctuation">(</span>”Morning, ” + name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span> Www~  
+        private static void ChineseGreeting<span class="token punctuation">(</span>string name<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+               Console.WriteLine<span class="token punctuation">(</span>”早上好, ” + name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>   
+        //注意此方法，它接受一个GreetingDelegate类型的方法作为参数  
+        private static void GreetPeople<span class="token punctuation">(</span>string name, GreetingDelegate MakeGreeting<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+               MakeGreeting<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+               GreetPeople<span class="token punctuation">(</span>”Jimmy Zhang”, EnglishGreeting<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+               GreetPeople<span class="token punctuation">(</span>”张子阳”, ChineseGreeting<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+               Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="定义事件"><a href="#定义事件" class="headerlink" title="定义事件"></a>定义事件</h3><pre class=" language-bash"><code class="language-bash">namespace 最简单的自定义事件
+<span class="token punctuation">{</span>
+     /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+     /// 事件发送类
+     /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+     class Class1
+     <span class="token punctuation">{</span>
+         public delegate void UserRequest<span class="token punctuation">(</span>object sender,EventArgs e<span class="token punctuation">)</span><span class="token punctuation">;</span> //定义委托
+         public event UserRequest OnUserRequest<span class="token punctuation">;</span> //定义一个委托类型的事件
+         public void run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+         <span class="token punctuation">{</span>
+             while<span class="token punctuation">(</span>true<span class="token punctuation">)</span>
+             <span class="token punctuation">{</span>
+                 if<span class="token punctuation">(</span>Console.ReadLine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token string">"a"</span><span class="token punctuation">)</span>
+                 <span class="token punctuation">{</span>//事件监听
+                     OnUserRequest<span class="token punctuation">(</span>this,new EventArgs<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span> //产生事件
+                 <span class="token punctuation">}</span>
+             <span class="token punctuation">}</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+
+     /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+     /// 事件接收类
+     /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+     class Class2
+     <span class="token punctuation">{</span>
+         static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+         <span class="token punctuation">{</span>
+             Class1 c1 <span class="token operator">=</span> new Class1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             c1.OnUserRequest +<span class="token operator">=</span> new Class1.UserRequest<span class="token punctuation">(</span>c1_OnUserRequest<span class="token punctuation">)</span><span class="token punctuation">;</span> //委托实例化后绑定到事件
+             c1.run<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+
+         private static void c1_OnUserRequest<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+         <span class="token punctuation">{</span>//事件处理方法
+             Console.WriteLine<span class="token punctuation">(</span><span class="token string">"/t你触发了事件！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+namespace ConsoleApplication2
+<span class="token punctuation">{</span>
+    class Program
+    <span class="token punctuation">{</span>
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            person p <span class="token operator">=</span> new person<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p.hello +<span class="token operator">=</span> new person.say<span class="token punctuation">(</span>p_hello<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p.run<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        static void p_hello<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+    <span class="token punctuation">}</span>
+    class person <span class="token punctuation">{</span>
+        public delegate void say<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        public event say hello<span class="token punctuation">;</span>
+        public void run<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            hello<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>  
+</code></pre>
+<h3 id="Form1"><a href="#Form1" class="headerlink" title="Form1"></a>Form1</h3><pre class=" language-bash"><code class="language-bash">   private void btnForm2_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Form2 form2 <span class="token operator">=</span> new Form2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            form2.Show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        private void btnForm3_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Form3 form3 <span class="token operator">=</span> new Form3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            form3.Show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public delegate void ColorDelegate<span class="token punctuation">(</span>string color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        public static ColorDelegate ColorChange <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        private void cbColor_SelectedIndexChanged<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>ColorChange <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                ColorChange<span class="token punctuation">(</span>this.cbColor.Text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Form2"><a href="#Form2" class="headerlink" title="Form2"></a>Form2</h3><pre class=" language-bash"><code class="language-bash">   private void Form2_Load<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Form1.ColorChange +<span class="token operator">=</span> delegate<span class="token punctuation">(</span>string color<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                switch <span class="token punctuation">(</span>color<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">case</span> <span class="token string">"red"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Red<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span> <span class="token string">"black"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Black<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span> <span class="token string">"blue"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Blue<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Form3"><a href="#Form3" class="headerlink" title="Form3"></a>Form3</h3><pre class=" language-bash"><code class="language-bash">  private void Form3_Load<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Form1.ColorChange +<span class="token operator">=</span> delegate<span class="token punctuation">(</span>string color<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                switch <span class="token punctuation">(</span>color<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">case</span> <span class="token string">"red"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Red<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span> <span class="token string">"black"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Black<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span> <span class="token string">"blue"</span><span class="token keyword">:</span> this.BackColor <span class="token operator">=</span> Color.Blue<span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">ZhouYong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/08/c-shi-jian-wei-tuo-demo-san-jie-mian-tong-bu/" class="b-link-green">C#委托Demo三界面同步</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/08/xml/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="XML解析demo">
+                        
+                        <span class="card-title">XML解析demo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">创建xml  static void Main(string[] args)
+  {  //1.创建一个XDocument对象
+      XDocument writeXml = new XDocument();
+     //2.增加一</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/03/io-liu-de-shi-yong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="IO流的使用">
+                        
+                        <span class="card-title">IO流的使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">IO流的一般使用string ce="测试";
+File.WriteAllText(@"12.txt",ce,Encoding.UTF8);
+ //Path类
+string s1 = @"C:\a";
+string s2 = "b.txt"</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

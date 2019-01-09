@@ -1,0 +1,918 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="C#之Socket, Zhou•Yong">
+    <meta name="description" content="C#中Socket的简单使用
+服务端监听某个端口
+客户端向服务端地址和端口发起Socket连接请求
+服务端收到连接请求后创建Socket连接，并维护这个连接队列。
+客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>C#之Socket | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        C#之Socket
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/Socket/" target="_blank">
+                    <span class="chip bg-color">Socket</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/C/" class="post-category" target="_blank">
+                        C#
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-09
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="C-中Socket的简单使用"><a href="#C-中Socket的简单使用" class="headerlink" title="C#中Socket的简单使用"></a>C#中Socket的简单使用</h2><ol>
+<li>服务端监听某个端口</li>
+<li>客户端向服务端地址和端口发起Socket连接请求</li>
+<li>服务端收到连接请求后创建Socket连接，并维护这个连接队列。</li>
+<li>客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给彼此发送信息<br><img src="/2019/01/09/c-zhi-socket/1.jpg" alt="图1"><h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2></li>
+<li>动态端口 从49152-65535</li>
+<li>机器通常从1024起分配动态端口</li>
+<li>公认端口：0-1023，注册端口： 1024-49151<br>，SUN的RPC端口从 32768开始</li>
+<li>查看端口方式： netstat -a -n<h2 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h2><img src="/2019/01/09/c-zhi-socket/2.jpg" alt="图2"><br><img src="/2019/01/09/c-zhi-socket/3.jpg" alt="图3"><h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><img src="/2019/01/09/c-zhi-socket/4.jpg" alt="图4"><br><img src="/2019/01/09/c-zhi-socket/5.jpg" alt="图5"><br><img src="/2019/01/09/c-zhi-socket/6.jpg" alt="图6"></li>
+</ol>
+<p>服务端代码：</p>
+<pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.ComponentModel<span class="token punctuation">;</span>
+using System.Data<span class="token punctuation">;</span>
+using System.Drawing<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
+using System.Text<span class="token punctuation">;</span>
+using System.Windows.Forms<span class="token punctuation">;</span>
+using System.Net<span class="token punctuation">;</span>
+using System.Net.Sockets<span class="token punctuation">;</span>
+using System.Threading<span class="token punctuation">;</span>
+
+namespace ChatMain
+<span class="token punctuation">{</span>
+    public partial class ChatMain <span class="token keyword">:</span> Form
+    <span class="token punctuation">{</span>
+        public ChatMain<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            InitializeComponent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Control.CheckForIllegalCrossThreadCalls <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        List<span class="token operator">&lt;</span>Socket<span class="token operator">></span> clientSocketList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>Socket<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        private void btnStart_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+
+            string ip <span class="token operator">=</span> this.txtIP.Text<span class="token punctuation">;</span>
+            //创建IP
+            IPAddress ipAddress <span class="token operator">=</span> IPAddress.Parse<span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //创建代表本机的节点对象：包含IP和端口
+            IPEndPoint endPoint<span class="token operator">=</span>new IPEndPoint<span class="token punctuation">(</span>ipAddress,int.Parse<span class="token punctuation">(</span>this.txtPort.Text<span class="token punctuation">))</span><span class="token punctuation">;</span>
+             //创建Socket：第一参数：寻址方式，第二个参数： socket传输方式Stream Tcp方式  Dgram:UDP  第三个参数：协议
+            Socket socket <span class="token operator">=</span> new Socket<span class="token punctuation">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //绑定端口和IP
+            socket.Bind<span class="token punctuation">(</span>endPoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //开启监听，请求连接的队列的长度
+            socket.Listen<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //线程池开启 监听客户端连接
+            ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>this.statAccept<span class="token punctuation">)</span>, socket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            this.txtLog.Text +<span class="token operator">=</span> <span class="token string">"服务端开启监听客户端连接了..\r\n"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public void statAccept<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            Socket socket <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
+            try
+            <span class="token punctuation">{</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    //接受客户端的一个连接
+                    Socket proxSocket <span class="token operator">=</span> socket.Accept<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    //客户端代理socket对象的队列里面去
+                    clientSocketList.Add<span class="token punctuation">(</span>proxSocket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    //拿到客户端的端口和ip
+                    this.txtLog.Text +<span class="token operator">=</span> proxSocket.RemoteEndPoint.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
+
+                    //跟客户端进行通信 通过：proxSocket
+
+                    //proxSocket.Send<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+                    //proxSocket.Receive<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>this.StartReciveClientData<span class="token punctuation">)</span>, proxSocket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            catch <span class="token punctuation">(</span>Exception  ex<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+
+                socket.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 接受连接过来的IP的数据
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public void StartReciveClientData<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            Socket sokcet <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>1024 * 1024 * 1<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                int  realLenth<span class="token operator">=</span> sokcet.Receive<span class="token punctuation">(</span>buffer,0,buffer.Length,SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                string strResult <span class="token operator">=</span> Encoding.Default.GetString<span class="token punctuation">(</span>buffer, 0, realLenth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                this.txtLog.Text +<span class="token operator">=</span> sokcet.RemoteEndPoint.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">":"</span> + strResult + <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private void btnStarClient_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            ChatClient client <span class="token operator">=</span> new ChatClient<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            client.Show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        private void btnSend_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            foreach <span class="token punctuation">(</span>var socket <span class="token keyword">in</span> clientSocketList<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                string strText <span class="token operator">=</span> this.txtMsg.Text<span class="token punctuation">;</span>
+                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> Encoding.Default.GetBytes<span class="token punctuation">(</span>strText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                socket.Send<span class="token punctuation">(</span>data, 0, data.Length, SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>客户端代码：</p>
+<pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.ComponentModel<span class="token punctuation">;</span>
+using System.Data<span class="token punctuation">;</span>
+using System.Drawing<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
+using System.Text<span class="token punctuation">;</span>
+using System.Windows.Forms<span class="token punctuation">;</span>
+using System.Net.Sockets<span class="token punctuation">;</span>
+using System.Net<span class="token punctuation">;</span>
+using System.Threading<span class="token punctuation">;</span>
+
+namespace ChatMain
+<span class="token punctuation">{</span>
+    public partial class ChatClient <span class="token keyword">:</span> Form
+    <span class="token punctuation">{</span>
+        public Socket CurrentSocket <span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public ChatClient<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            InitializeComponent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        private void btnConnect_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+
+            Socket socket <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            IPAddress ipAddress <span class="token operator">=</span> IPAddress.Parse<span class="token punctuation">(</span>this.txtIP.Text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            IPEndPoint endPoint<span class="token operator">=</span>new IPEndPoint<span class="token punctuation">(</span>ipAddress,int.Parse<span class="token punctuation">(</span>this.txtPort.Text<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //创建个Socket
+            socket <span class="token operator">=</span> new Socket<span class="token punctuation">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            socket.Connect<span class="token punctuation">(</span>endPoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>Recive<span class="token punctuation">)</span>, socket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            this.lbStatus.Text <span class="token operator">=</span> <span class="token string">"已连接"</span><span class="token punctuation">;</span>
+            CurrentSocket <span class="token operator">=</span> socket<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //接受
+        public void Recive<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Socket socket <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>socket <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> socket.Connected<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>1024 * 1024<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                int realLength <span class="token operator">=</span> socket.Receive<span class="token punctuation">(</span>buffer, 0, buffer.Length,SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               //接受字符串
+                string txt <span class="token operator">=</span> Encoding.Default.GetString<span class="token punctuation">(</span>buffer, 0, realLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                this.txtLog.Text +<span class="token operator">=</span> string.Format<span class="token punctuation">(</span><span class="token string">"接受消息：{0}"</span>, txt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                this.txtLog.Text +<span class="token operator">=</span> <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        //发送
+        private void btnSend_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            string strText <span class="token operator">=</span> this.txtMsg.Text<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>string.IsNullOrEmpty<span class="token punctuation">(</span>strText<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+                this.txtLog.Text <span class="token operator">=</span> <span class="token string">"发送的消息不能为空"</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>CurrentSocket <span class="token operator">==</span> null<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                MessageBox.Show<span class="token punctuation">(</span><span class="token string">"请先连接服务端"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+            byte<span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> Encoding.Default.GetBytes<span class="token punctuation">(</span>strText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            try
+            <span class="token punctuation">{</span>
+                CurrentSocket.Send<span class="token punctuation">(</span>data, 0, data.Length, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            catch <span class="token punctuation">(</span>Exception<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/09/c-zhi-socket/" class="b-link-green">C#之Socket</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/09/c-zhi-socket/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="C#之Socket">
+                        
+                        <span class="card-title">C#之Socket</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">C#中Socket的简单使用
+服务端监听某个端口
+客户端向服务端地址和端口发起Socket连接请求
+服务端收到连接请求后创建Socket连接，并维护这个连接队列。
+客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Socket/" target="_blank">
+                        <span class="chip bg-color">Socket</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/08/ado.net/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ADO.NET+SqlHelper">
+                        
+                        <span class="card-title">ADO.NET+SqlHelper</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">ADO.NET+自己封装的SqlHelper 理论到处都是的，我就不写理论了，两张图表达一切： 下面直接写demo练习和自己封装一个sqlHelper分享大家看看
+连接 static public void TestConnection()</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                    <a href="/tags/ADO-NET/" target="_blank">
+                        <span class="chip bg-color">ADO.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

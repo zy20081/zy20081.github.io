@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>ZhouYong</title>
+  <title>Zhou•Yong</title>
   <icon>https://www.gravatar.com/avatar/24303518c7f2dff8de16b3771a6d6bbd</icon>
   <subtitle>ZhouYong &amp; Blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zy20081.github.io/"/>
-  <updated>2019-01-08T07:03:17.138Z</updated>
+  <updated>2019-01-09T01:17:11.483Z</updated>
   <id>https://zy20081.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C#之Socket</title>
+    <link href="https://zy20081.github.io/2019/01/09/c-zhi-socket/"/>
+    <id>https://zy20081.github.io/2019/01/09/c-zhi-socket/</id>
+    <published>2019-01-09T08:17:11.000Z</published>
+    <updated>2019-01-09T01:17:11.483Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;C-中Socket的简单使用&quot;&gt;&lt;a href=&quot;#C-中Socket的简单使用&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+    
+    
+      <category term="Socket" scheme="https://zy20081.github.io/tags/Socket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ADO.NET+SqlHelper</title>
+    <link href="https://zy20081.github.io/2019/01/08/ado.net/"/>
+    <id>https://zy20081.github.io/2019/01/08/ado.net/</id>
+    <published>2019-01-08T08:17:11.000Z</published>
+    <updated>2019-01-08T08:39:48.114Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ADO-NET-自己封装的SqlHelper&quot;&gt;&lt;a href=&quot;#ADO-NET-自己封装的SqlHelper&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="ADO.NET" scheme="https://zy20081.github.io/tags/ADO-NET/"/>
+    
+  </entry>
   
   <entry>
     <title>XML解析demo</title>

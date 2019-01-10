@@ -1,0 +1,1676 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SqlServer总结, Zhou•Yong">
+    <meta name="description" content="分享一下都是自己写的，总结的，不是照搬网上的，只是分享，其中也有些小案例分享
+创建数据库create database schoolA
+on primary
+(
+ name=&#39;MyschoolA&#39;,
+ filename=&#39;D:\databa">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SqlServer总结 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        SqlServer总结
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/SqlServer/" target="_blank">
+                    <span class="chip bg-color">SqlServer</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/数据库/" class="post-category" target="_blank">
+                        数据库
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-09
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h2><p>一下都是自己写的，总结的，不是照搬网上的，只是分享，其中也有些小案例分享</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><pre class=" language-bash"><code class="language-bash">create database schoolA
+on primary
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'MyschoolA'</span>,
+ filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA.mdf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>500mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>,
+<span class="token punctuation">(</span>
+  name<span class="token operator">=</span><span class="token string">'MyschoolA_2'</span>,
+  filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA_2.ndf'</span>,
+  size<span class="token operator">=</span>3mb,
+  maxsize<span class="token operator">=</span>500mb,
+  filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+log on
+<span class="token punctuation">(</span>
+   name <span class="token operator">=</span><span class="token string">'MyschoolA_log'</span>,
+   filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA_log.ldf'</span>,
+   size<span class="token operator">=</span>3mb,
+   maxsize<span class="token operator">=</span>500mb,
+   filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+
+约束：
+ alter table Users add constraint uk_LoginID unique<span class="token punctuation">(</span>loginID<span class="token punctuation">)</span>唯一约束
+</code></pre>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><pre class=" language-bash"><code class="language-bash">--pageSize:一页有多少条
+--pageIndex:第几页
+--totalCount:总共有多少条
+
+
+CREATE PROC GetPageData
+    @pageSize int,
+    @pageIndex int,
+    @totalCount int output
+as
+<span class="token keyword">select</span> * into <span class="token comment" spellcheck="true">#temp from </span>
+<span class="token punctuation">(</span>
+    <span class="token keyword">select</span> * from T_Customer
+<span class="token punctuation">)</span> as T
+
+<span class="token keyword">declare</span> @str nvarchar<span class="token punctuation">(</span>500<span class="token punctuation">)</span>
+<span class="token keyword">set</span> @str<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'select top('</span>+cast<span class="token punctuation">(</span>@pageSize as nvarchar<span class="token punctuation">(</span>32<span class="token punctuation">))</span>+<span class="token string">') * from #Temp where Id not in (select top('</span>+cast<span class="token variable"><span class="token punctuation">((</span>@pageIndex<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">*</span>@pageSize as nvarchar<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">))</span></span>+<span class="token string">') Id FROM #Temp order by Id)order by Id'</span><span class="token punctuation">)</span>
+
+<span class="token function">exec</span> <span class="token punctuation">(</span>@str<span class="token punctuation">)</span>
+<span class="token keyword">select</span> @totalCount<span class="token operator">=</span>COUNT<span class="token punctuation">(</span>1<span class="token punctuation">)</span> from <span class="token comment" spellcheck="true">#Temp;</span>
+drop table <span class="token comment" spellcheck="true">#Temp</span>
+
+<span class="token keyword">declare</span> @count int
+<span class="token function">exec</span> GetPageData 4,2,@count
+
+
+////////////////////////////////////
+ALTER proc <span class="token punctuation">[</span>dbo<span class="token punctuation">]</span>.<span class="token punctuation">[</span>usp_UserInfo_LoadPageData<span class="token punctuation">]</span>
+@pageSize int,
+@pageIndex int,
+@totalCount int output
+as
+
+--select * from <span class="token punctuation">(</span>
+--    <span class="token keyword">select</span> ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> over<span class="token punctuation">(</span>order by userinfoid<span class="token punctuation">)</span> num,* from UserInfo
+--<span class="token punctuation">)</span>as temp where temp.num<span class="token operator">></span><span class="token punctuation">(</span>@pageIndex-1<span class="token punctuation">)</span>*@pageSize and temp.num<span class="token operator">&lt;=</span>@pageIndex*@pageSize
+
+
+<span class="token keyword">select</span> top<span class="token punctuation">(</span>@pageSize<span class="token punctuation">)</span> * from UserInfo where UserInfoID not <span class="token keyword">in</span>
+<span class="token punctuation">(</span>select top<span class="token punctuation">(</span>@pageSize*<span class="token punctuation">(</span>@pageIndex-1<span class="token punctuation">))</span>UserInfoID from UserInfo<span class="token punctuation">)</span>
+
+<span class="token keyword">select</span> @totalCount<span class="token operator">=</span>COUNT<span class="token punctuation">(</span>1<span class="token punctuation">)</span> from UserInfo
+
+
+------------------
+正序和到序
+SELECT * FROM <span class="token punctuation">(</span>
+<span class="token keyword">select</span> <span class="token function">top</span> 10 * from ztrqzc where 
+ num<span class="token operator">></span>all<span class="token punctuation">(</span>select <span class="token function">top</span> 20 num from ztrqzc  order by num <span class="token punctuation">)</span>  
+ order by num 
+ <span class="token punctuation">)</span> temp ORDER BY temp.createdate desc
+</code></pre>
+<h2 id="事务扩展"><a href="#事务扩展" class="headerlink" title="事务扩展"></a>事务扩展</h2><pre class=" language-bash"><code class="language-bash"> begin transaction
+<span class="token keyword">declare</span> @errorSum int 
+<span class="token keyword">set</span> @errorSum<span class="token operator">=</span>0
+--查询tbResults表中所有Y2学生的考试成绩，保存到新表HistoreResult中
+<span class="token keyword">select</span> tbResults.* into HistoreResult from tbResults <span class="token function">join</span> dbo.students on tbResults.stuID<span class="token operator">=</span>students.stuID
+inner <span class="token function">join</span> dbo.GradeInfo on dbo.GradeInfo.gID<span class="token operator">=</span>students.stuGID
+where GradeInfo.gName<span class="token operator">=</span><span class="token string">'Y2'</span>
+<span class="token keyword">set</span> @errorSum<span class="token operator">=</span>@errorSum+@@ERROR
+--删除tbResults表所有Y2学生的考试成绩
+delete dbo.tbResults from  dbo.tbResults inner <span class="token function">join</span> students on  dbo.tbResults.stuID<span class="token operator">=</span>students.stuID
+inner <span class="token function">join</span> dbo.GradeInfo on  dbo.GradeInfo.gID<span class="token operator">=</span>students.stuGID
+where gName<span class="token operator">=</span><span class="token string">'Y2'</span>
+<span class="token keyword">set</span> @errorSum<span class="token operator">=</span>@errorSum+@@ERROR
+--删除dbo.students表所有Y2学生的记录，保存到新表HistoreResult中
+--删除dbo.students表所有Y2学生的记录
+--根据是否有错误，确认事务是提交还是撤销
+</code></pre>
+<h2 id="bank案例-触发器事务等"><a href="#bank案例-触发器事务等" class="headerlink" title="bank案例 触发器事务等"></a>bank案例 触发器事务等</h2><pre class=" language-bash"><code class="language-bash">Create Database Bank
+on primary
+<span class="token punctuation">(</span>
+name<span class="token operator">=</span><span class="token string">'bank'</span>,
+filename<span class="token operator">=</span><span class="token string">'D:\database\bank.mdf'</span>,
+size<span class="token operator">=</span>3mb,
+maxsize<span class="token operator">=</span>500mb,
+filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+log on
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'bank_log'</span>,
+ filename<span class="token operator">=</span><span class="token string">'D:\database\bank_log.ldf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>500mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+use Bank
+go
+create table bank
+<span class="token punctuation">(</span>bankID  int identity<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span> not null, 
+ customerName char<span class="token punctuation">(</span>10<span class="token punctuation">)</span> not null,--顾客姓名
+ currentMoney money not null --当前
+<span class="token punctuation">)</span>
+alter table bank drop column  currentMoeny --删字段
+alter table bank add currentMoney money not null--加字段
+alter table bank add constraint CK_currentMoney check<span class="token punctuation">(</span>currentMoney<span class="token operator">>=</span>1<span class="token punctuation">)</span> --检查约束
+<span class="token keyword">select</span> * from bank
+insert into bank<span class="token punctuation">(</span>customerName,currentMoney<span class="token punctuation">)</span>values<span class="token punctuation">(</span><span class="token string">'小小'</span>,1000<span class="token punctuation">)</span>
+insert into bank<span class="token punctuation">(</span>customerName,currentMoney<span class="token punctuation">)</span>values<span class="token punctuation">(</span><span class="token string">'dada'</span>,1<span class="token punctuation">)</span>
+---事务
+begin transaction
+<span class="token keyword">declare</span> @errorNum int
+<span class="token keyword">set</span> @errorNum<span class="token operator">=</span>0
+update bank <span class="token keyword">set</span> currentMoney<span class="token operator">=</span>currentMoney-200 where customerName<span class="token operator">=</span><span class="token string">'小小'</span>
+<span class="token keyword">set</span> @errorNum <span class="token operator">=</span>@errorNum+@@ERROR
+update bank <span class="token keyword">set</span> currentMoney<span class="token operator">=</span>currentMoney+800 where customerName<span class="token operator">=</span><span class="token string">'dada'</span>
+<span class="token keyword">set</span> @errorNum <span class="token operator">=</span>@errorNum+@@ERROR
+<span class="token keyword">if</span> @errorNum<span class="token operator">&lt;</span><span class="token operator">></span>0
+begin
+print <span class="token string">'转账失败'</span>
+rollback --回滚
+end
+<span class="token keyword">else</span>
+begin
+print <span class="token string">'转账成功'</span>
+commit --提交
+print<span class="token string">'转账之后的信息'</span>
+<span class="token keyword">select</span> * from bank
+end
+use master
+<span class="token keyword">select</span> * from sysdatabases
+<span class="token function">exec</span> sp_databases
+--存储过程
+use Bank
+go
+create proc getBank
+@cateId int 
+as 
+begin
+<span class="token keyword">select</span> * from bank where bankID<span class="token operator">=</span>@cateId
+end
+
+go
+alter proc getBank--修改
+as 
+begin
+<span class="token keyword">select</span> * from dbo.bank
+end
+<span class="token function">exec</span> getBank 
+use Bank
+--存储过程分页
+go
+alter proc getBank
+@pageSize int <span class="token operator">=</span>1,
+@pageindex int <span class="token operator">=</span>5,
+@rowCount int  output ,
+@pageCount int output
+as 
+begin
+<span class="token keyword">select</span> * from
+<span class="token punctuation">(</span>select ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span>over<span class="token punctuation">(</span>order by bankID<span class="token punctuation">)</span> as R, * from bank<span class="token punctuation">)</span> as b
+ where b.R<span class="token operator">></span><span class="token punctuation">(</span>@pageSize-1<span class="token punctuation">)</span>*@pageindex and b.R <span class="token operator">&lt;=</span>@pageSize*@pageindex
+<span class="token keyword">select</span> @rowCount<span class="token operator">=</span>COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> from bank
+<span class="token keyword">set</span> @pageCount<span class="token operator">=</span>ceiling<span class="token punctuation">(</span>convert<span class="token punctuation">(</span>float,<span class="token punctuation">(</span>@rowCount/@pageindex<span class="token punctuation">))</span><span class="token punctuation">)</span>
+end
+<span class="token keyword">declare</span> @pi int, @ps int, @rc int, @pc int
+<span class="token keyword">set</span> @pi<span class="token operator">=</span>2  --保存页码
+<span class="token keyword">set</span> @ps<span class="token operator">=</span>5  -- 保存页容量<span class="token punctuation">(</span>每页显示多少行<span class="token punctuation">)</span>
+<span class="token keyword">set</span> @rc<span class="token operator">=</span>0  --总行数 
+<span class="token keyword">set</span> @pc<span class="token operator">=</span>0  --总页数
+<span class="token function">exec</span> getBank @pi,@ps,@rc output,@pc output
+<span class="token keyword">select</span> @pi 页码,@ps 页容量, @rc 总共行数,@pc 总页数
+
+--触发器
+insert into bank<span class="token punctuation">(</span>customerName,currentMoney<span class="token punctuation">)</span>values<span class="token punctuation">(</span><span class="token string">'小周'</span>,2600<span class="token punctuation">)</span>
+go
+create Trigger chubank on bank
+<span class="token keyword">for</span> insert
+as 
+begin
+<span class="token keyword">select</span> * from bank
+end
+drop Trigger chubank  --alter
+--视图 不同权限的人看到的不同的视图不一样，其实都是一个表中,当成虚拟表，就是查询语句
+use Bank
+go
+alter  view vw_customer_currentMoney
+as 
+<span class="token keyword">select</span> 姓名<span class="token operator">=</span>customerName,余额<span class="token operator">=</span>currentMoney 
+from bank where bankID<span class="token operator">=</span>1
+
+go
+--查询视图
+<span class="token keyword">select</span> * from vw_customer_currentMoney
+
+---索引 index create <span class="token punctuation">[</span>unique<span class="token punctuation">]</span>唯一， 主键 ，<span class="token punctuation">[</span>clustered<span class="token punctuation">]</span>聚集 <span class="token punctuation">[</span>nonclustered<span class="token punctuation">]</span>非聚集
+--drop index 表名.索引名 放在sysindexes,索引是建在没个表中的
+create index 
+index_bank on bank<span class="token punctuation">(</span>bankID<span class="token punctuation">)</span>
+with fillfactor<span class="token operator">=</span>30
+<span class="token keyword">select</span> name from sysindexes where name <span class="token operator">=</span><span class="token string">'index_bank'</span>
+<span class="token function">exec</span> sp_helpindex bank--存储过程中的一个系统存储过程
+
+go 
+<span class="token function">exec</span> sp_columns bank
+<span class="token function">exec</span> sp_help bank
+<span class="token function">exec</span> sp_helpconstraint bank
+</code></pre>
+<h2 id="汽车案例创建信息表"><a href="#汽车案例创建信息表" class="headerlink" title="汽车案例创建信息表"></a>汽车案例创建信息表</h2><pre class=" language-bash"><code class="language-bash"> --汽车租赁系统
+create database dbTraffics
+on
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'dbTraffics'</span>,
+ filename<span class="token operator">=</span><span class="token string">'E:\sql\dbTraffics.mdf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>1024mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>,
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'dbTraffics_ndf'</span>,
+ filename<span class="token operator">=</span><span class="token string">'E:\sql\dbTraffics_ndf.ndf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>1024mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+log on
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'dbTraffics_log'</span>,
+ filename<span class="token operator">=</span><span class="token string">'E:\sql\dbTraffics.ldf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>1024mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+go
+use dbTraffics
+go
+--类型
+create table tbType
+<span class="token punctuation">(</span>
+  tID int primary key not null,
+  tName nvarchar<span class="token punctuation">(</span>50<span class="token punctuation">)</span>,
+  Remarks nvarchar<span class="token punctuation">(</span>200<span class="token punctuation">)</span> null
+<span class="token punctuation">)</span>
+--创建tbTraffics表保存汽车信息：
+create table tbTraffics
+<span class="token punctuation">(</span>
+ RID bigint,
+ Number  nvarchar<span class="token punctuation">(</span>50<span class="token punctuation">)</span> not null primary key,
+ Type int foreign key references tbType<span class="token punctuation">(</span>tID<span class="token punctuation">)</span>,
+ Name   nvarchar<span class="token punctuation">(</span>20<span class="token punctuation">)</span> not null,
+ color nvarchar<span class="token punctuation">(</span>20<span class="token punctuation">)</span> not null,
+ DailyRent float default<span class="token punctuation">(</span>0.0<span class="token punctuation">)</span>,--日租金
+ YearsOfservice int default<span class="token punctuation">(</span>12<span class="token punctuation">)</span>,--使用年限
+ Load nvarchar<span class="token punctuation">(</span>20<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+go
+</code></pre>
+<h2 id="项目里存储过程分享"><a href="#项目里存储过程分享" class="headerlink" title="项目里存储过程分享"></a>项目里存储过程分享</h2><pre class=" language-bash"><code class="language-bash"> USE <span class="token punctuation">[</span>GSSMS<span class="token punctuation">]</span>
+GO
+/****** Object:  StoredProcedure <span class="token punctuation">[</span>dbo<span class="token punctuation">]</span>.<span class="token punctuation">[</span>getprdouceStudents<span class="token punctuation">]</span>    Script Date: 03/17/2013 16:48:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER proc <span class="token punctuation">[</span>dbo<span class="token punctuation">]</span>.<span class="token punctuation">[</span>getprdouceStudents<span class="token punctuation">]</span>
+@pageSize int <span class="token operator">=</span>5,--每页行数,页的容量
+@pageindex int <span class="token operator">=</span>1, --页的索引
+@rowCount int output, --总行数（传出参数）
+@pageCount int output --总页数（传出参数）
+as
+begin
+<span class="token keyword">select</span> * from
+<span class="token punctuation">(</span>select ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span>over<span class="token punctuation">(</span>order by SID<span class="token punctuation">)</span> as 序号,* from dbo.Students<span class="token punctuation">)</span>as b where
+b.序号<span class="token operator">></span><span class="token punctuation">(</span>@pageindex-1<span class="token punctuation">)</span>*@pageSize and b.序号<span class="token operator">&lt;=</span>@pageindex*@pageSize
+<span class="token keyword">select</span> @rowCount<span class="token operator">=</span>COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> from dbo.Students
+<span class="token keyword">set</span> @pageCount<span class="token operator">=</span>CEILING<span class="token punctuation">(</span>Convert<span class="token punctuation">(</span>float,@rowCount<span class="token punctuation">)</span>/Convert<span class="token punctuation">(</span>float,@pageSize<span class="token punctuation">))</span>
+end
+<span class="token keyword">declare</span> @ps int,@pi int,@rc int,@pc int
+<span class="token keyword">set</span> @ps<span class="token operator">=</span>5 --保存页面行数
+<span class="token keyword">set</span> @pi<span class="token operator">=</span>1 --保存页面索引
+<span class="token keyword">set</span> @rc<span class="token operator">=</span>0 --总行数
+<span class="token keyword">set</span> @pc<span class="token operator">=</span>0 --总页面
+<span class="token function">exec</span> getprdouceStudents @ps,@pi,@rc output,@pc output
+<span class="token keyword">select</span> @ps 页面数,@pi 页面行数,@rc 总共行数,@pc 总页面
+</code></pre>
+<h2 id="金额自增"><a href="#金额自增" class="headerlink" title="金额自增"></a>金额自增</h2><pre class=" language-bash"><code class="language-bash"> <span class="token keyword">select</span> * from Books 
+update Books <span class="token keyword">set</span> UnitPrice<span class="token operator">=</span>88
+go
+<span class="token keyword">declare</span> @position int,@price int<span class="token punctuation">;</span>
+    <span class="token keyword">set</span> @position<span class="token operator">=</span>17
+    <span class="token keyword">set</span> @price<span class="token operator">=</span>90
+while<span class="token punctuation">(</span>1<span class="token operator">=</span>1<span class="token punctuation">)</span>
+begin
+    update Books <span class="token keyword">set</span> UnitPrice<span class="token operator">=</span>@price where Id<span class="token operator">=</span>@position
+    <span class="token keyword">select</span> @position<span class="token operator">=</span>@position+1
+    <span class="token keyword">select</span> @price<span class="token operator">=</span>@price+2
+    if<span class="token punctuation">(</span>@position<span class="token operator">></span>35<span class="token punctuation">)</span>
+    begin
+    <span class="token keyword">break</span><span class="token punctuation">;</span> 
+    end
+
+end
+</code></pre>
+<h2 id="代码分享myTestBase"><a href="#代码分享myTestBase" class="headerlink" title="代码分享myTestBase"></a>代码分享myTestBase</h2><pre class=" language-bash"><code class="language-bash"> use myTestBase
+go
+<span class="token keyword">select</span> * from dbo.GradeInfo
+<span class="token keyword">select</span> * from dbo.students
+<span class="token keyword">select</span> * from dbo.tbCourses
+<span class="token keyword">select</span> * from dbo.tbResults
+----case .when
+<span class="token keyword">select</span> tbResults.stuID, students.stuName, tRscore 分数,成绩<span class="token operator">=</span>case 
+                 when tRscore between 90 and 100 <span class="token keyword">then</span> <span class="token string">'A'</span>
+                 when  tRscore between 80 and 90 <span class="token keyword">then</span> <span class="token string">'B'</span>
+                 when  tRscore between 70 and 80 <span class="token keyword">then</span> <span class="token string">'C'</span>
+                 when  tRscore between 60 and 70 <span class="token keyword">then</span> <span class="token string">'D'</span>
+                 <span class="token keyword">else</span> <span class="token string">'E'</span>
+                 end
+ from tbResults,students where tbResults.stuID<span class="token operator">=</span>students.stuID
+ go
+ ---if -else print
+--select *  from tbResults
+ <span class="token keyword">declare</span> @score int 
+ <span class="token keyword">select</span> @score<span class="token operator">=</span>avg<span class="token punctuation">(</span>tRscore<span class="token punctuation">)</span> from tbResults
+ if<span class="token punctuation">(</span>@score<span class="token operator">></span>70<span class="token punctuation">)</span>
+ begin
+ print  <span class="token string">'优秀'</span> +convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>max<span class="token punctuation">)</span>,@score<span class="token punctuation">)</span>
+ <span class="token keyword">select</span> <span class="token function">top</span> 3 * from tbResults order by tRscore asc
+ end
+ <span class="token keyword">else</span>
+ begin
+ print<span class="token string">'一般'</span>
+ <span class="token keyword">select</span> <span class="token function">top</span> 3 * from tbResults order by tRscore desc
+ end
+
+ go
+---while <span class="token keyword">break</span>  方法一
+Declare @n int 
+while<span class="token punctuation">(</span>1<span class="token operator">=</span>1<span class="token punctuation">)</span>
+begin
+<span class="token keyword">select</span> @n<span class="token operator">=</span>COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> from tbResults r where r.tRscore <span class="token operator">&lt;</span>81
+<span class="token keyword">if</span> <span class="token punctuation">(</span>@n<span class="token operator">></span>0<span class="token punctuation">)</span>
+update tbResults <span class="token keyword">set</span> tRscore<span class="token operator">=</span>tRscore+2 where tRscore<span class="token operator">&lt;</span>98
+<span class="token keyword">else</span> 
+<span class="token keyword">break</span>
+end
+print <span class="token string">'加分后成绩如下'</span>
+<span class="token keyword">select</span> * from tbResults
+--- 方法二
+while<span class="token punctuation">(</span>exists<span class="token punctuation">(</span>select * from tbResults r where r.tRscore <span class="token operator">&lt;</span>83<span class="token punctuation">))</span>
+begin
+update tbResults <span class="token keyword">set</span> tRscore<span class="token operator">=</span>tRscore+2 where tRscore<span class="token operator">&lt;</span>98
+end
+<span class="token keyword">select</span> * from tbResults
+---内查询 <span class="token function">join</span>
+<span class="token keyword">select</span> s.stuName 姓名,TR.tRscore 成绩,TC.tCName from students as s 
+<span class="token function">join</span> tbResults as TR on <span class="token punctuation">(</span>s.stuID<span class="token operator">=</span>TR.stuID<span class="token punctuation">)</span> 
+<span class="token function">join</span> dbo.tbCourses as TC on<span class="token punctuation">(</span>TR.tCID<span class="token operator">=</span>TC.tCID<span class="token punctuation">)</span>
+--where综合查询
+<span class="token keyword">select</span> s.stuName 姓名,TR.tRscore 成绩,TC.tCName from students as s,tbResults as TR,tbCourses as TC where s.stuID<span class="token operator">=</span>TR.stuID and TR.tCID<span class="token operator">=</span>TC.tCID
+--左连接,左边全部要显示,右边没有的为null
+<span class="token keyword">select</span> * from tbCourses as c left <span class="token function">join</span> tbResults as r on c.tCID<span class="token operator">=</span>r.tCID 
+--右连接,右边全部要显示
+<span class="token keyword">select</span> * from tbCourses as c right <span class="token function">join</span> tbResults as r on c.tCID<span class="token operator">=</span>r.tCID 
+--in，not <span class="token keyword">in</span>
+<span class="token keyword">select</span> * from tbCourses where tCName in<span class="token punctuation">(</span><span class="token string">'程序逻辑'</span>,<span class="token string">'C#基础'</span><span class="token punctuation">)</span>
+--link
+<span class="token keyword">select</span> * from tbCourses where tCName like <span class="token string">'[^C#]%'</span>--不包含
+<span class="token keyword">select</span> * from tbCourses where tCName like <span class="token string">'C#%'</span>--包含
+print <span class="token string">'服务器'</span>+@@SERVERNAME
+print <span class="token string">'SQL的版本:'</span>+ @@VERSION
+<span class="token keyword">select</span> s.stuName,c.tCID,r.tRtime,r.tRscore,c.tCName from students as s,tbCourses as c,tbResults as r where s.stuID<span class="token operator">=</span>r.stuID and c.tCID<span class="token operator">=</span>r.tCID and r.tRtime<span class="token operator">=</span><span class="token string">'2012-12-24'</span>
+--子查询
+
+<span class="token keyword">select</span> * from students
+<span class="token keyword">select</span> * from tbCourses
+<span class="token keyword">select</span> * from tbResults
+go
+insert into students<span class="token punctuation">(</span>stuName,stuSex,stuCardID,stuGID,BornDate<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'小肖'</span>,<span class="token string">'女'</span>,<span class="token string">'420108989099999999'</span>,1,1992-06-09<span class="token punctuation">)</span>
+<span class="token keyword">declare</span> @birthday datetime
+<span class="token keyword">select</span> @birthday<span class="token operator">=</span>BornDate from students  where stuName<span class="token operator">=</span><span class="token string">'张三'</span>
+<span class="token keyword">select</span> * from students where BornDate<span class="token operator">></span>@birthday
+<span class="token keyword">select</span> * from students where BornDate<span class="token operator">></span><span class="token punctuation">(</span>select BornDate from students  where stuName<span class="token operator">=</span><span class="token string">'张三'</span><span class="token punctuation">)</span>
+--索引
+create index index_students on students<span class="token punctuation">(</span>stuID<span class="token punctuation">)</span>
+with fillfactor<span class="token operator">=</span>30
+<span class="token keyword">select</span> name from sysindexes where name<span class="token operator">=</span><span class="token string">'index_students_students_stuID'</span>
+drop index students.index_students
+
+create unique index index_students_students_stuID on students<span class="token punctuation">(</span>stuID<span class="token punctuation">)</span>
+with fillfactor<span class="token operator">=</span>30
+
+<span class="token keyword">select</span> * from  students with <span class="token punctuation">(</span>index<span class="token operator">=</span>index_students_students_stuID<span class="token punctuation">)</span>
+where stuID<span class="token operator">=</span>3
+<span class="token function">exec</span> sp_helpindex students --存储过程中的一个系统存储过程
+--存储过程 编程基础没有达到90分名单
+go
+alter proc my_getResult
+@ucnt int output
+as 
+begin
+<span class="token keyword">select</span> R.tRscore,R.tCID,R.stuID,s.stuName,c.tCName from dbo.tbResults as R,dbo.students as s,tbCourses as c where R.stuID<span class="token operator">=</span>s.stuID  and R.tRscore<span class="token operator">&lt;</span>90 and c.tCID<span class="token operator">=</span>R.tCID
+<span class="token keyword">select</span> @ucnt<span class="token operator">=</span>count<span class="token punctuation">(</span>R.tRscore<span class="token punctuation">)</span> from dbo.tbResults as R,dbo.students as s,tbCourses as c where R.stuID<span class="token operator">=</span>s.stuID  and R.tRscore<span class="token operator">&lt;</span>90 and c.tCID<span class="token operator">=</span>R.tCID
+end
+<span class="token keyword">declare</span> @ucn int
+<span class="token keyword">set</span>  @ucn<span class="token operator">=</span>0
+<span class="token function">exec</span> my_getResult @ucn output
+<span class="token keyword">select</span> @ucn 没到90分人数
+/////////////
+use master
+go
+--创建数据库
+<span class="token keyword">if</span> exists
+<span class="token punctuation">(</span>select * from sysdatabases where name<span class="token operator">=</span><span class="token string">'myTestBase'</span><span class="token punctuation">)</span>--所有数据库
+begin
+drop database myTestBase
+end
+create database myTestBase
+on
+<span class="token punctuation">(</span>
+  name<span class="token operator">=</span><span class="token string">'myTestBase'</span>,
+  filename<span class="token operator">=</span><span class="token string">'C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\DATA\myTestBase.mdf'</span>,
+  size<span class="token operator">=</span>5mb,
+  maxsize<span class="token operator">=</span>100mb,
+  filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+log on
+<span class="token punctuation">(</span>
+  name<span class="token operator">=</span><span class="token string">'myTestBase_log'</span>,
+  filename<span class="token operator">=</span><span class="token string">'C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\DATA\myTestBase_log.ldf'</span>,
+  size<span class="token operator">=</span>5mb,
+  maxsize<span class="token operator">=</span>100mb,
+  filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+use myTestBase
+<span class="token keyword">if</span> exists<span class="token punctuation">(</span>select * from sysobjects where name<span class="token operator">=</span><span class="token string">'students'</span> <span class="token punctuation">)</span>
+begin
+drop table students --删除
+end 
+go--创建表
+create table students 
+<span class="token punctuation">(</span>
+  stuID int identity<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span> not null primary key, --标识列，设置主键
+  stuName nvarchar<span class="token punctuation">(</span>50<span class="token punctuation">)</span> not null,
+  stuSex char<span class="token punctuation">(</span>2<span class="token punctuation">)</span> default<span class="token punctuation">(</span><span class="token string">'男'</span><span class="token punctuation">)</span>,
+  stuCardID char<span class="token punctuation">(</span>18<span class="token punctuation">)</span> null check<span class="token punctuation">(</span>len<span class="token punctuation">(</span>stuCardID<span class="token punctuation">)</span><span class="token operator">=</span>18<span class="token punctuation">)</span>,--约束
+  stuGID int null
+<span class="token punctuation">)</span>
+
+go
+ create table GradeInfo
+ <span class="token punctuation">(</span>
+   gID int  identity<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span> not null primary key, --标识列，设置主键
+   gName nvarchar<span class="token punctuation">(</span>50<span class="token punctuation">)</span> not null
+ <span class="token punctuation">)</span>
+ go
+ --加外键约束
+ alter table students 
+ add constraint FK_students_stuGID_GradeInfo
+ foreign key<span class="token punctuation">(</span>stuID<span class="token punctuation">)</span> references GradeInfo<span class="token punctuation">(</span>gID<span class="token punctuation">)</span>
+ go 
+ --删约束 alter table 表名 drop constraint 约束名                            
+<span class="token keyword">select</span> * from students,GradeInfo
+---插入数据
+insert into GradeInfo<span class="token punctuation">(</span>gName<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'一年级'</span><span class="token punctuation">)</span>
+insert into GradeInfo<span class="token punctuation">(</span>gName<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'二年级'</span><span class="token punctuation">)</span>
+insert into GradeInfo<span class="token punctuation">(</span>gName<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'三年级'</span><span class="token punctuation">)</span>
+insert into students<span class="token punctuation">(</span>stuName,stuCardID,stuGID<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'张三'</span>,<span class="token string">'430111199909092075'</span>,1<span class="token punctuation">)</span>
+create table tbCourses --课程信息表
+<span class="token punctuation">(</span>
+  tCID int identity<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span>, tCName nvarchar<span class="token punctuation">(</span>30<span class="token punctuation">)</span>, tCClass int, gID int, tCRmark nvarchar<span class="token punctuation">(</span>max<span class="token punctuation">)</span>  
+<span class="token punctuation">)</span>
+create table tbResults --考试成绩表
+<span class="token punctuation">(</span>
+  tRID int ,tCID int, stuID int ,tRtime date, tRscore int ,tRRmark nvarchar<span class="token punctuation">(</span>max<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">select</span> * from students --学生表
+<span class="token keyword">select</span> * from GradeInfo --年纪表
+<span class="token keyword">select</span> * from tbCourses
+<span class="token keyword">select</span> * from tbResults
+truncate table tbCourses --清除数据、还原标识列
+insert into tbCourses<span class="token punctuation">(</span>tCName,tCClass,gID,tCRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'程序逻辑'</span>,30,1,<span class="token string">'课程'</span><span class="token punctuation">)</span>
+insert into tbCourses<span class="token punctuation">(</span>tCName,tCClass,gID,tCRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'编程基础'</span>,30,1,<span class="token string">'课程'</span><span class="token punctuation">)</span>
+insert into tbCourses<span class="token punctuation">(</span>tCName,tCClass,gID,tCRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'面向对象设计'</span>,30,1,<span class="token string">'课程'</span><span class="token punctuation">)</span>
+insert into tbCourses<span class="token punctuation">(</span>tCName,tCClass,gID,tCRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'C#基础'</span>,123,1,<span class="token string">'课程'</span><span class="token punctuation">)</span>
+insert into tbCourses<span class="token punctuation">(</span>tCName,tCClass,gID,tCRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'C#基础'</span>,235,1,<span class="token string">'课程'</span><span class="token punctuation">)</span>
+insert into tbResults<span class="token punctuation">(</span>tCID,stuID,tRtime,tRscore,tRRmark<span class="token punctuation">)</span> values<span class="token punctuation">(</span>1,1,<span class="token string">'2012-12-24'</span>,88,<span class="token string">'语文'</span><span class="token punctuation">)</span>
+insert into students<span class="token punctuation">(</span>stuName,stuSex,stuCardID,stuGID<span class="token punctuation">)</span> values<span class="token punctuation">(</span><span class="token string">'小小'</span>,<span class="token string">'女'</span>,<span class="token string">'4201023001230120'</span>,2<span class="token punctuation">)</span>
+<span class="token keyword">select</span> * from tbCourses where tCClass Like<span class="token string">'3%'</span>
+<span class="token keyword">select</span> * from tbCourses where tCClass Like<span class="token string">'_3%'</span> 
+delete  from tbCourses where tCID<span class="token operator">=</span>7--删 
+<span class="token keyword">select</span> * from tbCourses order by tCID ASC
+
+use master
+go 
+<span class="token keyword">select</span> * from sysdatabases  --查询所有数据库
+use myTestBase
+go
+<span class="token keyword">select</span> * from sys.objects where name<span class="token operator">=</span><span class="token string">'students'</span>
+create database schoolA --创建数据库
+on primary
+<span class="token punctuation">(</span>
+ name<span class="token operator">=</span><span class="token string">'MyschoolA'</span>,
+ filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA.mdf'</span>,
+ size<span class="token operator">=</span>3mb,
+ maxsize<span class="token operator">=</span>500mb,
+ filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>,
+<span class="token punctuation">(</span>
+  name<span class="token operator">=</span><span class="token string">'MyschoolA_2'</span>,
+  filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA_2.ndf'</span>,
+  size<span class="token operator">=</span>3mb,
+  maxsize<span class="token operator">=</span>500mb,
+  filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+log on
+<span class="token punctuation">(</span>
+   name <span class="token operator">=</span><span class="token string">'MyschoolA_log'</span>,
+   filename<span class="token operator">=</span><span class="token string">'D:\database\MyschoolA_log.ldf'</span>,
+   size<span class="token operator">=</span>3mb,
+   maxsize<span class="token operator">=</span>500mb,
+   filegrowth<span class="token operator">=</span>10%
+<span class="token punctuation">)</span>
+--alter table tastduents 删除表示列
+--drop colum ssid
+--go
+---在加进去
+-- alter table tastduents 
+-- ADD ssid int identity<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span> not null  primary key
+-- go
+---内连接
+---- <span class="token keyword">select</span> Book.* from Book inner jion Catefory on Book.id<span class="token operator">=</span> Catefory.id
+---联合查询
+---select Book.* from Book,Catrfory where Book.id<span class="token operator">=</span>catefory.id
+-- case-when
+<span class="token keyword">select</span> tCClass ,
+<span class="token keyword">case</span> tCClass
+when 30 <span class="token keyword">then</span> <span class="token string">'正常课时'</span>
+<span class="token keyword">else</span> <span class="token string">'正常+课时'</span>
+end
+from tbCourses
+
+</code></pre>
+<h2 id="自定义排序"><a href="#自定义排序" class="headerlink" title="自定义排序"></a>自定义排序</h2><pre class=" language-bash"><code class="language-bash">  SELECT InforSource FROM dbo.viewShopAllInfo 
+  ORDER BY CHARINDEX<span class="token punctuation">(</span>InforSource,<span class="token string">'1,0,2,3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Split函数"><a href="#Split函数" class="headerlink" title="Split函数"></a>Split函数</h2><pre class=" language-bash"><code class="language-bash"> CREATE FUNCTION dbo.SplitString
+<span class="token punctuation">(</span>
+          @Expression NVARCHAR<span class="token punctuation">(</span>4000<span class="token punctuation">)</span>, --要拆分的字符串
+          @Delimiter NVARCHAR<span class="token punctuation">(</span>100<span class="token punctuation">)</span>, --拆分符号
+          @n INT --要得到已拆分的返回字符串位置
+<span class="token punctuation">)</span>
+RETURNS NVARCHAR<span class="token punctuation">(</span>4000<span class="token punctuation">)</span>
+AS
+BEGIN
+DECLARE @p INT
+SET @p <span class="token operator">=</span> CharIndex<span class="token punctuation">(</span>@Delimiter,@Expression<span class="token punctuation">)</span>  --获得第一个拆分符号所在的首位置
+IF @p <span class="token operator">></span> 0
+          BEGIN
+          SET @p <span class="token operator">=</span> @p + Len<span class="token punctuation">(</span>@Delimiter<span class="token punctuation">)</span> - 1
+          END
+DECLARE @i INT
+SET @i <span class="token operator">=</span> 1
+WHILE @i <span class="token operator">&lt;</span> @n
+          BEGIN
+          SET @i <span class="token operator">=</span> @i + 1
+          SET @Expression <span class="token operator">=</span> SubString<span class="token punctuation">(</span>@Expression, @p + 1,Len<span class="token punctuation">(</span>@Expression<span class="token punctuation">)</span> - @p <span class="token punctuation">)</span>
+          SET @p <span class="token operator">=</span> CharIndex<span class="token punctuation">(</span>@Delimiter,@Expression<span class="token punctuation">)</span>
+          IF @p <span class="token operator">></span> 0
+                    BEGIN
+                    SET @p <span class="token operator">=</span> @p + Len<span class="token punctuation">(</span>@Delimiter<span class="token punctuation">)</span> - 1
+                    END
+          ELSE
+                    BEGIN
+                    BREAK
+                    END
+END
+DECLARE @s NVARCHAR<span class="token punctuation">(</span>1000<span class="token punctuation">)</span>
+IF @p <span class="token operator">=</span> 0 AND @i <span class="token operator">=</span> @n
+          BEGIN
+          SET @s <span class="token operator">=</span> @Expression
+          END
+ELSE
+          IF @i <span class="token operator">=</span> @n
+          BEGIN
+          SET @s <span class="token operator">=</span> SubString<span class="token punctuation">(</span>@Expression, 1,@p - Len<span class="token punctuation">(</span>@Delimiter<span class="token punctuation">))</span>
+          END
+RETURN @s
+END
+</code></pre>
+<h2 id="substring用法"><a href="#substring用法" class="headerlink" title="substring用法"></a>substring用法</h2><pre class=" language-bash"><code class="language-bash"> SELECT keywords,
+substring<span class="token punctuation">(</span>
+substring<span class="token punctuation">(</span>keywords, CHARINDEX<span class="token punctuation">(</span><span class="token string">'$'</span>,keywords,CONVERT<span class="token punctuation">(</span>INT,CHARINDEX <span class="token punctuation">(</span><span class="token string">'$'</span>,keywords<span class="token punctuation">))</span>+1<span class="token punctuation">)</span>+1,100<span class="token punctuation">)</span>, 
+ CHARINDEX<span class="token punctuation">(</span><span class="token string">'$'</span>,keywords,CONVERT<span class="token punctuation">(</span>INT,CHARINDEX <span class="token punctuation">(</span><span class="token string">'$'</span>,keywords<span class="token punctuation">))</span><span class="token punctuation">)</span>,100
+<span class="token punctuation">)</span>
+FROM dbo.house_searchs
+</code></pre>
+<h2 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h2><pre class=" language-bash"><code class="language-bash"> --修改二手房查询的表结构
+ALTER TABLE house_searchs ADD sortdate datetime DEFAULT getdate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+update house_searchs 
+<span class="token keyword">set</span> sortdate <span class="token operator">=</span> convert<span class="token punctuation">(</span>datetime,left<span class="token punctuation">(</span>cast<span class="token punctuation">(</span>publicdate as varchar<span class="token punctuation">)</span>,4<span class="token punctuation">)</span> + <span class="token string">'-'</span> + substring<span class="token punctuation">(</span>cast<span class="token punctuation">(</span>publicdate as varchar<span class="token punctuation">)</span>,5,2<span class="token punctuation">)</span> +<span class="token string">'-'</span> + right<span class="token punctuation">(</span>cast<span class="token punctuation">(</span>publicdate as varchar<span class="token punctuation">)</span>,2<span class="token punctuation">)</span> + <span class="token string">' 00:00:00'</span><span class="token punctuation">)</span> 
+</code></pre>
+<h2 id="分组按照时间汇总"><a href="#分组按照时间汇总" class="headerlink" title="分组按照时间汇总"></a>分组按照时间汇总</h2><pre class=" language-bash"><code class="language-bash"> ---以部门,时间汇总 时间字段OIS_Date
+--这是取到所有的总和,我想要时间之间的总和
+<span class="token keyword">select</span> DeptID,
+    in_price <span class="token operator">=</span>sum<span class="token punctuation">(</span>CASE OIS_Type when <span class="token string">'4'</span>  <span class="token keyword">then</span> OIS_Price*OIS_Count END<span class="token punctuation">)</span>,
+    out_price <span class="token operator">=</span> sum<span class="token punctuation">(</span>CASE OIS_Type when <span class="token string">'7'</span>  <span class="token keyword">then</span> OIS_Price*OIS_Count END<span class="token punctuation">)</span>
+from Oper_OutInStockStream
+WHERE  <span class="token punctuation">(</span>OIS_Date<span class="token operator">>=</span><span class="token string">'2015-01-27 00:00:01'</span>
+ AND OIS_Date<span class="token operator">&lt;=</span><span class="token string">'2015-05-01 23:59:59'</span><span class="token punctuation">)</span>
+group by  DeptID
+
+</code></pre>
+<h2 id="更新加行号"><a href="#更新加行号" class="headerlink" title="更新加行号"></a>更新加行号</h2><pre class=" language-bash"><code class="language-bash"> UPDATE His_Cart SET IsShopping<span class="token operator">=</span><span class="token string">'0'</span>,DETAIL_ID<span class="token operator">=</span>temp.rid
+FROM His_Cart,
+<span class="token punctuation">(</span>
+SELECT ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> OVER <span class="token punctuation">(</span>ORDER BY id<span class="token punctuation">)</span> rid,id FROM dbo.His_Cart
+WHERE CreatedBy<span class="token operator">=</span><span class="token string">'jzt'</span><span class="token punctuation">)</span> temp WHERE His_Cart.ID<span class="token operator">=</span>temp.id
+</code></pre>
+<h2 id="根据时间查询"><a href="#根据时间查询" class="headerlink" title="根据时间查询"></a>根据时间查询</h2><pre class=" language-bash"><code class="language-bash"><span class="token keyword">select</span> * from info where DateDiff<span class="token punctuation">(</span>dd,datetime,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0 
+
+--查询24小时内的: 
+<span class="token keyword">select</span> * from info where DateDiff<span class="token punctuation">(</span>hh,datetime,getDate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">&lt;=</span>24 
+
+--info为表名,datetime为数据库中的字段值
+
+--查询当天：
+<span class="token keyword">select</span> * from info where DateDiff<span class="token punctuation">(</span>dd,datetime,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0
+
+--查询24小时内的:
+<span class="token keyword">select</span> * from info where DateDiff<span class="token punctuation">(</span>hh,datetime,getDate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">&lt;=</span>24
+
+--info为表名,datetime为数据库中的字段值
+
+Sql代码
+--查询当天记录另类的方法 
+SELECT * 
+FROM j_GradeShop 
+WHERE <span class="token punctuation">(</span>GAddTime BETWEEN CONVERT<span class="token punctuation">(</span>datetime, LEFT<span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>, 10<span class="token punctuation">)</span> + ’ 00:00:00.000’<span class="token punctuation">)</span> 
+AND CONVERT<span class="token punctuation">(</span>datetime, LEFT<span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>, 10<span class="token punctuation">)</span> + ’ 00:00:00.000’<span class="token punctuation">)</span> + 1<span class="token punctuation">)</span> 
+ORDER BY GAddTime DESC
+
+--查询当天记录另类的方法
+SELECT *
+FROM j_GradeShop
+WHERE <span class="token punctuation">(</span>GAddTime BETWEEN CONVERT<span class="token punctuation">(</span>datetime, LEFT<span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>, 10<span class="token punctuation">)</span> + ’ 00:00:00.000’<span class="token punctuation">)</span>
+AND CONVERT<span class="token punctuation">(</span>datetime, LEFT<span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span>, 10<span class="token punctuation">)</span> + ’ 00:00:00.000’<span class="token punctuation">)</span> + 1<span class="token punctuation">)</span>
+ORDER BY GAddTime DESC
+
+DATEDIFF 函数:
+
+语法:
+
+
+DATEDIFF <span class="token punctuation">(</span> datepart , startdate , enddate <span class="token punctuation">)</span>
+
+备注:enddate 减去 startdate。如果 startdate 晚于 enddate，则返回负值。
+
+如果结果超出整数值范围，则 DATEDIFF 将产生错误。对于毫秒，最大数是 24 天 20 小时 31 分钟零 23.647 秒。对于秒，最大数是 68 年。
+
+跨分钟、秒和毫秒等边界计算的方法使得 DATEDIFF 指定的结果在所有数据类型中均一致。结果是带正负号的整数值，它等于跨第一个和第二个日期间的 datepart 边界数。例如，在 1 月 4 日（星期日）和 1 月 11 日（星期日）之间的星期数是 1。
+
+
+可以再MSSQL中测试:
+
+Sql代码
+--两个时间差刚好是24 
+--打印的方式 
+print dateDiff<span class="token punctuation">(</span>hh,’2009-1-1 0:0:0’,’2009-1-2 0:0:0’<span class="token punctuation">)</span> 
+
+--查询的方式 
+print dateDiff<span class="token punctuation">(</span>hh,’2009-1-1 0:0:0’,’2009-1-2 0:0:0’<span class="token punctuation">)</span>
+
+--两个时间差刚好是24
+--打印的方式
+print dateDiff<span class="token punctuation">(</span>hh,’2009-1-1 0:0:0’,’2009-1-2 0:0:0’<span class="token punctuation">)</span>
+
+--查询的方式
+print dateDiff<span class="token punctuation">(</span>hh,’2009-1-1 0:0:0’,’2009-1-2 0:0:0’<span class="token punctuation">)</span>
+
+Sql代码
+--本月记录 
+SELECT * FROM 表 WHERE datediff<span class="token punctuation">(</span>month,<span class="token punctuation">[</span>dateadd<span class="token punctuation">]</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0 
+
+--本周记录 
+SELECT * FROM 表 WHERE datediff<span class="token punctuation">(</span>week,<span class="token punctuation">[</span>dateadd<span class="token punctuation">]</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0 
+
+--包括本年这些查询方式是一样的
+
+--本月记录
+SELECT * FROM 表 WHERE datediff<span class="token punctuation">(</span>month,<span class="token punctuation">[</span>dateadd<span class="token punctuation">]</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0
+
+--本周记录
+SELECT * FROM 表 WHERE datediff<span class="token punctuation">(</span>week,<span class="token punctuation">[</span>dateadd<span class="token punctuation">]</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>0
+
+sql server中的时间函数
+
+
+1. 当前系统日期、时间
+<span class="token keyword">select</span> getdate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+2. dateadd 在向指定日期加上一段时间的基础上，返回新的 datetime 值
+例如：向日期加上2天
+<span class="token keyword">select</span> dateadd<span class="token punctuation">(</span>day,2,’2004-10-15’<span class="token punctuation">)</span> --返回：2004-10-17 00:00:00.000
+
+
+3. datediff 返回跨两个指定日期的日期和时间边界数。
+<span class="token keyword">select</span> datediff<span class="token punctuation">(</span>day,’2004-09-01’,’2004-09-18’<span class="token punctuation">)</span> --返回：17
+
+
+4. datepart 返回代表指定日期的指定日期部分的整数。
+SELECT DATEPART<span class="token punctuation">(</span>month, ’2004-10-15’<span class="token punctuation">)</span> --返回 10
+
+
+5. datename 返回代表指定日期的指定日期部分的字符串
+SELECT datename<span class="token punctuation">(</span>weekday, ’2004-10-15’<span class="token punctuation">)</span> --返回：星期五
+
+
+6. day<span class="token punctuation">(</span><span class="token punctuation">)</span>, month<span class="token punctuation">(</span><span class="token punctuation">)</span>,year<span class="token punctuation">(</span><span class="token punctuation">)</span> --可以与datepart对照一下
+
+<span class="token keyword">select</span> 当前日期<span class="token operator">=</span>convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">)</span>,120<span class="token punctuation">)</span>
+,当前时间<span class="token operator">=</span>convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>8<span class="token punctuation">)</span>,getdate<span class="token punctuation">(</span><span class="token punctuation">)</span>,114<span class="token punctuation">)</span>
+
+<span class="token keyword">select</span> datename<span class="token punctuation">(</span>dw,’2004-10-15’<span class="token punctuation">)</span>
+
+<span class="token keyword">select</span> 本年第多少周<span class="token operator">=</span>datename<span class="token punctuation">(</span>week,’2004-10-15’<span class="token punctuation">)</span>
+,今天是周几<span class="token operator">=</span>datename<span class="token punctuation">(</span>weekday,’2004-10-15’<span class="token punctuation">)</span>
+
+
+函数 参数/功能
+GetDate<span class="token punctuation">(</span> <span class="token punctuation">)</span> 返回系统目前的日期与时间
+DateDiff <span class="token punctuation">(</span>interval,date1,date2<span class="token punctuation">)</span> 以interval 指定的方式，返回date2 与date1两个日期之间的差值 date2-date1
+DateAdd <span class="token punctuation">(</span>interval,number,date<span class="token punctuation">)</span> 以interval指定的方式，加上number之后的日期
+DatePart <span class="token punctuation">(</span>interval,date<span class="token punctuation">)</span> 返回日期date中，interval指定部分所对应的整数值
+DateName <span class="token punctuation">(</span>interval,date<span class="token punctuation">)</span> 返回日期date中，interval指定部分所对应的字符串名称
+
+参数 interval的设定值如下：
+
+
+值 缩 写（Sql Server） Access 和 ASP 说明
+Year Yy yyyy 年 1753 ~ 9999
+Quarter Qq q 季 1 ~ 4
+Month Mm m 月1 ~ 12
+Day of year Dy y 一年的日数,一年中的第几日 1-366
+Day Dd d 日，1-31
+Weekday Dw w 一周的日数，一周中的第几日 1-7
+Week Wk ww 周，一年中的第几周 0 ~ 51
+Hour Hh h 时0 ~ 23
+Minute Mi n 分钟0 ~ 59
+Second Ss s 秒 0 ~ 59
+Millisecond Ms - 毫秒 0 ~ 999
+
+
+
+access 和 asp 中用date<span class="token punctuation">(</span><span class="token punctuation">)</span>和now<span class="token punctuation">(</span><span class="token punctuation">)</span>取得系统日期时间；其中DateDiff,DateAdd,DatePart也同是能用于Access和asp中，这些函数的用法也类似
+
+
+举例：
+1.GetDate<span class="token punctuation">(</span><span class="token punctuation">)</span> 用于sql server :select GetDate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+2.DateDiff<span class="token punctuation">(</span>’s’,’2005-07-20’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 514592 秒
+DateDiff<span class="token punctuation">(</span>’d’,’2005-07-20’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 5 天
+
+3.DatePart<span class="token punctuation">(</span>’w’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 2 即星期一<span class="token punctuation">(</span>周日为1，周六为7<span class="token punctuation">)</span>
+DatePart<span class="token punctuation">(</span>’d’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 25即25号
+DatePart<span class="token punctuation">(</span>’y’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 206即这一年中第206天
+DatePart<span class="token punctuation">(</span>’yyyy’,’2005-7-25 22:56:32’<span class="token punctuation">)</span>返回值为 2005即2005年
+</code></pre>
+<h2 id="表横向展示"><a href="#表横向展示" class="headerlink" title="表横向展示"></a>表横向展示</h2><pre class=" language-bash"><code class="language-bash"> SELECT PDNAME as 设备类别,
+  max<span class="token punctuation">(</span>case ftName when <span class="token string">'临床功能'</span> <span class="token keyword">then</span> score <span class="token keyword">else</span> 0 end<span class="token punctuation">)</span> 临床功能,
+  max<span class="token punctuation">(</span>case ftName when <span class="token string">'有形风险'</span> <span class="token keyword">then</span> score <span class="token keyword">else</span> 0 end<span class="token punctuation">)</span> 有形风险,
+  max<span class="token punctuation">(</span>case ftName when <span class="token string">'问题避免概率'</span> <span class="token keyword">then</span> score <span class="token keyword">else</span> 0 end<span class="token punctuation">)</span> 问题避免概率, 
+  max<span class="token punctuation">(</span>case ftName when <span class="token string">'事故历史'</span> <span class="token keyword">then</span> score <span class="token keyword">else</span> 0 end<span class="token punctuation">)</span> 事故历史,
+  max<span class="token punctuation">(</span>case ftName when <span class="token string">'管理部门的特殊要求'</span> <span class="token keyword">then</span> score <span class="token keyword">else</span> 0 end<span class="token punctuation">)</span> 管理部门的特殊要求
+  FROM
+<span class="token punctuation">(</span>
+SELECT  fs.PDCode ,
+        fdt.PDNAME PDNAME ,
+        ft.Name ftName ,
+        SUM<span class="token punctuation">(</span>CONVERT<span class="token punctuation">(</span>INT, fps.score<span class="token punctuation">))</span> score
+FROM    FixeaAssetsPMConS fs
+        LEFT JOIN FixeaAssetsPMScore fps ON fps.id <span class="token operator">=</span> fs.PMScoreID
+        LEFT JOIN dbo.FixeaAssetsPMScoreType ft ON ft.ID <span class="token operator">=</span> fps.NameTypeID
+        LEFT JOIN FixeaPreventiveDeviceType fdt ON fdt.PDCode <span class="token operator">=</span> fs.PDCode
+GROUP BY ft.Name ,
+        fs.PDCode ,
+        fdt.PDNAME
+HAVING fs.PDCode <span class="token operator">!=</span><span class="token string">''</span>
+<span class="token punctuation">)</span> tb
+group by PDNAME     
+
+</code></pre>
+<h2 id="无联系2个表拼接"><a href="#无联系2个表拼接" class="headerlink" title="无联系2个表拼接"></a>无联系2个表拼接</h2><pre class=" language-bash"><code class="language-bash"> SELECT  BuyDate,BaseID,sum<span class="token punctuation">(</span>IsBuycount<span class="token punctuation">)</span> IsBuycount,sum<span class="token punctuation">(</span>IsNollBuycount<span class="token punctuation">)</span> IsNollBuycount,sum<span class="token punctuation">(</span>HousePartner<span class="token punctuation">)</span> HousePartner FROM <span class="token punctuation">(</span>
+SELECT * FROM 
+--购买者
+<span class="token punctuation">(</span>select
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span> BuyDate,BaseID, count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> IsBuycount,<span class="token string">''</span> AS IsNollBuycount,<span class="token string">''</span> AS HousePartner
+from 
+ dbo.RecCustomer WHERE IsBuy<span class="token operator">=</span>1  
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> a 
+ UNION 
+ SELECT * FROM 
+ --没购买
+ <span class="token punctuation">(</span>select
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span> BuyDate,BaseID,<span class="token string">''</span> AS IsBuycount , count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> IsNollBuycount,<span class="token string">''</span> AS HousePartner
+from 
+ dbo.RecCustomer WHERE IsBuy<span class="token operator">=</span>0
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> b 
+  UNION 
+  --合伙人
+ SELECT * FROM 
+<span class="token punctuation">(</span> <span class="token keyword">select</span>
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,CreateDate,120<span class="token punctuation">)</span> BuyDate,BaseID, <span class="token string">''</span> AS IsBuycount , <span class="token string">''</span> AS IsNollBuycount,count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> HousePartner
+from 
+ dbo.Partner_CommsionHouse WHERE IsDeleted<span class="token operator">=</span>0
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,CreateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> c
+ <span class="token punctuation">)</span> temp WHERE temp.BaseID<span class="token operator">=</span><span class="token string">'A6F4C7A7-D308-4DA6-BD0F-B1F50E27783D'</span> AND temp.BuyDate BETWEEN <span class="token string">'2014-10-01'</span> and <span class="token string">'2014-10-21'</span>
+ GROUP BY temp.BuyDate,temp.BaseID
+</code></pre>
+<h2 id="有联系2个表拼接"><a href="#有联系2个表拼接" class="headerlink" title="有联系2个表拼接"></a>有联系2个表拼接</h2><pre class=" language-bash"><code class="language-bash">SELECT * FROM <span class="token punctuation">(</span>
+ SELECT a.BaseID aBaseID,b.BaseID bBaseID,c.BaseID cBaseID, ISNULL<span class="token punctuation">(</span>BuyDate,ISNULL<span class="token punctuation">(</span>NullBuyDate,Date<span class="token punctuation">))</span> BuyDate,ISNULL<span class="token punctuation">(</span>Date,ISNULL<span class="token punctuation">(</span>BuyDate,NullBuyDate<span class="token punctuation">))</span> Date,ISNULL<span class="token punctuation">(</span>NullBuyDate,ISNULL<span class="token punctuation">(</span>BuyDate,Date<span class="token punctuation">))</span> NullBuyDate,
+ ISNULL<span class="token punctuation">(</span>IsBuycount,0<span class="token punctuation">)</span> IsBuycount, ISNULL<span class="token punctuation">(</span>IsNollBuycount,0<span class="token punctuation">)</span> IsNollBuycount,
+ ISNULL<span class="token punctuation">(</span>HousePartner,0<span class="token punctuation">)</span> HousePartner FROM 
+<span class="token punctuation">(</span> <span class="token keyword">select</span>
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span> BuyDate,BaseID, count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> IsBuycount
+from 
+ dbo.RecCustomer WHERE IsBuy<span class="token operator">=</span>1  
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> a
+ RIGHT <span class="token function">join</span>
+ <span class="token punctuation">(</span>select
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span> NullBuyDate,BaseID, count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> IsNollBuycount
+from 
+ dbo.RecCustomer WHERE IsBuy<span class="token operator">=</span>0
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,UpdateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> b
+  ON  a.BuyDate<span class="token operator">=</span>b.NullBuyDate
+ LEFT JOIN
+ <span class="token punctuation">(</span>select
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,CreateDate,120<span class="token punctuation">)</span> Date,BaseID, count<span class="token punctuation">(</span>*<span class="token punctuation">)</span> HousePartner
+from 
+ dbo.Partner_CommsionHouse WHERE IsDeleted<span class="token operator">=</span>0
+group by 
+ convert<span class="token punctuation">(</span>varchar<span class="token punctuation">(</span>10<span class="token punctuation">)</span>,CreateDate,120<span class="token punctuation">)</span>,BaseID<span class="token punctuation">)</span> c
+ON b.NullBuyDate<span class="token operator">=</span>c.Date
+<span class="token punctuation">)</span> temp 
+WHERE 
+temp.aBaseID<span class="token operator">=</span>temp.bBaseID
+ AND  temp.aBaseID<span class="token operator">=</span><span class="token string">'A6F4C7A7-D308-4DA6-BD0F-B1F50E27783D'</span>
+AND temp.BuyDate BETWEEN   <span class="token string">'2014-10-16'</span>    AND  <span class="token string">'2014-10-22'</span>
+</code></pre>
+<h2 id="2个数据库表互相导数据"><a href="#2个数据库表互相导数据" class="headerlink" title="2个数据库表互相导数据"></a>2个数据库表互相导数据</h2><pre class=" language-bash"><code class="language-bash">服务器数据库之间互相导入数据
+insert into <span class="token punctuation">[</span>HPD2.0<span class="token punctuation">]</span>.dbo.SysMenu
+ <span class="token keyword">select</span> * from <span class="token punctuation">[</span>10.3.1.27<span class="token punctuation">]</span>.<span class="token punctuation">[</span>HPD2.0<span class="token punctuation">]</span>.dbo.SysMenu
+
+要是找不到服务器
+--添加服务器
+EXEC sp_addlinkedserver
+@server<span class="token operator">=</span><span class="token string">'10.3.1.27'</span>,--被访问的服务器别名（习惯上直接使用目标服务器IP，或取个别名如：JOY）
+@srvproduct<span class="token operator">=</span><span class="token string">''</span>,
+@provider<span class="token operator">=</span><span class="token string">'SQLOLEDB'</span>,
+@datasrc<span class="token operator">=</span><span class="token string">'10.3.1.27'</span> --要访问的服务器
+--设置账号和密码
+
+EXEC sp_addlinkedsrvlogin
+<span class="token string">'10.3.1.27'</span>, 
+<span class="token string">'false'</span>,
+NULL,
+<span class="token string">'sa'</span>, --帐号
+<span class="token string">'JZTeya0!'</span> --密码
+
+
+insert into <span class="token punctuation">[</span>shenzhengHPD2.0<span class="token punctuation">]</span>.dbo.BaseSupplierInfo
+ <span class="token keyword">select</span> * from <span class="token punctuation">[</span>qingdaoHPD2.0<span class="token punctuation">]</span>.dbo.BaseSupplierInfo
+
+/////////////////////////
+列名不一定要相同，只要你在HH中列出要插入列的列表跟select from mm表中的选择的列的列表一一对应就可以了，当然两边的数据类型应该是兼容的。 
+insert into hh <span class="token punctuation">(</span>fielda,fieldb,fieldc<span class="token punctuation">)</span> <span class="token keyword">select</span> fieldx,fieldy,fieldz from mm 
+复制代码 代码如下:
+
+---更新计量点中不存在的数据,将台帐中的信息转移到计量点中 
+insert into MetricPoints <span class="token punctuation">(</span>MeterID,MetricPointName,<span class="token punctuation">[</span>Description<span class="token punctuation">]</span>,DepartmentID,MediumID<span class="token punctuation">)</span> 
+<span class="token punctuation">(</span>SELECT m.MeterID,m.MetricItems+m.InstallPlace as m_MetricPointName,m.MetricItems,m.DepartmentID,m.MediumID 
+FROM Meters m WHERE NOT EXISTS <span class="token punctuation">(</span>SELECT 1 FROM MetricPoints WHERE MetricPoints.MeterID <span class="token operator">=</span> m.MeterID <span class="token punctuation">)</span> and m.MediumID <span class="token operator">=</span>2<span class="token punctuation">)</span> 
+
+声名：a,b ,都是表 
+复制代码 代码如下:
+
+--b表存在（两表结构一样） 
+insert into b <span class="token keyword">select</span> * from a 
+
+若两表只是有部分（字段）相同，则 
+复制代码 代码如下:
+
+insert into b<span class="token punctuation">(</span>col1,col2,col3,col4,<span class="token punctuation">..</span>.<span class="token punctuation">)</span> <span class="token keyword">select</span> col1,col2,col3,col4,<span class="token punctuation">..</span>. from a where<span class="token punctuation">..</span>. 
+
+把表a插入到表b中去。 
+复制代码 代码如下:
+
+--b表不存在 
+<span class="token keyword">select</span> * into b from a 
+// 
+<span class="token keyword">select</span> <span class="token punctuation">(</span>字段1，字段2，<span class="token punctuation">..</span>.<span class="token punctuation">)</span> into b from a 
+</code></pre>
+<h2 id="页总数"><a href="#页总数" class="headerlink" title="页总数"></a>页总数</h2><pre class=" language-bash"><code class="language-bash"> SELECT  CEILING<span class="token punctuation">((</span>COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> *2+0.0<span class="token punctuation">)</span>/10<span class="token punctuation">)</span> TotalPageCount,COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> TotalCount
+FROM    <span class="token punctuation">(</span> SELECT    ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> OVER <span class="token punctuation">(</span> ORDER BY customer DESC <span class="token punctuation">)</span> AS rowIndex ,
+                    SUM<span class="token punctuation">(</span>OutStockCount * Price<span class="token punctuation">)</span> totalPrice ,
+                    SUM<span class="token punctuation">(</span>OutStockCount<span class="token punctuation">)</span> totalStock ,
+                    COUNT<span class="token punctuation">(</span>GoodsName<span class="token punctuation">)</span> GoodsNumber ,
+                    COUNT<span class="token punctuation">(</span>VoucherCode<span class="token punctuation">)</span> VoucherNumber ,
+                    customer,OrderWay,
+                    Owner OwnerID
+          FROM      dbo.V_getOutStockVoucher
+          WHERE     Status <span class="token operator">=</span> <span class="token string">'已复核'</span> 
+          GROUP BY  customer ,
+                    Owner,OrderWay
+        <span class="token punctuation">)</span> temp
+</code></pre>
+<h2 id="查询重复的数据"><a href="#查询重复的数据" class="headerlink" title="查询重复的数据"></a>查询重复的数据</h2><pre class=" language-bash"><code class="language-bash"><span class="token keyword">select</span> id, name, memo from A where <span class="token function">id</span> <span class="token keyword">in</span> <span class="token punctuation">(</span>select <span class="token function">id</span> from A group by <span class="token function">id</span> having count<span class="token punctuation">(</span>1<span class="token punctuation">)</span> <span class="token operator">>=</span> 2<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="去除重复的数据"><a href="#去除重复的数据" class="headerlink" title="去除重复的数据"></a>去除重复的数据</h2><pre class=" language-bash"><code class="language-bash">Distinct 或select * from table1 as a  where not exists<span class="token punctuation">(</span>select 1 from table1 where logID<span class="token operator">=</span>a.LogID and ID<span class="token operator">></span>a.ID<span class="token punctuation">)</span>   
+<span class="token keyword">select</span> Distinct 列名 from 表名
+</code></pre>
+<h2 id="检查重复数据情况"><a href="#检查重复数据情况" class="headerlink" title="检查重复数据情况"></a>检查重复数据情况</h2><pre class=" language-bash"><code class="language-bash">SELECT Userid, Res_ID FROM ahuser_app_rec GROUP BY Userid, Res_ID HAVING <span class="token punctuation">(</span>COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> <span class="token operator">></span> 1<span class="token punctuation">)</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/09/sqlserver-zong-jie/" class="b-link-green">SqlServer总结</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/09/c-zhi-socket/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="C#之Socket">
+                        
+                        <span class="card-title">C#之Socket</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">C#中Socket的简单使用
+服务端监听某个端口
+客户端向服务端地址和端口发起Socket连接请求
+服务端收到连接请求后创建Socket连接，并维护这个连接队列。
+客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Socket/" target="_blank">
+                        <span class="chip bg-color">Socket</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/09/asp.net-zhi-shi-dian-zong-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt=".net总结">
+                        
+                        <span class="card-title">.net总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Asp.NET 知识点总结(一)1.简述 private、 protected、 public、 internal 修饰符的访问权限。
+答 . private : 私有类，私有成员, 在类的内部才可以访问。
+protected : 保护成员</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            <a href="/categories/ASP-NET/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

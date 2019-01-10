@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zy20081.github.io/"/>
-  <updated>2019-01-09T01:17:11.483Z</updated>
+  <updated>2019-01-10T08:36:05.169Z</updated>
   <id>https://zy20081.github.io/</id>
   
   <author>
@@ -15,6 +15,161 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>相册</title>
+    <link href="https://zy20081.github.io/2019/01/11/xiang-ce/"/>
+    <id>https://zy20081.github.io/2019/01/11/xiang-ce/</id>
+    <published>2019-01-11T08:17:11.000Z</published>
+    <updated>2019-01-10T08:36:05.169Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/11/xiang-ce/2.jpg&quot; alt=&quot;图2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;相册&quot;&gt;&lt;a href=&quot;#相册&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="C# Demo" scheme="https://zy20081.github.io/tags/C-Demo/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>音乐播放器</title>
+    <link href="https://zy20081.github.io/2019/01/10/yin-le-bo-fang-qi/"/>
+    <id>https://zy20081.github.io/2019/01/10/yin-le-bo-fang-qi/</id>
+    <published>2019-01-10T08:17:11.000Z</published>
+    <updated>2019-01-10T08:25:26.876Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/10/yin-le-bo-fang-qi/2.jpg&quot; alt=&quot;图2&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2019/01/10/yin-le-bo-fang-qi/3.jpg&quot; alt=&quot;图3&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="C# Demo" scheme="https://zy20081.github.io/tags/C-Demo/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算器小demo</title>
+    <link href="https://zy20081.github.io/2019/01/10/ji-suan-qi-xiao-demo/"/>
+    <id>https://zy20081.github.io/2019/01/10/ji-suan-qi-xiao-demo/</id>
+    <published>2019-01-10T06:17:11.000Z</published>
+    <updated>2019-01-10T07:43:45.209Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/10/ji-suan-qi-xiao-demo/1.jpg&quot; alt=&quot;图1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;计算器&quot;&gt;&lt;a href=&quot;#计算器&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="C# Demo" scheme="https://zy20081.github.io/tags/C-Demo/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>截图工具</title>
+    <link href="https://zy20081.github.io/2019/01/10/jie-tu-gong-ju/"/>
+    <id>https://zy20081.github.io/2019/01/10/jie-tu-gong-ju/</id>
+    <published>2019-01-10T06:17:11.000Z</published>
+    <updated>2019-01-10T08:15:28.731Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/10/jie-tu-gong-ju/2.jpg&quot; alt=&quot;图2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;截图工具&quot;&gt;&lt;a href=&quot;#截图工具&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="C# Demo" scheme="https://zy20081.github.io/tags/C-Demo/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码生成器</title>
+    <link href="https://zy20081.github.io/2019/01/10/dai-ma-sheng-cheng-qi/"/>
+    <id>https://zy20081.github.io/2019/01/10/dai-ma-sheng-cheng-qi/</id>
+    <published>2019-01-10T06:17:11.000Z</published>
+    <updated>2019-01-10T07:55:45.663Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/10/dai-ma-sheng-cheng-qi/1.jpg&quot; alt=&quot;图1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码生成器&quot;&gt;&lt;a href=&quot;#代码生成器&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="C# Demo" scheme="https://zy20081.github.io/tags/C-Demo/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
   
   <entry>
     <title>C#之Socket</title>
@@ -43,11 +198,38 @@
   </entry>
   
   <entry>
+    <title>SqlServer总结</title>
+    <link href="https://zy20081.github.io/2019/01/09/sqlserver-zong-jie/"/>
+    <id>https://zy20081.github.io/2019/01/09/sqlserver-zong-jie/</id>
+    <published>2019-01-09T06:17:11.000Z</published>
+    <updated>2019-01-09T07:32:16.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;分享&quot;&gt;&lt;a href=&quot;#分享&quot; class=&quot;headerlink&quot; title=&quot;分享&quot;&gt;&lt;/a&gt;分享&lt;/h2&gt;&lt;p&gt;一下都是自己写的，总结的，不是照搬网上的，只是分享，其中也有些小案例分享&lt;/p&gt;
+&lt;h2 id=&quot;创建数据库&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://zy20081.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="SqlServer" scheme="https://zy20081.github.io/tags/SqlServer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>.net总结</title>
     <link href="https://zy20081.github.io/2019/01/09/asp.net-zhi-shi-dian-zong-jie/"/>
     <id>https://zy20081.github.io/2019/01/09/asp.net-zhi-shi-dian-zong-jie/</id>
     <published>2019-01-09T04:17:11.000Z</published>
-    <updated>2019-01-09T01:58:56.460Z</updated>
+    <updated>2019-01-10T08:28:57.709Z</updated>
     
     <summary type="html">
     
@@ -61,9 +243,9 @@
     
     </summary>
     
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
     
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/C/ASP-NET/"/>
+      <category term="C#" scheme="https://zy20081.github.io/categories/ASP-NET/C/"/>
     
     
       <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
@@ -155,7 +337,7 @@
     <link href="https://zy20081.github.io/2019/01/03/io-liu-de-shi-yong/"/>
     <id>https://zy20081.github.io/2019/01/03/io-liu-de-shi-yong/</id>
     <published>2019-01-03T06:17:11.000Z</published>
-    <updated>2019-01-03T02:01:03.412Z</updated>
+    <updated>2019-01-10T08:29:10.204Z</updated>
     
     <summary type="html">
     
@@ -171,6 +353,8 @@
     
       <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
     
+      <category term="C#" scheme="https://zy20081.github.io/categories/ASP-NET/C/"/>
+    
     
       <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
     
@@ -181,7 +365,7 @@
     <link href="https://zy20081.github.io/2019/01/03/webclient-zhua-qu-wang-ye-dai-ma/"/>
     <id>https://zy20081.github.io/2019/01/03/webclient-zhua-qu-wang-ye-dai-ma/</id>
     <published>2019-01-03T01:35:41.000Z</published>
-    <updated>2019-01-03T01:38:17.219Z</updated>
+    <updated>2019-01-10T08:29:19.888Z</updated>
     
     <summary type="html">
     
@@ -197,34 +381,10 @@
     
       <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
     
+      <category term="C#" scheme="https://zy20081.github.io/categories/ASP-NET/C/"/>
+    
     
       <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Asp.Net页面生命周期</title>
-    <link href="https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/"/>
-    <id>https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/</id>
-    <published>2019-01-02T06:17:11.000Z</published>
-    <updated>2019-01-02T08:04:08.571Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;Asp-Net页面生命周期&quot;&gt;&lt;a href=&quot;#Asp-Net页面生命周期&quot; class=&quot;headerlink&quot; title=&quot;Asp.Net页面生命周期&quot;&gt;&lt;/a&gt;Asp.Net页面生命周期&lt;/h1&gt;&lt;h2
-        
-      
-    
-    </summary>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
-    
-    
-      <category term="ASP.NET原理" scheme="https://zy20081.github.io/tags/ASP-NET%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
@@ -277,6 +437,34 @@
     
     
       <category term="orcale" scheme="https://zy20081.github.io/tags/orcale/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Asp.Net页面生命周期</title>
+    <link href="https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/"/>
+    <id>https://zy20081.github.io/2019/01/02/asp-net-ye-mian-sheng-ming-zhou-qi/</id>
+    <published>2019-01-02T06:17:11.000Z</published>
+    <updated>2019-01-10T08:28:38.959Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Asp-Net页面生命周期&quot;&gt;&lt;a href=&quot;#Asp-Net页面生命周期&quot; class=&quot;headerlink&quot; title=&quot;Asp.Net页面生命周期&quot;&gt;&lt;/a&gt;Asp.Net页面生命周期&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/ASP-NET/C/"/>
+    
+    
+      <category term="ASP.NET原理" scheme="https://zy20081.github.io/tags/ASP-NET%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   

@@ -1,0 +1,1009 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="代码生成器, Zhou•Yong">
+    <meta name="description" content="
+代码生成器这是我读书时期，学C#，每次写上机练习，都要写3层架构，练增删改查，那个时候还不流行动软生成器和CodeSmith,所以就根据自己的写代码方式，写了个自己常用的代码生成器生成3层架构，这个要配合我写的SqlHelper一起使用
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>代码生成器 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        代码生成器
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/C/" target="_blank">
+                    <span class="chip bg-color">C#</span>
+                </a>
+                
+                <a href="/tags/C-Demo/" target="_blank">
+                    <span class="chip bg-color">C# Demo</span>
+                </a>
+                
+                <a href="/tags/ASP-NET/" target="_blank">
+                    <span class="chip bg-color">ASP.NET</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                        ASP.NET
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-10
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="/2019/01/10/dai-ma-sheng-cheng-qi/1.jpg" alt="图1"></p>
+<h2 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h2><p>这是我读书时期，学C#，每次写上机练习，都要写3层架构，练增删改查，那个时候还不流行动软生成器和CodeSmith,所以就根据自己的写代码方式，写了个自己常用的代码生成器生成3层架构，这个要配合我写的SqlHelper一起使用</p>
+<pre class=" language-bash"><code class="language-bash">
+using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
+using System.Text<span class="token punctuation">;</span>
+using System.Data<span class="token punctuation">;</span>
+using System.Data.SqlClient<span class="token punctuation">;</span>
+using System.IO<span class="token punctuation">;</span>
+
+namespace code
+<span class="token punctuation">{</span>
+    class CreateDaL
+    <span class="token punctuation">{</span> ///增加 
+        private  SqlConnection conn<span class="token punctuation">;</span> //连接
+
+        public  SqlConnection Conn
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>conn <span class="token operator">==</span> null <span class="token operator">||</span> conn.State <span class="token operator">==</span> ConnectionState.Broken<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    conn <span class="token operator">=</span> new SqlConnection<span class="token punctuation">(</span>model.constr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> conn<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+       public  DataTable ExecuteDataTable<span class="token punctuation">(</span>string sql, params SqlParameter<span class="token punctuation">[</span><span class="token punctuation">]</span> paras<span class="token punctuation">)</span> //查询结果集比较少的sql
+        <span class="token punctuation">{</span>
+            SqlCommand cmd <span class="token operator">=</span> new SqlCommand<span class="token punctuation">(</span>sql, Conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>paras <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> paras.Length <span class="token operator">></span> 0<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span> 
+                cmd.Parameters.AddRange<span class="token punctuation">(</span>paras<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            SqlDataAdapter adapter <span class="token operator">=</span> new SqlDataAdapter<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            DataTable dt <span class="token operator">=</span> new DataTable<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            try
+            <span class="token punctuation">{</span>
+
+                adapter.Fill<span class="token punctuation">(</span>dt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            catch 
+            <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> dt<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+       public static string toNetType<span class="token punctuation">(</span>string dataType<span class="token punctuation">)</span> //数据库类型和C<span class="token comment" spellcheck="true">#类型换下</span>
+       <span class="token punctuation">{</span>
+           switch <span class="token punctuation">(</span>dataType<span class="token punctuation">)</span>
+           <span class="token punctuation">{</span>
+               <span class="token keyword">case</span> <span class="token string">"int"</span><span class="token keyword">:</span> <span class="token keyword">return</span> <span class="token string">"int"</span><span class="token punctuation">;</span>
+               <span class="token keyword">case</span> <span class="token string">"nvarchar"</span><span class="token keyword">:</span>
+               <span class="token keyword">case</span> <span class="token string">"varchar"</span><span class="token keyword">:</span>
+               <span class="token keyword">case</span> <span class="token string">"nchar"</span><span class="token keyword">:</span>
+                   <span class="token keyword">return</span> <span class="token string">"string"</span><span class="token punctuation">;</span>
+               <span class="token keyword">case</span> <span class="token string">"bit"</span><span class="token keyword">:</span> <span class="token keyword">return</span> <span class="token string">"bool"</span><span class="token punctuation">;</span>
+               <span class="token keyword">case</span> <span class="token string">"datetime"</span><span class="token keyword">:</span> <span class="token keyword">return</span> <span class="token string">"DateTime"</span><span class="token punctuation">;</span>
+               default: <span class="token keyword">return</span> <span class="token string">"object"</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
+
+       <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+       /// 创建model
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"tablename"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>returns<span class="token operator">></span><span class="token operator">&lt;</span>/returns<span class="token operator">></span>
+       public StringBuilder createModel<span class="token punctuation">(</span>string tablename<span class="token punctuation">)</span>
+       <span class="token punctuation">{</span>
+           DataTable dtCols <span class="token operator">=</span> ExecuteDataTable<span class="token punctuation">(</span><span class="token string">"SELECT * FROM  INFORMATION_SCHEMA.COlUMNS where Table_name=@table"</span>, new SqlParameter<span class="token punctuation">(</span><span class="token string">"@table"</span>, tablename<span class="token punctuation">))</span><span class="token punctuation">;</span>
+           StringBuilder sb <span class="token operator">=</span> new StringBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Text;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data.SqlClient;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Collections.Generic;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"namespace "</span> + model.RootNamespace + <span class="token string">".Model"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"partial class"</span> + <span class="token string">"  "</span> + tablename + <span class="token string">"Model"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           foreach <span class="token punctuation">(</span>DataRow dr <span class="token keyword">in</span> dtCols.Rows<span class="token punctuation">)</span>
+           <span class="token punctuation">{</span>
+               string colname <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"COLUMN_NAME"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               string dateType <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"DATA_TYPE"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               string netType <span class="token operator">=</span> toNetType<span class="token punctuation">(</span>dateType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public"</span> + <span class="token string">"  "</span> + netType + <span class="token string">"  "</span> + colname + <span class="token string">"  "</span> + <span class="token string">"{get;set;}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">return</span> sb<span class="token punctuation">;</span>
+
+       <span class="token punctuation">}</span>
+       /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+       /// 创建model
+       /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+       /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"tablename"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+       /// <span class="token operator">&lt;</span>returns<span class="token operator">></span><span class="token operator">&lt;</span>/returns<span class="token operator">></span>
+       public StringBuilder creatDAL<span class="token punctuation">(</span>string tablename <span class="token punctuation">)</span>//创建DAL
+       <span class="token punctuation">{</span>
+           <span class="token punctuation">{</span>
+               DataTable dtCols <span class="token operator">=</span> ExecuteDataTable<span class="token punctuation">(</span><span class="token string">"SELECT * FROM  INFORMATION_SCHEMA.COlUMNS where Table_name=@table and  COLUMN_NAME&lt;>'ID' "</span>, new SqlParameter<span class="token punctuation">(</span><span class="token string">"@table"</span>, tablename<span class="token punctuation">))</span><span class="token punctuation">;</span>
+               string<span class="token punctuation">[</span><span class="token punctuation">]</span> colnames <span class="token operator">=</span> new string<span class="token punctuation">[</span>dtCols.Rows.Count<span class="token punctuation">]</span><span class="token punctuation">;</span>//定义列为数组下面好用jion逗号分开
+               <span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> 0<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dtCols.Rows.Count<span class="token punctuation">;</span> i++<span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   DataRow row <span class="token operator">=</span> dtCols.Rows<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                   string colname <span class="token operator">=</span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span>row<span class="token punctuation">[</span><span class="token string">"Column_Name"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                   colnames<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> colname<span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               string<span class="token punctuation">[</span><span class="token punctuation">]</span> parameters <span class="token operator">=</span> new string<span class="token punctuation">[</span>dtCols.Rows.Count<span class="token punctuation">]</span><span class="token punctuation">;</span>//values后面的参数
+               <span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> 0<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> parameters.Length<span class="token punctuation">;</span> i++<span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   parameters<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"@"</span> + colnames<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+
+               StringBuilder sb <span class="token operator">=</span> new StringBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Text;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data.SqlClient;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Collections.Generic;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using "</span> + model.RootNamespace + <span class="token string">".Model;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"namespace "</span> + model.RootNamespace + <span class="token string">".DAL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"partial class"</span> + <span class="token string">"  "</span> + tablename + <span class="token string">"DAL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token comment" spellcheck="true">#region 字符串并接（增加） </span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int insert("</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  "</span> +<span class="token string">"model){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"object obj=sqlHelper.ExecuteNonQuery("</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"\"insert into  "</span> + tablename + <span class="token string">"("</span> + string.Join<span class="token punctuation">(</span><span class="token string">","</span>, colnames<span class="token punctuation">)</span> + <span class="token string">")values("</span> + string.Join<span class="token punctuation">(</span><span class="token string">","</span>, parameters<span class="token punctuation">)</span> + <span class="token string">");select identity\""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               foreach <span class="token punctuation">(</span>string colname <span class="token keyword">in</span> colnames<span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   sb.AppendLine<span class="token punctuation">(</span><span class="token string">",new SqlParameter(\""</span> + colname + <span class="token string">"\",model."</span> + colname + <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">");"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return Convert.ToInt32(obj);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token comment" spellcheck="true">#endregion</span>
+               <span class="token comment" spellcheck="true">#region 字符串并接（删）</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int Delete(int id){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"object obj=sqlHelper.ExecuteNonQuery("</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"\"delete from  "</span> + tablename + <span class="token string">" where id=@id\","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"new SqlParameter(\"id\",id));"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return Convert.ToInt32(obj);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+               <span class="token comment" spellcheck="true">#endregion</span>
+               <span class="token comment" spellcheck="true">#region 字符串并接（更新）</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int Update("</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  "</span> + <span class="token string">"model){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"object obj=sqlHelper.ExecuteNonQuery("</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"\"update  "</span> + tablename + <span class="token string">" set "</span> + <span class="token string">"("</span> + string.Join<span class="token punctuation">(</span><span class="token string">","</span>, colnames<span class="token punctuation">)</span> + <span class="token string">")where id=@id\","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"new SqlParameter(\"id\",model."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span>colnames<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"));"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return Convert.ToInt32(obj);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token comment" spellcheck="true">#endregion</span>
+               <span class="token comment" spellcheck="true">#region 字符串并接（查询多行数据）</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public "</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  selectMoreRows(int id){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"DataTable dt = sqlHelper.ExecuteDataTable(\"select * from "</span>
+                   + tablename + <span class="token string">"  where id=@id\","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"new SqlParameter(\"id\",id));"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"if (dt.Rows.Count &lt;= 0){return null;}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">" else if (dt.Rows.Count == 1){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span>tablename + <span class="token string">"Model"</span> + <span class="token string">"  model= new  "</span> + tablename + <span class="token string">"Model();"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"DataRow row = dt.Rows[0];"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               foreach <span class="token punctuation">(</span>DataRow dr <span class="token keyword">in</span> dtCols.Rows<span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   string colname <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"COLUMN_NAME"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   string dateType <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"DATA_TYPE"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   string netType <span class="token operator">=</span> toNetType<span class="token punctuation">(</span>dateType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   sb.AppendLine<span class="token punctuation">(</span><span class="token string">"model."</span> + colname + <span class="token string">"="</span> + <span class="token string">"("</span> + netType + <span class="token string">")"</span> + <span class="token string">"row[\""</span> + colname + <span class="token string">"\"];"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return  model;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"else{throw new Exception(\"出现多条数据\");}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token comment" spellcheck="true">#endregion</span>
+
+               <span class="token comment" spellcheck="true">#region 查询所有值用到了IEumerable接口</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public IEnumerable&lt;"</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"> ListAll(){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"List&lt;"</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"> list = new List&lt;"</span> +
+                 tablename + <span class="token string">"Model"</span> + <span class="token string">">();"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"DataTable dt = sqlHelper.ExecuteDataTable(\"select * from "</span> +
+               tablename + <span class="token string">"\");"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"foreach (DataRow row in dt.Rows){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span>tablename + <span class="token string">"Model"</span> + <span class="token string">"  model= new  "</span> + tablename + <span class="token string">"Model();"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               foreach <span class="token punctuation">(</span>DataRow dr <span class="token keyword">in</span> dtCols.Rows<span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   string colname <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"COLUMN_NAME"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   string dateType <span class="token operator">=</span> dr<span class="token punctuation">[</span><span class="token string">"DATA_TYPE"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   string netType <span class="token operator">=</span> toNetType<span class="token punctuation">(</span>dateType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   sb.AppendLine<span class="token punctuation">(</span><span class="token string">"model."</span> + colname + <span class="token string">"="</span> + <span class="token string">"("</span> + netType + <span class="token string">")"</span> + <span class="token string">"row[\""</span> + colname + <span class="token string">"\"];"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"list.Add(model);}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return list;}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+               <span class="token comment" spellcheck="true">#endregion</span>
+
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token keyword">return</span> sb<span class="token punctuation">;</span>
+
+           <span class="token punctuation">}</span>
+
+       <span class="token punctuation">}</span>
+       public StringBuilder creatBLL<span class="token punctuation">(</span>string tablename<span class="token punctuation">)</span> //创建BLL
+       <span class="token punctuation">{</span>
+           DataTable dtCols <span class="token operator">=</span> ExecuteDataTable<span class="token punctuation">(</span><span class="token string">"SELECT * FROM  INFORMATION_SCHEMA.COlUMNS where Table_name=@table and  COLUMN_NAME&lt;>'ID' "</span>, new SqlParameter<span class="token punctuation">(</span><span class="token string">"@table"</span>, tablename<span class="token punctuation">))</span><span class="token punctuation">;</span>
+           StringBuilder sb <span class="token operator">=</span> new StringBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Text;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Data.SqlClient;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using System.Collections.Generic;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using "</span> + model.RootNamespace + <span class="token string">".DAL;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"using "</span> + model.RootNamespace + <span class="token string">".Model;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"namespace "</span> + model.RootNamespace + <span class="token string">".BLL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"partial class"</span> + <span class="token string">"  "</span> + tablename + <span class="token string">"BLL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#region 字符串并接（增加）</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int insert("</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  "</span> + <span class="token string">"model){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return new  "</span>+tablename+<span class="token string">"DAL()."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"insert(model);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#endregion</span>
+           <span class="token comment" spellcheck="true">#region 字符串并接（删）</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int Delete(int id){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return new  "</span> + tablename + <span class="token string">"DAL()."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"Delete(id);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#endregion</span>
+           <span class="token comment" spellcheck="true">#region 字符串并接（更新）</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public int Update("</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  "</span> + <span class="token string">"model){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return new  "</span> + tablename + <span class="token string">"DAL()."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"Update(model);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#endregion</span>
+           <span class="token comment" spellcheck="true">#region 字符串并接（查询多行数据）</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public "</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">"  selectMoreRows(int id){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return new  "</span> + tablename + <span class="token string">"DAL()."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"selectMoreRows(id);"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#endregion</span>
+           <span class="token comment" spellcheck="true">#region 查询所有值用到了IEumerable接口</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"public IEnumerable&lt;"</span> + tablename + <span class="token string">"Model"</span> + <span class="token string">">  ListAll(){"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"return new  "</span> + tablename + <span class="token string">"DAL()."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"ListAll();"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token comment" spellcheck="true">#endregion</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           sb.AppendLine<span class="token punctuation">(</span><span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">return</span> sb<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+//model文件
+namespace code
+<span class="token punctuation">{</span>
+    class model
+    <span class="token punctuation">{</span>
+       static public string FilePath <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> //路径
+       static public string constr <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//连接字符串
+       static public string BuilderDAL <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//DAL拼接数据
+       static public string BuilderModel <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//Model拼接数据
+       static public string BuilderBLL <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//BLL拼接数据
+       static public string RootNamespace <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//命名空间
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>github代码下载：<a href="https://github.com/zy20081/practice.git" target="_blank" rel="noopener">https://github.com/zy20081/practice.git</a></p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/10/dai-ma-sheng-cheng-qi/" class="b-link-green">代码生成器</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/10/jie-tu-gong-ju/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="截图工具">
+                        
+                        <span class="card-title">截图工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+截图工具有段时间公司没网了，写文档要用截图，无法使用心爱的QQ截图了，就自己写了个截图工具，bug有点，没有修复，能用，类似QQ截图，差不多，还蛮好用的，有网以后，就没怎么用了，把代码共享出来
+using System;
+using Sy</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/09/c-zhi-socket/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="C#之Socket">
+                        
+                        <span class="card-title">C#之Socket</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">C#中Socket的简单使用
+服务端监听某个端口
+客户端向服务端地址和端口发起Socket连接请求
+服务端收到连接请求后创建Socket连接，并维护这个连接队列。
+客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Socket/" target="_blank">
+                        <span class="chip bg-color">Socket</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

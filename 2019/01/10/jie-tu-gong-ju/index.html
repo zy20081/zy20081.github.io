@@ -5,9 +5,11 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="WebClient抓取网页代码, Zhou•Yong">
-    <meta name="description" content="WebClient类&amp;emsp;WebClient类位于System.Net命名空间下，WebClient类提供向URI标识的任何本地、Intranet或Internet资源发送数据以及从这些资源接收数据的公共方法。源代码:
-///引用命名">
+    <meta name="keywords" content="截图工具, Zhou•Yong">
+    <meta name="description" content="
+截图工具有段时间公司没网了，写文档要用截图，无法使用心爱的QQ截图了，就自己写了个截图工具，bug有点，没有修复，能用，类似QQ截图，差不多，还蛮好用的，有网以后，就没怎么用了，把代码共享出来
+using System;
+using Sy">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>WebClient抓取网页代码 | Zhou•Yong</title>
+    <title>截图工具 | Zhou•Yong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -207,13 +209,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        WebClient抓取网页代码
+                        截图工具
                     </div>
                 </div>
             </div>
@@ -324,6 +326,14 @@
             
             <div class="article-tag">
                 
+                <a href="/tags/C/" target="_blank">
+                    <span class="chip bg-color">C#</span>
+                </a>
+                
+                <a href="/tags/C-Demo/" target="_blank">
+                    <span class="chip bg-color">C# Demo</span>
+                </a>
+                
                 <a href="/tags/ASP-NET/" target="_blank">
                     <span class="chip bg-color">ASP.NET</span>
                 </a>
@@ -339,70 +349,93 @@
                         ASP.NET
                     </a>
                     
-                    <a href="/categories/ASP-NET/C/" class="post-category" target="_blank">
-                        C#
-                    </a>
-                    
                 </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-01-03
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-10
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="WebClient类"><a href="#WebClient类" class="headerlink" title="WebClient类"></a>WebClient类<br></h2><p>&emsp;WebClient类位于System.Net命名空间下，WebClient类提供向URI标识的任何本地、Intranet或Internet资源发送数据以及从这些资源接收数据的公共方法。<br>源代码:</p>
-<pre class=" language-bash"><code class="language-bash">///引用命名空间
-using System.IO<span class="token punctuation">;</span>
-using System.Net<span class="token punctuation">;</span>
+                <p><img src="/2019/01/10/jie-tu-gong-ju/2.jpg" alt="图2"></p>
+<h2 id="截图工具"><a href="#截图工具" class="headerlink" title="截图工具"></a>截图工具</h2><p>有段时间公司没网了，写文档要用截图，无法使用心爱的QQ截图了，就自己写了个截图工具，bug有点，没有修复，能用，类似QQ截图，差不多，还蛮好用的，有网以后，就没怎么用了，把代码共享出来</p>
+<pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.ComponentModel<span class="token punctuation">;</span>
+using System.Data<span class="token punctuation">;</span>
+using System.Drawing<span class="token punctuation">;</span>
+using System.Drawing.Drawing2D<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
 using System.Text<span class="token punctuation">;</span>
+using System.Windows.Forms<span class="token punctuation">;</span>
+using System.IO<span class="token punctuation">;</span>
+using System.Drawing.Imaging<span class="token punctuation">;</span>
+namespace ScreenCapture
+<span class="token punctuation">{</span>
+    public partial class frmScreen <span class="token keyword">:</span> Form
+    <span class="token punctuation">{</span>
+        public frmScreen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            InitializeComponent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        private Point startPoint <span class="token operator">=</span> Point.Empty<span class="token punctuation">;</span>
+        private Point endPoint <span class="token operator">=</span> Point.Empty<span class="token punctuation">;</span>
+        public Rectangle rect <span class="token operator">=</span> Rectangle.Empty<span class="token punctuation">;</span>
 
-PageUrl <span class="token operator">=</span> <span class="token string">"http://www.webkaka.com"</span><span class="token punctuation">;</span> //需要获取源代码的网页
-WebClient <span class="token function">wc</span> <span class="token operator">=</span> new WebClient<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 创建WebClient实例提供向URI 标识的资源发送数据和从URI 标识的资源接收数据
-wc.Credentials <span class="token operator">=</span> CredentialCache.DefaultCredentials<span class="token punctuation">;</span> // 获取或设置用于对向 Internet 资源的请求进行身份验证的网络凭据。
-///方法一：
-Encoding enc <span class="token operator">=</span> Encoding.GetEncoding<span class="token punctuation">(</span><span class="token string">"GB2312"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 如果是乱码就改成 utf-8 / GB2312
-Byte<span class="token punctuation">[</span><span class="token punctuation">]</span> pageData <span class="token operator">=</span> wc.DownloadData<span class="token punctuation">(</span>PageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span> // 从资源下载数据并返回字节数组。
-ContentHtml.Text <span class="token operator">=</span> enc.GetString<span class="token punctuation">(</span>pageData<span class="token punctuation">)</span><span class="token punctuation">;</span> // 输出字符串<span class="token punctuation">(</span>HTML代码<span class="token punctuation">)</span>，ContentHtml为Multiline模式的TextBox控件
+        private void frmScreen_MouseDown<span class="token punctuation">(</span>object sender, MouseEventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>e.Button <span class="token operator">==</span> MouseButtons.Left<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                this.startPoint <span class="token operator">=</span> e.Location<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private void frmScreen_MouseMove<span class="token punctuation">(</span>object sender, MouseEventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>e.Button <span class="token operator">==</span> MouseButtons.Left<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                this.endPoint <span class="token operator">=</span> e.Location<span class="token punctuation">;</span>
+                Graphics grp <span class="token operator">=</span> this.CreateGraphics<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                rect <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                rect.X <span class="token operator">=</span> <span class="token punctuation">(</span>this.startPoint.X <span class="token operator">&lt;=</span> this.endPoint.X<span class="token punctuation">)</span> ? this.startPoint.X <span class="token keyword">:</span> this.endPoint.X<span class="token punctuation">;</span>
+                rect.Y <span class="token operator">=</span> <span class="token punctuation">(</span>this.startPoint.Y <span class="token operator">&lt;=</span> this.endPoint.Y<span class="token punctuation">)</span> ? this.startPoint.Y <span class="token keyword">:</span> this.endPoint.Y<span class="token punctuation">;</span>
+                rect.Width <span class="token operator">=</span> Math.Abs<span class="token punctuation">(</span>this.endPoint.X-this.startPoint.X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                rect.Height <span class="token operator">=</span> Math.Abs<span class="token punctuation">(</span>this.endPoint.Y - this.startPoint.Y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                grp.Clear<span class="token punctuation">(</span>this.BackColor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Rectangle border <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //这个是边框矩形
+                border.X <span class="token operator">=</span> rect.X - 1<span class="token punctuation">;</span>
+                border.Y <span class="token operator">=</span> rect.Y - 1<span class="token punctuation">;</span>
+                border.Width <span class="token operator">=</span> rect.Width<span class="token punctuation">;</span>
+                border.Height <span class="token operator">=</span> rect.Height<span class="token punctuation">;</span>
+                grp.DrawRectangle<span class="token punctuation">(</span>Pens.Blue, border<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                grp.FillRectangle<span class="token punctuation">(</span>Brushes.Red, rect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private void frmScreen_MouseUp<span class="token punctuation">(</span>object sender, MouseEventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Bitmap bitmap <span class="token operator">=</span> new Bitmap<span class="token punctuation">(</span>this.rect.Width,this.rect.Height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Graphics grp <span class="token operator">=</span> Graphics.FromImage<span class="token punctuation">(</span>bitmap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            grp.SmoothingMode <span class="token operator">=</span> SmoothingMode.HighQuality<span class="token punctuation">;</span>
+            //从指定的区域中复制图形
+            grp.CopyFromScreen<span class="token punctuation">(</span>this.rect.X, this.rect.Y, 0, 0, this.rect.Size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           ImageFormat format<span class="token operator">=</span>ImageFormat.Jpeg<span class="token punctuation">;</span>
+           saveFile.Filter <span class="token operator">=</span> <span class="token string">"图片|*.jpg"</span><span class="token punctuation">;</span>
+           saveFile.ShowDialog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           string strfile <span class="token operator">=</span> saveFile.FileName<span class="token punctuation">;</span>
+           bitmap.Save<span class="token punctuation">(</span>strfile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            this.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            MessageBox.Show<span class="token punctuation">(</span><span class="token string">"截图成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
 </code></pre>
-<pre class=" language-bash"><code class="language-bash">/// 方法二：
-/// ***************代码开始**********
-Stream resStream <span class="token operator">=</span> wc.OpenRead<span class="token punctuation">(</span>PageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span> //以流的形式打开URL
-Encoding enc <span class="token operator">=</span> Encoding.GetEncoding<span class="token punctuation">(</span><span class="token string">"GB2312"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 如果是乱码就改成 utf-8 / GB2312
-StreamReader sr <span class="token operator">=</span> new StreamReader<span class="token punctuation">(</span>resStream,enc<span class="token punctuation">)</span><span class="token punctuation">;</span> //以指定的编码方式读取数据流
-ContentHtml.Text <span class="token operator">=</span> sr.ReadToEnd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //输出<span class="token punctuation">(</span>HTML代码<span class="token punctuation">)</span>，ContentHtml为Multiline模式的TextBox控件
- resStream.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-/// **************代码结束********
-/// 
-wc.Dispose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<h2 id="WebRequest类"><a href="#WebRequest类" class="headerlink" title="WebRequest类"></a>WebRequest类</h2><p>&emsp;WebRequest类是.NET Framework中“请求/响应”模型的abstract基类，用于访问Internet数据。使用WebRequest类请求/响应模型的应用程序可以用协议不可知的方式从Internet请求数据，在这种方式下，应用程序处理WebRequest类的实例，而协议特定的子类则执行请求的具体细节，请求从应用程序发送到某个特定的URI，如服务器上的网页。URI从一个为应用程序注册的WebRequest子类列表中确定要创建的适当子类。注册WebRequest子类通常是为了处理某个特定的协议（如HTTP或FTP），但是也可以注册它以处理对特定服务器或服务器上的路径的请求。<br><br>&emsp;WebRequest类中最常用的是Create方法，Create方法用于为指定的URI方案初始化新的WebRequest实例。</p>
-<pre class=" language-bash"><code class="language-bash">　　语法：
-public static WebRequest Create
-<span class="token punctuation">(</span>
-　 string requestUriString
-<span class="token punctuation">)</span>
-</code></pre>
-<p>　　参数：requestUriString：标识Internet资源的URI。<br><br>　　返回值：特定URI方案的WebRequest子类。<br><br>　　注意：Create方法将运行时确定的WebRequest类的子类作为与requestUri最接近的注册匹配项返回。例如，当以http://开头的URI在requestUri中传递时，由Create返回一个HttpWebRequest。如果改为传递以file://开头的URI，则Create方法将返回FileWebRequest实例。.NET Framework包括对http://和file:// URI方案的支持。</p>
-<h2 id="WebResponse类"><a href="#WebResponse类" class="headerlink" title="WebResponse类"></a>WebResponse类</h2><p>&emsp;WebResponse类是abstract基类，协议特定的响应类从该抽象基类派生。应用程序可以使用 WebResponse类的实例以协议不可知的方式参与请求和响应事务，而从WebResponse类派生的协议特定的类携带请求的详细信息。<br>　　在WebResponse类中最常用的是GetResponse方法，GetResponse方法用于当在子类中被重写时，返回对 Internet 请求的响应<br>　　语法：<br>　　public virtual WebResponse GetResponse ()<br>　　返回值：包含对Internet请求的响应的WebResponse。</p>
-<pre class=" language-bash"><code class="language-bash">源代码
-///引用命名空间
-using System.IO<span class="token punctuation">;</span>
-using System.Net<span class="token punctuation">;</span>
-using System.Text<span class="token punctuation">;</span>
-PageUrl <span class="token operator">=</span> <span class="token string">"http://www.webkaka.com"</span><span class="token punctuation">;</span> //需要获取源代码的网页
-WebRequest request <span class="token operator">=</span> WebRequest.Create<span class="token punctuation">(</span>PageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span> //WebRequest.Create方法，返回WebRequest的子类HttpWebRequest
-WebResponse response <span class="token operator">=</span> request.GetResponse<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //WebRequest.GetResponse方法，返回对 Internet 请求的响应
-Stream resStream <span class="token operator">=</span> response.GetResponseStream<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //WebResponse.GetResponseStream 方法，从 Internet 资源返回数据流。 
-Encoding enc <span class="token operator">=</span> Encoding.GetEncoding<span class="token punctuation">(</span><span class="token string">"GB2312"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 如果是乱码就改成 utf-8 / GB2312
-StreamReader sr <span class="token operator">=</span> new StreamReader<span class="token punctuation">(</span>resStream, enc<span class="token punctuation">)</span><span class="token punctuation">;</span> //命名空间:System.IO。 StreamReader 类实现一个 TextReader <span class="token punctuation">(</span>TextReader类，表示可读取连续字符系列的读取器<span class="token punctuation">)</span>，使其以一种特定的编码从字节流中读取字符。 
-ContentHtml.Text <span class="token operator">=</span> sr.ReadToEnd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //输出<span class="token punctuation">(</span>HTML代码<span class="token punctuation">)</span>，ContentHtml为Multiline模式的TextBox控件
-resStream.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-sr.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<p>github代码下载：<a href="https://github.com/zy20081/practice.git" target="_blank" rel="noopener">https://github.com/zy20081/practice.git</a></p>
 
             </div>
             <hr>
@@ -541,7 +574,7 @@ sr.Close<span class="token punctuation">(</span><span class="token punctuation">
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/03/webclient-zhua-qu-wang-ye-dai-ma/" class="b-link-green">WebClient抓取网页代码</a>
+                    <a href="/2019/01/10/jie-tu-gong-ju/" class="b-link-green">截图工具</a>
                 </p>
             </div>
         </div>
@@ -565,24 +598,26 @@ sr.Close<span class="token punctuation">(</span><span class="token punctuation">
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/03/io-liu-de-shi-yong/">
+                <a href="/2019/01/10/ji-suan-qi-xiao-demo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="IO流的使用">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="计算器小demo">
                         
-                        <span class="card-title">IO流的使用</span>
+                        <span class="card-title">计算器小demo</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">IO流的一般使用string ce="测试";
-File.WriteAllText(@"12.txt",ce,Encoding.UTF8);
- //Path类
-string s1 = @"C:\a";
-string s2 = "b.txt"</div>
+                    <div class="summary">
+计算器这是我读书时期，刚学C#，入门写的第一个demo，感觉非常经典，分享给大家看看
+namespace 计算器
+{
+    public partial class Form1 : Form
+    {
+        public F</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
                         </span>
                         <span class="publish-author">
                             
@@ -592,16 +627,20 @@ string s2 = "b.txt"</div>
                                     ASP.NET
                                 </a>
                             
-                            <a href="/categories/ASP-NET/C/" class="post-category" target="_blank">
-                                    C#
-                                </a>
-                            
                             
                         </span>
                     </div>
                 </div>
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
                     
                     <a href="/tags/ASP-NET/" target="_blank">
                         <span class="chip bg-color">ASP.NET</span>
@@ -616,27 +655,29 @@ string s2 = "b.txt"</div>
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/02/http-xiang-ying-ma/">
+                <a href="/2019/01/10/dai-ma-sheng-cheng-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Http响应码">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="代码生成器">
                         
-                        <span class="card-title">Http响应码</span>
+                        <span class="card-title">代码生成器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.Http请求&emsp;浏览器 www.baidu.com 先看本地电脑是否存在百度服务器的IP，如果存在直接 发送请求报文，如果不存在,则会先请求 DNS服务器，通过映射关系找到 百度 服务器的 IP地址返回给浏览器，浏览器保存IP </div>
+                    <div class="summary">
+代码生成器这是我读书时期，学C#，每次写上机练习，都要写3层架构，练增删改查，那个时候还不流行动软生成器和CodeSmith,所以就根据自己的写代码方式，写了个自己常用的代码生成器生成3层架构，这个要配合我写的SqlHelper一起使用
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-02
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Web原理/" class="post-category" target="_blank">
-                                    Web原理
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
                                 </a>
                             
                             
@@ -646,8 +687,16 @@ string s2 = "b.txt"</div>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Web/" target="_blank">
-                        <span class="chip bg-color">Web</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
                     </a>
                     
                 </div>

@@ -5,12 +5,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C#之Socket, Zhou•Yong">
-    <meta name="description" content="C#中Socket的简单使用
-服务端监听某个端口
-客户端向服务端地址和端口发起Socket连接请求
-服务端收到连接请求后创建Socket连接，并维护这个连接队列。
-客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给">
+    <meta name="keywords" content="音乐播放器, Zhou•Yong">
+    <meta name="description" content="
+音乐播放器大学时期，蛮流行写音乐播放器，也写了个，蛮有意思的，这种就属于代码简单，但是有个成果，这都好多年了，把代码发大家看看
+主要代码using System;
+using System.Collections.Generic;
+usi">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C#之Socket | Zhou•Yong</title>
+    <title>音乐播放器 | Zhou•Yong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -216,7 +216,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C#之Socket
+                        音乐播放器
                     </div>
                 </div>
             </div>
@@ -327,8 +327,16 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/Socket/" target="_blank">
-                    <span class="chip bg-color">Socket</span>
+                <a href="/tags/C/" target="_blank">
+                    <span class="chip bg-color">C#</span>
+                </a>
+                
+                <a href="/tags/C-Demo/" target="_blank">
+                    <span class="chip bg-color">C# Demo</span>
+                </a>
+                
+                <a href="/tags/ASP-NET/" target="_blank">
+                    <span class="chip bg-color">ASP.NET</span>
                 </a>
                 
             </div>
@@ -338,33 +346,24 @@
                 <span class="post-cate">
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/C/" class="post-category" target="_blank">
-                        C#
+                    <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                        ASP.NET
                     </a>
                     
                 </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-01-09
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-10
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="C-中Socket的简单使用"><a href="#C-中Socket的简单使用" class="headerlink" title="C#中Socket的简单使用"></a>C#中Socket的简单使用</h2><ol>
-<li>服务端监听某个端口</li>
-<li>客户端向服务端地址和端口发起Socket连接请求</li>
-<li>服务端收到连接请求后创建Socket连接，并维护这个连接队列。</li>
-<li>客户端和服务端已经建立双工通信（即双向通信），客户端和服务端可以轻松方便的给彼此发送信息<br><img src="/2019/01/09/c-zhi-socket/1.jpg" alt="图1"><h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2></li>
-<li>动态端口 从49152-65535</li>
-<li>机器通常从1024起分配动态端口</li>
-<li>公认端口：0-1023，注册端口： 1024-49151<br>，SUN的RPC端口从 32768开始</li>
-<li>查看端口方式： netstat -a -n<h2 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h2><img src="/2019/01/09/c-zhi-socket/2.jpg" alt="图2"><br><img src="/2019/01/09/c-zhi-socket/3.jpg" alt="图3"><h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><img src="/2019/01/09/c-zhi-socket/4.jpg" alt="图4"><br><img src="/2019/01/09/c-zhi-socket/5.jpg" alt="图5"><br><img src="/2019/01/09/c-zhi-socket/6.jpg" alt="图6"></li>
-</ol>
-<p>服务端代码：</p>
-<pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
+                <p><img src="/2019/01/10/yin-le-bo-fang-qi/2.jpg" alt="图2"><br><img src="/2019/01/10/yin-le-bo-fang-qi/3.jpg" alt="图3"></p>
+<h2 id="音乐播放器"><a href="#音乐播放器" class="headerlink" title="音乐播放器"></a>音乐播放器</h2><p>大学时期，蛮流行写音乐播放器，也写了个，蛮有意思的，这种就属于代码简单，但是有个成果，这都好多年了，把代码发大家看看</p>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
 using System.Collections.Generic<span class="token punctuation">;</span>
 using System.ComponentModel<span class="token punctuation">;</span>
 using System.Data<span class="token punctuation">;</span>
@@ -372,180 +371,181 @@ using System.Drawing<span class="token punctuation">;</span>
 using System.Linq<span class="token punctuation">;</span>
 using System.Text<span class="token punctuation">;</span>
 using System.Windows.Forms<span class="token punctuation">;</span>
-using System.Net<span class="token punctuation">;</span>
-using System.Net.Sockets<span class="token punctuation">;</span>
-using System.Threading<span class="token punctuation">;</span>
-
-namespace ChatMain
+using System.IO<span class="token punctuation">;</span>
+using System.Runtime.Serialization.Formatters.Binary<span class="token punctuation">;</span>
+namespace MusicTV
 <span class="token punctuation">{</span>
-    public partial class ChatMain <span class="token keyword">:</span> Form
+    public partial class Form1 <span class="token keyword">:</span> Form
     <span class="token punctuation">{</span>
-        public ChatMain<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            InitializeComponent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Control.CheckForIllegalCrossThreadCalls <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        List<span class="token operator">&lt;</span>Socket<span class="token operator">></span> clientSocketList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>Socket<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        private void btnStart_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        PlayManager m_MP <span class="token operator">=</span> new PlayManager<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        public Form1<span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
 
-            string ip <span class="token operator">=</span> this.txtIP.Text<span class="token punctuation">;</span>
-            //创建IP
-            IPAddress ipAddress <span class="token operator">=</span> IPAddress.Parse<span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            //创建代表本机的节点对象：包含IP和端口
-            IPEndPoint endPoint<span class="token operator">=</span>new IPEndPoint<span class="token punctuation">(</span>ipAddress,int.Parse<span class="token punctuation">(</span>this.txtPort.Text<span class="token punctuation">))</span><span class="token punctuation">;</span>
-             //创建Socket：第一参数：寻址方式，第二个参数： socket传输方式Stream Tcp方式  Dgram:UDP  第三个参数：协议
-            Socket socket <span class="token operator">=</span> new Socket<span class="token punctuation">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            //绑定端口和IP
-            socket.Bind<span class="token punctuation">(</span>endPoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            //开启监听，请求连接的队列的长度
-            socket.Listen<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            //线程池开启 监听客户端连接
-            ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>this.statAccept<span class="token punctuation">)</span>, socket<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            this.txtLog.Text +<span class="token operator">=</span> <span class="token string">"服务端开启监听客户端连接了..\r\n"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        public void statAccept<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            Socket socket <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
-            try
-            <span class="token punctuation">{</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span>
-                <span class="token punctuation">{</span>
-                    //接受客户端的一个连接
-                    Socket proxSocket <span class="token operator">=</span> socket.Accept<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    //客户端代理socket对象的队列里面去
-                    clientSocketList.Add<span class="token punctuation">(</span>proxSocket<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    //拿到客户端的端口和ip
-                    this.txtLog.Text +<span class="token operator">=</span> proxSocket.RemoteEndPoint.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
-
-                    //跟客户端进行通信 通过：proxSocket
-
-                    //proxSocket.Send<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-                    //proxSocket.Receive<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>this.StartReciveClientData<span class="token punctuation">)</span>, proxSocket<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            catch <span class="token punctuation">(</span>Exception  ex<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-
-                socket.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
-        /// 接受连接过来的IP的数据
-        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
-        public void StartReciveClientData<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            Socket sokcet <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>1024 * 1024 * 1<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                int  realLenth<span class="token operator">=</span> sokcet.Receive<span class="token punctuation">(</span>buffer,0,buffer.Length,SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                string strResult <span class="token operator">=</span> Encoding.Default.GetString<span class="token punctuation">(</span>buffer, 0, realLenth<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                this.txtLog.Text +<span class="token operator">=</span> sokcet.RemoteEndPoint.ToString<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">":"</span> + strResult + <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        private void btnStarClient_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            ChatClient client <span class="token operator">=</span> new ChatClient<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            client.Show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        private void btnSend_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            foreach <span class="token punctuation">(</span>var socket <span class="token keyword">in</span> clientSocketList<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                string strText <span class="token operator">=</span> this.txtMsg.Text<span class="token punctuation">;</span>
-                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> Encoding.Default.GetBytes<span class="token punctuation">(</span>strText<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                socket.Send<span class="token punctuation">(</span>data, 0, data.Length, SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>客户端代码：</p>
-<pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
-using System.Collections.Generic<span class="token punctuation">;</span>
-using System.ComponentModel<span class="token punctuation">;</span>
-using System.Data<span class="token punctuation">;</span>
-using System.Drawing<span class="token punctuation">;</span>
-using System.Linq<span class="token punctuation">;</span>
-using System.Text<span class="token punctuation">;</span>
-using System.Windows.Forms<span class="token punctuation">;</span>
-using System.Net.Sockets<span class="token punctuation">;</span>
-using System.Net<span class="token punctuation">;</span>
-using System.Threading<span class="token punctuation">;</span>
-
-namespace ChatMain
-<span class="token punctuation">{</span>
-    public partial class ChatClient <span class="token keyword">:</span> Form
-    <span class="token punctuation">{</span>
-        public Socket CurrentSocket <span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-        public ChatClient<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
             InitializeComponent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-
-        private void btnConnect_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        SongInfo Songs<span class="token punctuation">;</span>
+        private void toolStripMenuItem1_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
+            Songs <span class="token operator">=</span> new SongInfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            openFile.FileName <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+            openFile.ShowDialog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Songs.FilePath <span class="token operator">=</span> openFile.FileName<span class="token punctuation">;</span>
+            Songs.name <span class="token operator">=</span> Path.GetFileName<span class="token punctuation">(</span>Songs.FilePath<span class="token punctuation">)</span><span class="token punctuation">;</span>//Path方法，，存入名字
 
-            Socket socket <span class="token operator">=</span> null<span class="token punctuation">;</span>
-            IPAddress ipAddress <span class="token operator">=</span> IPAddress.Parse<span class="token punctuation">(</span>this.txtIP.Text<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            IPEndPoint endPoint<span class="token operator">=</span>new IPEndPoint<span class="token punctuation">(</span>ipAddress,int.Parse<span class="token punctuation">(</span>this.txtPort.Text<span class="token punctuation">))</span><span class="token punctuation">;</span>
-            //创建个Socket
-            socket <span class="token operator">=</span> new Socket<span class="token punctuation">(</span>AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            socket.Connect<span class="token punctuation">(</span>endPoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            ThreadPool.QueueUserWorkItem<span class="token punctuation">(</span>new WaitCallback<span class="token punctuation">(</span>Recive<span class="token punctuation">)</span>, socket<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            this.lbStatus.Text <span class="token operator">=</span> <span class="token string">"已连接"</span><span class="token punctuation">;</span>
-            CurrentSocket <span class="token operator">=</span> socket<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        //接受
-        public void Recive<span class="token punctuation">(</span>object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Socket socket <span class="token operator">=</span> <span class="token punctuation">(</span>Socket<span class="token punctuation">)</span>obj<span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>socket <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> socket.Connected<span class="token punctuation">)</span> 
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>m_MP.PlaySong.ContainsKey<span class="token punctuation">(</span>Songs.FilePath<span class="token punctuation">))</span>
             <span class="token punctuation">{</span>
-                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>1024 * 1024<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                int realLength <span class="token operator">=</span> socket.Receive<span class="token punctuation">(</span>buffer, 0, buffer.Length,SocketFlags.None<span class="token punctuation">)</span><span class="token punctuation">;</span>
-               //接受字符串
-                string txt <span class="token operator">=</span> Encoding.Default.GetString<span class="token punctuation">(</span>buffer, 0, realLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                this.txtLog.Text +<span class="token operator">=</span> string.Format<span class="token punctuation">(</span><span class="token string">"接受消息：{0}"</span>, txt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                this.txtLog.Text +<span class="token operator">=</span> <span class="token string">"\r\n"</span><span class="token punctuation">;</span>
-
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        //发送
-        private void btnSend_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            string strText <span class="token operator">=</span> this.txtMsg.Text<span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>string.IsNullOrEmpty<span class="token punctuation">(</span>strText<span class="token punctuation">))</span> <span class="token punctuation">{</span>
-                this.txtLog.Text <span class="token operator">=</span> <span class="token string">"发送的消息不能为空"</span><span class="token punctuation">;</span>
-
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>CurrentSocket <span class="token operator">==</span> null<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                MessageBox.Show<span class="token punctuation">(</span><span class="token string">"请先连接服务端"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                MessageBox.Show<span class="token punctuation">(</span><span class="token string">"已经添加了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span><span class="token punctuation">;</span>
-
             <span class="token punctuation">}</span>
-            byte<span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> Encoding.Default.GetBytes<span class="token punctuation">(</span>strText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            m_MP.PlaySong.Add<span class="token punctuation">(</span>Songs.FilePath, Songs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            TreeNode n <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            rootNode.Nodes.Clear<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>SongInfo s <span class="token keyword">in</span> m_MP.PlaySong.Values<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>  
+                n <span class="token operator">=</span> new TreeNode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                n.Text <span class="token operator">=</span> s.name<span class="token punctuation">;</span>
+                n.Tag <span class="token operator">=</span> s<span class="token punctuation">;</span>
+                rootNode.Nodes.Add<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            rootNode.Expand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        TreeNode rootNode <span class="token operator">=</span> null<span class="token punctuation">;</span>//树的根点
+        private void Form1_Load<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            rootNode <span class="token operator">=</span> new TreeNode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            rootNode.Text <span class="token operator">=</span> <span class="token string">"默认列表"</span><span class="token punctuation">;</span>
+            tvMenu.Nodes.Add<span class="token punctuation">(</span>rootNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //FileStream <span class="token function">file</span> <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span><span class="token string">"12.dat"</span>, FileMode.OpenOrCreate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            FileStream <span class="token function">file</span> <span class="token operator">=</span> File.OpenRead<span class="token punctuation">(</span><span class="token string">"12.dat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>///反序列化
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>file.Length <span class="token operator">></span> 0<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                BinaryFormatter fs <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                m_MP <span class="token operator">=</span> fs.Deserialize<span class="token punctuation">(</span>file<span class="token punctuation">)</span> as PlayManager<span class="token punctuation">;</span> 
+            <span class="token punctuation">}</span>
+            file.Close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> file.Dispose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            TreeNode n <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>SongInfo s <span class="token keyword">in</span> m_MP.PlaySong.Values<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                n <span class="token operator">=</span> new TreeNode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                n.Text <span class="token operator">=</span> s.name<span class="token punctuation">;</span>
+                n.Tag <span class="token operator">=</span> s<span class="token punctuation">;</span>
+                rootNode.Nodes.Add<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            rootNode.Expand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 改变宽度
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"sender"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"e"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+        private void Form1_SizeChanged<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            this.media.Width <span class="token operator">=</span> groupBox1.Width-10<span class="token punctuation">;</span>
+            this.media.Height <span class="token operator">=</span> groupBox1.Height-30<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        //双击时播放歌曲
+        private void tvMenu_NodeMouseDoubleClick<span class="token punctuation">(</span>object sender, TreeNodeMouseClickEventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tvMenu.SelectedNode.Tag <span class="token operator">!=</span> null<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                SongInfo sSel <span class="token operator">=</span> tvMenu.SelectedNode.Tag as SongInfo<span class="token punctuation">;</span>
+                media.URL <span class="token operator">=</span> sSel.FilePath<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             try
             <span class="token punctuation">{</span>
-                CurrentSocket.Send<span class="token punctuation">(</span>data, 0, data.Length, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            catch <span class="token punctuation">(</span>Exception<span class="token punctuation">)</span>
+                Songs <span class="token operator">=</span> tvMenu.SelectedNode.Tag as SongInfo<span class="token punctuation">;</span>
+                string lyricpath <span class="token operator">=</span> @<span class="token string">"lyric\" + Songs.name + "</span>.txt<span class="token string">";
+                Songs.lyrics = File.ReadAllText(lyricpath, Encoding.Default);//选择时显示歌词
+            }
+            catch{}
+
+            if (e.Node.Tag == null)
+            {
+                return;
+            }
+            tblyric.Text = ((e.Node.Tag) as SongInfo).lyrics;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {///序列化
+            //FileStream file = new FileStream("</span>12.dat<span class="token string">", FileMode.Create);
+            //BinaryFormatter fs = new BinaryFormatter();
+            //fs.Serialize(file, m_MP);
+            //file.Close(); file.Dispose();
+
+            using(Stream filestream=File.OpenWrite("</span>12.dat"<span class="token punctuation">))</span>
             <span class="token punctuation">{</span>
-
-
+                BinaryFormatter bf <span class="token operator">=</span> new BinaryFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                bf.Serialize<span class="token punctuation">(</span>filestream, m_MP<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
+
         <span class="token punctuation">}</span>
+
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
+<h2 id="lyric-cs"><a href="#lyric-cs" class="headerlink" title="lyric.cs"></a>lyric.cs</h2><pre class=" language-bash"><code class="language-bash">   <span class="token punctuation">[</span>Serializable<span class="token punctuation">]</span>
+  public  class lyric
+    <span class="token punctuation">{</span>
+        public string lyricPath <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>//歌词的路径
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="PlayManager-cs"><a href="#PlayManager-cs" class="headerlink" title="PlayManager.cs"></a>PlayManager.cs</h2><pre class=" language-bash"><code class="language-bash">  using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
+using System.Text<span class="token punctuation">;</span>
+using System.Xml<span class="token punctuation">;</span>
+using System.IO<span class="token punctuation">;</span>
+namespace MusicTV
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>Serializable<span class="token punctuation">]</span>
+   public class PlayManager
+    <span class="token punctuation">{</span>
+       public PlayManager<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+       <span class="token punctuation">{</span>
+           m_PlaySong <span class="token operator">=</span> new Dictionary<span class="token operator">&lt;</span>string, SongInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           m_lyric <span class="token operator">=</span> new Dictionary<span class="token operator">&lt;</span>string, lyric<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       private Dictionary<span class="token operator">&lt;</span>string, SongInfo<span class="token operator">></span> m_PlaySong<span class="token punctuation">;</span>
+       /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+       /// 歌曲信息
+       /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+       public Dictionary<span class="token operator">&lt;</span>string, SongInfo<span class="token operator">></span> PlaySong
+       <span class="token punctuation">{</span>
+           get <span class="token punctuation">{</span> <span class="token keyword">return</span> m_PlaySong<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+           <span class="token keyword">set</span> <span class="token punctuation">{</span> m_PlaySong <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+       <span class="token punctuation">}</span>
+       /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+       /// 存入歌词
+       /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+       private Dictionary<span class="token operator">&lt;</span>string, lyric<span class="token operator">></span> m_lyric<span class="token punctuation">;</span>
+
+       public Dictionary<span class="token operator">&lt;</span>string, lyric<span class="token operator">></span> Lyric
+       <span class="token punctuation">{</span>
+           get <span class="token punctuation">{</span> <span class="token keyword">return</span> m_lyric<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+           <span class="token keyword">set</span> <span class="token punctuation">{</span> m_lyric <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+       <span class="token punctuation">}</span>
+
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="SongInfo-cs"><a href="#SongInfo-cs" class="headerlink" title="SongInfo.cs"></a>SongInfo.cs</h2><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>Serializable<span class="token punctuation">]</span>
+   public class SongInfo
+    <span class="token punctuation">{</span>
+       public string name <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>  //歌名
+       public string FilePath <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span> //歌曲地址
+       public string Singer <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>//歌手名
+       public lyric SongWord <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>//歌词
+       public string lyrics <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>github代码下载：<a href="https://github.com/zy20081/practice.git" target="_blank" rel="noopener">https://github.com/zy20081/practice.git</a></p>
 
             </div>
             <hr>
@@ -684,7 +684,7 @@ namespace ChatMain
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/09/c-zhi-socket/" class="b-link-green">C#之Socket</a>
+                    <a href="/2019/01/10/yin-le-bo-fang-qi/" class="b-link-green">音乐播放器</a>
                 </p>
             </div>
         </div>
@@ -708,22 +708,25 @@ namespace ChatMain
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/10/dai-ma-sheng-cheng-qi/">
+                <a href="/2019/01/11/xiang-ce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="代码生成器">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="相册">
                         
-                        <span class="card-title">代码生成器</span>
+                        <span class="card-title">相册</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
-代码生成器这是我读书时期，学C#，每次写上机练习，都要写3层架构，练增删改查，那个时候还不流行动软生成器和CodeSmith,所以就根据自己的写代码方式，写了个自己常用的代码生成器生成3层架构，这个要配合我写的SqlHelper一起使用
-</div>
+相册学C#的时候，第一个作业练习demo
+主要代码using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
                         </span>
                         <span class="publish-author">
                             
@@ -761,32 +764,33 @@ namespace ChatMain
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/09/sqlserver-zong-jie/">
+                <a href="/2019/01/10/ji-suan-qi-xiao-demo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="SqlServer总结">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="计算器小demo">
                         
-                        <span class="card-title">SqlServer总结</span>
+                        <span class="card-title">计算器小demo</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">分享一下都是自己写的，总结的，不是照搬网上的，只是分享，其中也有些小案例分享
-创建数据库create database schoolA
-on primary
-(
- name='MyschoolA',
- filename='D:\databa</div>
+                    <div class="summary">
+计算器这是我读书时期，刚学C#，入门写的第一个demo，感觉非常经典，分享给大家看看
+namespace 计算器
+{
+    public partial class Form1 : Form
+    {
+        public F</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                    数据库
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
                                 </a>
                             
                             
@@ -796,8 +800,16 @@ on primary
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SqlServer/" target="_blank">
-                        <span class="chip bg-color">SqlServer</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
                     </a>
                     
                 </div>

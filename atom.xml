@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zy20081.github.io/"/>
-  <updated>2019-01-11T04:03:05.051Z</updated>
+  <updated>2019-01-11T08:40:08.287Z</updated>
   <id>https://zy20081.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery之jqgrid分页技巧</title>
+    <link href="https://zy20081.github.io/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/"/>
+    <id>https://zy20081.github.io/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/</id>
+    <published>2019-01-11T08:17:11.000Z</published>
+    <updated>2019-01-11T08:40:08.287Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/1.jpg&quot; alt=&quot;图1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;内存分页&quot;&gt;&lt;a href=&quot;#内存分页&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://zy20081.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="jQuery" scheme="https://zy20081.github.io/tags/jQuery/"/>
+    
+  </entry>
   
   <entry>
     <title>汽车租赁管理系统</title>

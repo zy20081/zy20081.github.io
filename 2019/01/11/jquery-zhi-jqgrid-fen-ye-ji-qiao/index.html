@@ -1,0 +1,805 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="jQuery之jqgrid分页技巧, Zhou•Yong">
+    <meta name="description" content="
+内存分页index.html&amp;lt;html lang=&#34;cn&#34;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>jQuery之jqgrid分页技巧 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        jQuery之jqgrid分页技巧
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/jQuery/" target="_blank">
+                    <span class="chip bg-color">jQuery</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/前端/" class="post-category" target="_blank">
+                        前端
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-11
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/1.jpg" alt="图1"></p>
+<h2 id="内存分页"><a href="#内存分页" class="headerlink" title="内存分页"></a>内存分页</h2><h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">"cn"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>head<span class="token operator">></span>
+        <span class="token operator">&lt;</span>meta http-equiv<span class="token operator">=</span><span class="token string">"Content-Type"</span> content<span class="token operator">=</span><span class="token string">"text/html; charset=UTF-8"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- jqGrid组件基础样式包-必要 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"jqgrid/css/ui.jqgrid.css"</span> /<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- jqGrid主题包-非必要 --<span class="token operator">></span> 
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 在jqgrid/css/css这个目录下还有其他的主题包，可以尝试更换看效果 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"jqgrid/css/css/flick/jquery-ui-1.8.16.custom.css"</span> /<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- jquery插件包-必要 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 这个是所有jquery插件的基础，首先第一个引入 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/jquery-1.7.1.js"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- jqGrid插件包-必要 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"jqgrid/js/jquery.jqGrid.src.js"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- jqGrid插件的多语言包-非必要 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 在jqgrid/js/i18n下还有其他的多语言包，可以尝试更换看效果 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"jqgrid/js/i18n/grid.locale-cn.js"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+        <span class="token operator">&lt;</span>title<span class="token operator">></span>测试<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 本页面初始化用到的js包，创建jqGrid的代码就在里面 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">".\js\index.js"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/head<span class="token operator">></span>
+    <span class="token operator">&lt;</span>body<span class="token operator">></span>
+        <span class="token operator">&lt;</span>table id<span class="token operator">=</span><span class="token string">"list2"</span><span class="token operator">></span><span class="token operator">&lt;</span>/table<span class="token operator">></span> 
+        <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"pager2"</span><span class="token operator">></span><span class="token operator">&lt;</span>/div<span class="token operator">></span>
+        <span class="token operator">&lt;</span>br<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><pre class=" language-bash"><code class="language-bash"><span class="token variable"><span class="token variable">$(</span>function<span class="token punctuation">(</span><span class="token variable">)</span></span><span class="token punctuation">{</span>
+    //页面加载完成之后执行
+    pageInit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> pageInit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    //创建jqGrid组件
+
+    jQuery<span class="token punctuation">(</span><span class="token string">"#list2"</span><span class="token punctuation">)</span>.jqGrid<span class="token punctuation">(</span>
+            <span class="token punctuation">{</span>
+                    datatype: <span class="token string">'local'</span>,
+                       colModel:<span class="token punctuation">[</span>
+                        <span class="token punctuation">{</span>name:<span class="token string">"age"</span>,index:<span class="token string">"age"</span>,label:<span class="token string">'年龄'</span>,align:<span class="token string">'center'</span>, width: <span class="token string">'25%'</span>, sortable:false<span class="token punctuation">}</span>,
+                        <span class="token punctuation">{</span>name:<span class="token string">"id"</span>,index:<span class="token string">"id"</span>,label:<span class="token string">'学号'</span>,align:<span class="token string">'center'</span>, width: <span class="token string">'25%'</span>, sortable:false<span class="token punctuation">}</span>,
+                        <span class="token punctuation">{</span>name:<span class="token string">"name"</span>,index:<span class="token string">"name"</span>,label:<span class="token string">'姓名'</span>,align:<span class="token string">'center'</span>, width: <span class="token string">'50%'</span>, hidden:false<span class="token punctuation">}</span>
+                    <span class="token punctuation">]</span>,
+                    shrinkToFit <span class="token keyword">:</span> true,
+                    rownumbers: true,
+                    width <span class="token keyword">:</span><span class="token string">'600'</span>,
+                    height: <span class="token string">'100'</span>,
+                    pager: <span class="token string">'pager2'</span>,
+                    rowNum: 2
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    var rows <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'age'</span><span class="token keyword">:</span><span class="token string">'12'</span>,<span class="token string">'id'</span><span class="token keyword">:</span><span class="token string">'1'</span>,<span class="token string">'name'</span><span class="token keyword">:</span><span class="token string">'张三'</span><span class="token punctuation">}</span>,<span class="token punctuation">{</span><span class="token string">'age'</span><span class="token keyword">:</span><span class="token string">'22'</span>,<span class="token string">'id'</span><span class="token keyword">:</span><span class="token string">'2'</span>,<span class="token string">'name'</span><span class="token keyword">:</span><span class="token string">'李四'</span><span class="token punctuation">}</span>,
+                <span class="token punctuation">{</span><span class="token string">'age'</span><span class="token keyword">:</span><span class="token string">'12'</span>,<span class="token string">'id'</span><span class="token keyword">:</span><span class="token string">'3'</span>,<span class="token string">'name'</span><span class="token keyword">:</span><span class="token string">'王五'</span><span class="token punctuation">}</span>,<span class="token punctuation">{</span><span class="token string">'age'</span><span class="token keyword">:</span><span class="token string">'22'</span>,<span class="token string">'id'</span><span class="token keyword">:</span><span class="token string">'5'</span>,<span class="token string">'name'</span><span class="token keyword">:</span><span class="token string">'马六'</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>        
+    var localData <span class="token operator">=</span> <span class="token punctuation">{</span>page: 1, total: 2, records: <span class="token string">"2"</span>, rows: rows<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    localData.rows <span class="token operator">=</span> rows<span class="token punctuation">;</span>
+    localData.records <span class="token operator">=</span> rows.length<span class="token punctuation">;</span>
+    localData.total <span class="token operator">=</span> <span class="token punctuation">(</span>rows.length % 2 <span class="token operator">==</span> 0<span class="token punctuation">)</span> ? <span class="token punctuation">(</span>rows.length / 2<span class="token punctuation">)</span> <span class="token keyword">:</span> <span class="token punctuation">(</span>Math.floor<span class="token punctuation">(</span>rows.length / 2<span class="token punctuation">)</span> + 1<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    var reader <span class="token operator">=</span> <span class="token punctuation">{</span>  
+                  root: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> localData.rows<span class="token punctuation">;</span> <span class="token punctuation">}</span>,  
+                  page: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> localData.page<span class="token punctuation">;</span> <span class="token punctuation">}</span>,   
+                  total: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> localData.total<span class="token punctuation">;</span> <span class="token punctuation">}</span>,  
+                  records: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> localData.records<span class="token punctuation">;</span> <span class="token punctuation">}</span>,  repeatitems <span class="token keyword">:</span> false<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">$(</span><span class="token string">"#list2"</span><span class="token punctuation">)</span>.setGridParam<span class="token punctuation">(</span><span class="token punctuation">{</span>data: localData.rows, reader: reader<span class="token punctuation">}</span><span class="token punctuation">)</span>.trigger<span class="token punctuation">(</span><span class="token string">'reloadGrid'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><pre class=" language-bash"><code class="language-bash">    shrinkToFit:false,
+    autoScroll: false, //启动横向滚动条 
+    sortname: <span class="token string">'SNGCMC'</span>,
+    sortorder: <span class="token string">'desc'</span>,
+    pager: <span class="token string">'pager2'</span>,  //分页
+    rowNum: 27, 
+    frozen: true,     //固定头部
+    rownumbers: true, //启动行码
+</code></pre>
+<p>中文API：<a href="http://blog.mn886.net/jqGrid/" target="_blank" rel="noopener">http://blog.mn886.net/jqGrid/</a><br>github代码下载：<a href="https://github.com/zy20081/web.git" target="_blank" rel="noopener">https://github.com/zy20081/web.git</a></p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/" class="b-link-green">jQuery之jqgrid分页技巧</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="jQuery之jqgrid分页技巧">
+                        
+                        <span class="card-title">jQuery之jqgrid分页技巧</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+内存分页index.html&lt;html lang="cn">
+    &lt;head>
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category" target="_blank">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/jQuery/" target="_blank">
+                        <span class="chip bg-color">jQuery</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/11/qi-che-zu-ren-guan-li-xi-tong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="汽车租赁管理系统">
+                        
+                        <span class="card-title">汽车租赁管理系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">汽车租赁管理系统一个小demo写的蛮简单，主要练习用，写了2个版本，一个是把数据存到数据库的版本，一个把数据存到本地文件的版本
+数据存到本地文件的版本核心代码using System;
+using System.Collections.Ge</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

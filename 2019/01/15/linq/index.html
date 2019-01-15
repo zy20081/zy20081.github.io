@@ -1,0 +1,1197 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="LINQ, Zhou•Yong">
+    <meta name="description" content="LINQ 基础LINQ
+LINQ关键字
+from 指定数据源和范围变量
+where 根据布尔表达式(由逻辑与 或 等组成)从数据源中筛选元素
+select 指定查询结果中的元素所具有的类型或表现形式
+group 对对查询结果按照键值进行分组">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>LINQ | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        LINQ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/C-基础知识/" target="_blank">
+                    <span class="chip bg-color">C# 基础知识</span>
+                </a>
+                
+                <a href="/tags/C/" target="_blank">
+                    <span class="chip bg-color">C#</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/C/" class="post-category" target="_blank">
+                        C#
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-15
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="LINQ-基础"><a href="#LINQ-基础" class="headerlink" title="LINQ 基础"></a>LINQ 基础</h2><p>LINQ</p>
+<p>LINQ关键字</p>
+<p>from 指定数据源和范围变量</p>
+<p>where 根据布尔表达式(由逻辑与 或 等组成)从数据源中筛选元素</p>
+<p>select 指定查询结果中的元素所具有的类型或表现形式</p>
+<p>group 对对查询结果按照键值进行分组</p>
+<p>into 提供一个标示符，它可以充当对 join group 或 select 子句结果的引用</p>
+<p>orderby 对查询出的元素进行排序</p>
+<p>join 按照两个指定匹配条件来联接俩个数据源</p>
+<p>let 产生一个用于查询表达式中子表达式查询结果的范围变量</p>
+<h2 id="LINQ-基本写法"><a href="#LINQ-基本写法" class="headerlink" title="LINQ 基本写法"></a>LINQ 基本写法</h2><pre class=" language-bash"><code class="language-bash">using System<span class="token punctuation">;</span>
+using System.Collections.Generic<span class="token punctuation">;</span>
+using System.Linq<span class="token punctuation">;</span>
+using System.Text<span class="token punctuation">;</span>
+
+namespace ConsoleApplication7LINQ
+<span class="token punctuation">{</span>
+    class Customer
+    <span class="token punctuation">{</span>
+        public string ID <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public string City <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public string Country <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public string Region <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public decimal Sales <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        public override string ToString<span class="token punctuation">(</span><span class="token punctuation">)</span>//重写ToString<span class="token punctuation">(</span><span class="token punctuation">)</span>,默认的ToString<span class="token punctuation">(</span><span class="token punctuation">)</span>仅输出类型名称
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">"ID:"</span> + ID + <span class="token string">"City:"</span> + City + <span class="token string">"Country:"</span> + Country + <span class="token string">"Region:"</span> + Region + <span class="token string">"Sales:"</span> + Sales<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    class Order
+    <span class="token punctuation">{</span>
+        public string ID <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        public decimal Amount <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    class Program
+    <span class="token punctuation">{</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 生成随机数组
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"count"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>returns<span class="token operator">></span><span class="token operator">&lt;</span>/returns<span class="token operator">></span>
+        private static int<span class="token punctuation">[</span><span class="token punctuation">]</span> GenerateLotsofNumbers<span class="token punctuation">(</span>int count<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Random generator <span class="token operator">=</span> new Random<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span> //使用指定的种子值初始化 Random 类的新实例。
+            int<span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> new int<span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> 0<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> i++<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> generator.Next<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        //1.用var关键字声明结果变量
+        //2.指定数据源：from 子句
+        //3.指定条件：where 子句
+        //4.指定元素：select子句
+        //5.完成：使用foreach循环
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+           // string<span class="token punctuation">[</span><span class="token punctuation">]</span> names <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"Alono"</span>, <span class="token string">"Zheng"</span>, <span class="token string">"Yuan"</span>, <span class="token string">"Song"</span>, <span class="token string">"Simle"</span>, <span class="token string">"Hsieh"</span>, <span class="token string">"Small"</span>, <span class="token string">"She"</span>, <span class="token string">"Sza"</span>, <span class="token string">"Sam"</span>, <span class="token string">"Fa"</span>, <span class="token string">"Iyl"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+           // //var queryResults <span class="token operator">=</span> from n <span class="token keyword">in</span> names
+           // //                   where n.StartsWith<span class="token punctuation">(</span><span class="token string">"S"</span><span class="token punctuation">)</span>
+           // //                   orderby n descending//按照最后一个字母排序 ordeby n.Substring<span class="token punctuation">(</span>n.Length - 1<span class="token punctuation">)</span>
+           // //                   <span class="token keyword">select</span> n<span class="token punctuation">;</span>//查询语法
+           // var queryResults <span class="token operator">=</span> names.OrderBy<span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n<span class="token punctuation">)</span>.Where<span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n.StartsWith<span class="token punctuation">(</span><span class="token string">"S"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>//方法语法 Lambda 表达式
+           //// var queryResults <span class="token operator">=</span> names.OrderByDescending<span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n<span class="token punctuation">)</span>.Where<span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n.StartsWith<span class="token punctuation">(</span><span class="token string">"S"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+           // foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> queryResults<span class="token punctuation">)</span>
+           //     Console.WriteLine<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           // Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+           //--------------------------------------------------------------------------------------------------
+
+            //int<span class="token punctuation">[</span><span class="token punctuation">]</span> numbers <span class="token operator">=</span> GenerateLotsofNumbers<span class="token punctuation">(</span>12345678<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //var queryResults <span class="token operator">=</span> from n <span class="token keyword">in</span> numbers
+            //                   where n <span class="token operator">&lt;</span> 1000
+            //                   <span class="token keyword">select</span> n<span class="token punctuation">;</span>
+            //foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> queryResults<span class="token punctuation">)</span>
+            //<span class="token punctuation">{</span>
+            //    Console.WriteLine<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //<span class="token punctuation">}</span>
+            //Console.WriteLine<span class="token punctuation">(</span><span class="token string">"聚合运算符......"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //Console.WriteLine<span class="token punctuation">(</span>queryResults.Count<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //Console.WriteLine<span class="token punctuation">(</span>queryResults .Max <span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //Console.WriteLine<span class="token punctuation">(</span>queryResults.Average<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //Console.WriteLine<span class="token punctuation">(</span>queryResults.Sum<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            //Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //--------------------------------------------------------------------------------------------------
+
+            List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> customers <span class="token operator">=</span> new List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> <span class="token punctuation">{</span>
+                new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"A"</span>,City <span class="token operator">=</span><span class="token string">"New York"</span>,Country <span class="token operator">=</span><span class="token string">"USA"</span>,Region <span class="token operator">=</span><span class="token string">"North America"</span>,Sales <span class="token operator">=</span>9999<span class="token punctuation">}</span>,
+                new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"B"</span>,City <span class="token operator">=</span><span class="token string">"New York"</span>,Country <span class="token operator">=</span><span class="token string">"USA"</span>,Region <span class="token operator">=</span><span class="token string">"North America"</span>,Sales <span class="token operator">=</span>9999<span class="token punctuation">}</span>,
+                 new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"C"</span>,City <span class="token operator">=</span><span class="token string">"XiAn"</span>,Country <span class="token operator">=</span><span class="token string">"China"</span>,Region <span class="token operator">=</span><span class="token string">"Asia"</span>,Sales <span class="token operator">=</span>7777<span class="token punctuation">}</span>,
+                  new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"D"</span>,City <span class="token operator">=</span><span class="token string">"New York"</span>,Country <span class="token operator">=</span><span class="token string">"USA"</span>,Region <span class="token operator">=</span><span class="token string">"North America"</span>,Sales <span class="token operator">=</span>9999<span class="token punctuation">}</span>,
+                   new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"E"</span>,City <span class="token operator">=</span><span class="token string">"BeiJing"</span>,Country <span class="token operator">=</span><span class="token string">"China"</span>,Region <span class="token operator">=</span><span class="token string">"Asia"</span>,Sales <span class="token operator">=</span>8888<span class="token punctuation">}</span>,
+                    new Customer <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"F"</span>,City <span class="token operator">=</span><span class="token string">"New York"</span>,Country <span class="token operator">=</span><span class="token string">"USA"</span>,Region <span class="token operator">=</span><span class="token string">"North America"</span>,Sales <span class="token operator">=</span>9999<span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            //var queryReaults <span class="token operator">=</span>
+            //    from n <span class="token keyword">in</span> customers
+            //    where n.Region <span class="token operator">==</span> <span class="token string">"Asia"</span>
+            //    <span class="token keyword">select</span> n<span class="token punctuation">;</span>
+            //foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> queryReaults <span class="token punctuation">)</span>
+            //    Console.WriteLine<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //--------------------------------------投影----------------------------------------------
+            //投影是在LINQ查询中从其他数据类型中创建新数据类型的术语。
+            //var queryResults <span class="token operator">=</span>
+            //    from c <span class="token keyword">in</span> customers
+            //    where c.Region <span class="token operator">==</span> <span class="token string">"Asia"</span>
+            //    <span class="token keyword">select</span> new <span class="token punctuation">{</span> c.City, c.Country, c.Sales <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            //var queryResults <span class="token operator">=</span> customers.Where<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Region <span class="token operator">==</span> <span class="token string">"Asia"</span><span class="token punctuation">)</span>.Select<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> new <span class="token punctuation">{</span> c.City, c.Country, c.Sales <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //var queryResults <span class="token operator">=</span> customers.Select<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> new <span class="token punctuation">{</span> c.City, c.Country, c.Sales <span class="token punctuation">}</span><span class="token punctuation">)</span>.Where<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.City <span class="token operator">==</span> <span class="token string">"XiAn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> queryResults<span class="token punctuation">)</span>
+            //    Console.WriteLine<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //--------------------单值选择查询------------------------
+            var queryResults1 <span class="token operator">=</span> customers.Select<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Region<span class="token punctuation">)</span>.Distinct<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            var queryResults2 <span class="token operator">=</span> <span class="token punctuation">(</span>from c <span class="token keyword">in</span> customers <span class="token keyword">select</span> c.Region<span class="token punctuation">)</span>.Distinct<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //------------------------Any和All---------------------------------
+            bool anyUSA <span class="token operator">=</span> customers.Any<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Country <span class="token operator">==</span> <span class="token string">"USA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            if<span class="token punctuation">(</span>anyUSA <span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span><span class="token string">"some customers are in USA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                Console.WriteLine<span class="token punctuation">(</span><span class="token string">"WAWA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            bool allAsia <span class="token operator">=</span> customers.All<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Region <span class="token operator">==</span> <span class="token string">"Asia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            if<span class="token punctuation">(</span>allAsia <span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span><span class="token string">"WAWA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                Console.WriteLine<span class="token punctuation">(</span><span class="token string">"All customers are in Asia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+           // Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //--------------------------------多级排序---------------------------------------
+            var queryReaults3 <span class="token operator">=</span>
+                from n <span class="token keyword">in</span> customers
+                where n.Region <span class="token operator">==</span> <span class="token string">"Asia"</span>
+                orderby n.Region ,n.Country descending ,n.City //查询语法 多级排序
+                <span class="token keyword">select</span> n<span class="token punctuation">;</span>
+            var queryResults4 <span class="token operator">=</span>
+                customers.OrderBy<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Region<span class="token punctuation">)</span>.ThenByDescending<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Country<span class="token punctuation">)</span>.ThenBy<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.City<span class="token punctuation">)</span>.Select<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> new <span class="token punctuation">{</span> c.ID, c.Region, c.Country, c.City <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                //方法语法 多级排序
+
+            //------------------------------------组合查询（group query）-------------------------------------
+            //组合查询中的数据通过一个键（Key）字段来组合，每一个组中的所有成员都共享这个字段值，在这个例子中 键字段是Region 
+            //要计算每个组的总和，应先生成一个新的结果集cg
+            var queryResults5 <span class="token operator">=</span> from c <span class="token keyword">in</span> customers
+                                group c by c.Region into cg
+                                <span class="token keyword">select</span> new <span class="token punctuation">{</span> TotalSales <span class="token operator">=</span> cg.Sum<span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c.Sales<span class="token punctuation">)</span>, Region <span class="token operator">=</span> cg.Key <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            var orderedResults <span class="token operator">=</span> from cg <span class="token keyword">in</span> queryResults5
+                                 orderby cg.TotalSales descending
+                                 <span class="token keyword">select</span> cg<span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> orderedResults<span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>item.TotalSales + <span class="token string">"\t:"</span> + item.Region<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //------------------------Take 和 Skip----------------------------------
+            //Take<span class="token punctuation">(</span><span class="token punctuation">)</span> 从查询结果中提取前n个结果
+            //Skip<span class="token punctuation">(</span><span class="token punctuation">)</span> 从查询结果中跳过前n个结果 返回剩余的结果
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> orderedResults .Take <span class="token punctuation">(</span>2<span class="token punctuation">))</span>
+                Console.WriteLine<span class="token punctuation">(</span>item.TotalSales + <span class="token string">"\t:"</span> + item.Region<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //---------------------------First 和 FirstOrDefault-------------------------------
+            //First<span class="token punctuation">(</span><span class="token punctuation">)</span> 返回结果集中第一个匹配给定条件的元素
+            //FirstOrDefault<span class="token punctuation">(</span><span class="token punctuation">)</span> 当查询条件不满足是，将为列表返回默认元素 而使用First<span class="token punctuation">(</span><span class="token punctuation">)</span>则返回null
+            Console.WriteLine<span class="token punctuation">(</span>queryReaults3.FirstOrDefault<span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n.Region <span class="token operator">==</span> <span class="token string">"Asia"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+            //--------------------------------集运算符-----------------------------
+            List<span class="token operator">&lt;</span>Order<span class="token operator">></span> orders <span class="token operator">=</span> new List<span class="token operator">&lt;</span>Order<span class="token operator">></span><span class="token punctuation">{</span>
+            new Order <span class="token punctuation">{</span>ID<span class="token operator">=</span><span class="token string">"A"</span>,Amount<span class="token operator">=</span>100<span class="token punctuation">}</span>,
+            new Order <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"B"</span>,Amount <span class="token operator">=</span>200<span class="token punctuation">}</span>,
+            new Order <span class="token punctuation">{</span>ID <span class="token operator">=</span><span class="token string">"H"</span>,Amount <span class="token operator">=</span>300<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+            var customersIDs <span class="token operator">=</span> from c <span class="token keyword">in</span> customers
+                               <span class="token keyword">select</span> c.ID<span class="token punctuation">;</span>
+            var ordersIDs <span class="token operator">=</span> from o <span class="token keyword">in</span> orders
+                            <span class="token keyword">select</span> o.ID<span class="token punctuation">;</span>
+            var customersWithOrders <span class="token operator">=</span> customersIDs.Intersect<span class="token punctuation">(</span>ordersIDs<span class="token punctuation">)</span><span class="token punctuation">;</span>//Intersect<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> customersWithOrders <span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>item <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"-------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            var ordersNoCustomers <span class="token operator">=</span> ordersIDs.Except<span class="token punctuation">(</span>customersIDs<span class="token punctuation">)</span><span class="token punctuation">;</span>//Except<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> ordersNoCustomers <span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>item <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"-------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            var allCustomersOrders <span class="token operator">=</span> ordersIDs.Union<span class="token punctuation">(</span>customersIDs<span class="token punctuation">)</span><span class="token punctuation">;</span>//Union<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> allCustomersOrders<span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //---------------------------------Join----------------------------
+            //使用Join运算符在一个查询中查找多个集合中的相关数据，用键字段把结果连接起来
+            var queryResults9 <span class="token operator">=</span>
+                from c <span class="token keyword">in</span> customers
+                <span class="token function">join</span> o <span class="token keyword">in</span> orders on c.ID equals o.ID
+                <span class="token keyword">select</span> new <span class="token punctuation">{</span> c.ID, c.City, SalesBefore <span class="token operator">=</span> c.Sales, NewOrder <span class="token operator">=</span> o.Amount, SalesAfter <span class="token operator">=</span> c.Sales + o.Amount <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>var item <span class="token keyword">in</span> queryResults9 <span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>item <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="into子句"><a href="#into子句" class="headerlink" title="into子句"></a>into子句</h2><p>into子句作为一个临时标识符，用于group select join 子句中。它存储了into子句前面的查询内容，是后面的子句可以方便的使用，对其进行再次查询或排序 投影等操作。</p>
+<pre class=" language-bash"><code class="language-bash">GuestInfo
+
+/// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+    /// 客户信息
+    /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+    public class GuestInfo
+    <span class="token punctuation">{</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 姓名
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public string Name <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 年龄
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public int Age <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 电话
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public string Tel <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 电话表
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public List<span class="token operator">&lt;</span>string<span class="token operator">></span> TelTable <span class="token punctuation">{</span> <span class="token keyword">set</span><span class="token punctuation">;</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+DemoInto
+
+namespace DemoInto
+<span class="token punctuation">{</span>
+    class Program
+    <span class="token punctuation">{</span>
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //初始化集合
+            List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span> gList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"萧玉霜"</span>, 
+                    Age <span class="token operator">=</span> 17, 
+                    Tel <span class="token operator">=</span> <span class="token string">"053*-985690**"</span> <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"萧玉若"</span>, 
+                    Age <span class="token operator">=</span> 21, 
+                    Tel <span class="token operator">=</span> <span class="token string">"035*-120967**"</span> 
+                <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"徐长今"</span>, 
+                    Age <span class="token operator">=</span> 18, 
+                    Tel <span class="token operator">=</span> <span class="token string">"039*-967512**"</span> 
+                <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"徐芷晴"</span>, 
+                    Age <span class="token operator">=</span> 24, 
+                    Tel <span class="token operator">=</span> <span class="token string">"089*-569832**"</span> 
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+            //按照名字的第一个字进行分组并用分组key进行排序
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"into用于group子句的分组时刻"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            var query <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                        group guest by guest.Name.Substring<span class="token punctuation">(</span>0, 1<span class="token punctuation">)</span> into grguest
+                        orderby grguest.Key descending
+                        <span class="token keyword">select</span> grguest<span class="token punctuation">;</span>
+
+            //遍历分组数据
+            foreach <span class="token punctuation">(</span>var guestGroup <span class="token keyword">in</span> query<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                //输出当前分组的键值
+                Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"分组键：{0} \n"</span>, guestGroup.Key<span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+                //遍历组内元素
+                foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> guestGroup<span class="token punctuation">)</span>
+                    Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"{0}  电话:{1}"</span>, g.Name, g.Tel<span class="token punctuation">))</span><span class="token punctuation">;</span>
+                Console.WriteLine<span class="token punctuation">(</span><span class="token string">"\n**********************************\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"\ninto用于select子句的投影时刻"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //select 子句中 的 info 子句使用
+            var query2 <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                         <span class="token keyword">select</span> new<span class="token punctuation">{</span>NewName <span class="token operator">=</span> guest.Name, NewAge <span class="token operator">=</span> guest.Age<span class="token punctuation">}</span> into newguest
+                         orderby newguest.NewAge
+                         <span class="token keyword">select</span> newguest<span class="token punctuation">;</span>
+
+            //遍历分组数据
+            foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> query2<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"{0} 年龄：{1}"</span>, g.NewName,g.NewAge<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>    
+</code></pre>
+<h2 id="let子句"><a href="#let子句" class="headerlink" title="let子句"></a>let子句</h2><p>let语句在LINQ表达式中存储子表达式的计算结果。let子句创建一个范围变量来存储结果，变量被创建后，不能修改或把其他表达式的结果重新赋值给它。此范围变量可以在后续的LINQ语句中使用。</p>
+<pre class=" language-bash"><code class="language-bash">namespace DemoLet
+<span class="token punctuation">{</span>
+    class Program
+    <span class="token punctuation">{</span>
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //初始化集合
+            List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span> gList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"林晚荣"</span>, 
+                    Age <span class="token operator">=</span> 21, 
+                    Tel <span class="token operator">=</span> <span class="token string">"026*-888888**"</span> <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"肖青漩"</span>, 
+                    Age <span class="token operator">=</span> 21, 
+                    Tel <span class="token operator">=</span> <span class="token string">"017*-876543**"</span> 
+                <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"董巧巧"</span>, 
+                    Age <span class="token operator">=</span> 19, 
+                    Tel <span class="token operator">=</span> <span class="token string">"029*-981256**"</span> 
+                <span class="token punctuation">}</span>,
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+            ///姓<span class="token string">"肖"</span>或姓 <span class="token string">"董"</span>的客户
+            var query <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                        <span class="token keyword">let</span> g <span class="token operator">=</span> guest.Name.Substring<span class="token punctuation">(</span>0,1<span class="token punctuation">)</span>
+                        where g <span class="token operator">==</span> <span class="token string">"肖"</span> <span class="token operator">||</span> g <span class="token operator">==</span> <span class="token string">"董"</span>
+                        <span class="token keyword">select</span> guest<span class="token punctuation">;</span>
+
+            foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> query<span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"{0} 年龄:{1} 电话:{2}"</span>, g.Name, g.Age, g.Tel<span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="join子句"><a href="#join子句" class="headerlink" title="join子句"></a>join子句</h2><p>如果一个数据源中元素的某一个属性可以跟另外一个数据源中元素的属性进行相等比较，那么着两个数据源可以用join子句进行关联<br><br>join子句使用equals关键字进行相等比较。</p>
+<pre class=" language-bash"><code class="language-bash">    /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+    /// 客户职务
+    /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+    public class GuestTitle
+    <span class="token punctuation">{</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 姓名
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public string Name <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 职务
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public string Tilte <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash">Demojoin
+
+ class Program
+    <span class="token punctuation">{</span>
+        static void Main<span class="token punctuation">(</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //初始化客户集合
+            List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span> gList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>GuestInfo<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"林晚荣"</span>, 
+                    Age <span class="token operator">=</span> 21, 
+                    Tel <span class="token operator">=</span> <span class="token string">"026*-888888**"</span> <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"肖青漩"</span>, 
+                    Age <span class="token operator">=</span> 21, 
+                    Tel <span class="token operator">=</span> <span class="token string">"017*-876543**"</span> 
+                <span class="token punctuation">}</span>,
+                new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"董巧巧"</span>, 
+                    Age <span class="token operator">=</span> 19, 
+                    Tel <span class="token operator">=</span> <span class="token string">"029*-981256**"</span> 
+                <span class="token punctuation">}</span>,
+                 new GuestInfo 
+                <span class="token punctuation">{</span> 
+                    Name <span class="token operator">=</span> <span class="token string">"徐芷晴"</span>, 
+                    Age <span class="token operator">=</span> 24, 
+                    Tel <span class="token operator">=</span> <span class="token string">"089*-569832**"</span> 
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+            ///初始化客户职务集合
+            List<span class="token operator">&lt;</span>GuestTitle<span class="token operator">></span> titleList <span class="token operator">=</span> new List<span class="token operator">&lt;</span>GuestTitle<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                new GuestTitle<span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"林晚荣"</span>, Tilte <span class="token operator">=</span> <span class="token string">"金刀汉王"</span><span class="token punctuation">}</span>,
+                new GuestTitle<span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"林晚荣"</span>, Tilte <span class="token operator">=</span> <span class="token string">"天下第一丁"</span><span class="token punctuation">}</span>,
+                new GuestTitle<span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"肖青漩"</span>, Tilte <span class="token operator">=</span> <span class="token string">"出云公主"</span><span class="token punctuation">}</span>,
+                new GuestTitle<span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"董巧巧"</span>, Tilte <span class="token operator">=</span> <span class="token string">"酒店CEO"</span><span class="token punctuation">}</span>,
+                new GuestTitle<span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"董巧巧"</span>, Tilte <span class="token operator">=</span> <span class="token string">"乖巧人儿"</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"内部联接"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //根据姓名进行内部联接
+            var query <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                        <span class="token function">join</span> title <span class="token keyword">in</span> titleList on guest.Name equals title.Name
+                        <span class="token keyword">select</span> new <span class="token punctuation">{</span> Name <span class="token operator">=</span> guest.Name, Title <span class="token operator">=</span> title.Tilte, Age <span class="token operator">=</span> guest.Age <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+            foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> query<span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"{0} {1} 年龄:{2}"</span>, g.Title, g.Name, g.Age<span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"\n根据姓名进行分组联接"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            //根据姓名进行分组联接
+            var query2 <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                         <span class="token function">join</span> title <span class="token keyword">in</span> titleList on guest.Name equals title.Name into tgroup
+                         <span class="token keyword">select</span> new <span class="token punctuation">{</span> Name <span class="token operator">=</span> guest.Name, Titles <span class="token operator">=</span> tgroup <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+            foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> query2<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console.WriteLine<span class="token punctuation">(</span>g.Name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                foreach <span class="token punctuation">(</span>var g2 <span class="token keyword">in</span> g.Titles<span class="token punctuation">)</span>
+                    Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"   {0}"</span>, g2.Tilte<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+
+            Console.WriteLine<span class="token punctuation">(</span><span class="token string">"\n左外部联接"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //根据姓名进行左外部联接
+            var query3 <span class="token operator">=</span> from guest <span class="token keyword">in</span> gList
+                         <span class="token function">join</span> title <span class="token keyword">in</span> titleList on guest.Name equals title.Name into tgroup
+                         from subtitle <span class="token keyword">in</span> tgroup.DefaultIfEmpty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                         <span class="token keyword">select</span> new <span class="token punctuation">{</span> Name <span class="token operator">=</span> guest.Name, Title <span class="token operator">=</span> <span class="token punctuation">(</span>subtitle <span class="token operator">==</span> null ? <span class="token string">"空缺"</span> <span class="token keyword">:</span> subtitle.Tilte<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token punctuation">;</span>
+
+            foreach <span class="token punctuation">(</span>var g <span class="token keyword">in</span> query3<span class="token punctuation">)</span>
+                Console.WriteLine<span class="token punctuation">(</span>string.Format<span class="token punctuation">(</span><span class="token string">"{0} {1}"</span>, g.Title, g.Name<span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+            Console.ReadKey<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/15/linq/" class="b-link-green">LINQ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/15/dan-li-mo-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="单例模式">
+                        
+                        <span class="card-title">单例模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Singleton单例模式也就是保证一个类只有一个实例的一种实现方法，
+写法一：   class Program
+    {
+        static void Main(string[] args)
+        {
+       </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C-基础知识/" target="_blank">
+                        <span class="chip bg-color">C# 基础知识</span>
+                    </a>
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/15/oop-ru-men-demo-cai-quan-you-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="OOP入门Demo-猜拳游戏">
+                        
+                        <span class="card-title">OOP入门Demo-猜拳游戏</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">简单OOP-猜拳游戏
+主要代码namespace 猜拳游戏
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+           </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C#
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C-基础知识/" target="_blank">
+                        <span class="chip bg-color">C# 基础知识</span>
+                    </a>
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C#</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

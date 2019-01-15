@@ -421,6 +421,15 @@
                   total: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> localData.total<span class="token punctuation">;</span> <span class="token punctuation">}</span>,  
                   records: function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> localData.records<span class="token punctuation">;</span> <span class="token punctuation">}</span>,  repeatitems <span class="token keyword">:</span> false<span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">$(</span><span class="token string">"#list2"</span><span class="token punctuation">)</span>.setGridParam<span class="token punctuation">(</span><span class="token punctuation">{</span>data: localData.rows, reader: reader<span class="token punctuation">}</span><span class="token punctuation">)</span>.trigger<span class="token punctuation">(</span><span class="token string">'reloadGrid'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+    //调整高度
+     jQuery<span class="token punctuation">(</span><span class="token string">"#list2"</span><span class="token punctuation">)</span>.setGridHeight<span class="token punctuation">(</span><span class="token variable"><span class="token variable">$(</span>window<span class="token variable">)</span></span>.height<span class="token punctuation">(</span><span class="token punctuation">)</span> - 240<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     //加入toolbar
+    <span class="token punctuation">$(</span><span class="token string">"#t_fa-dialog-gridTable"</span><span class="token punctuation">)</span>.css<span class="token punctuation">(</span><span class="token string">"height"</span>, <span class="token string">"38px"</span><span class="token punctuation">)</span>.css<span class="token punctuation">(</span><span class="token string">"padding"</span>, <span class="token string">"5px"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    var div <span class="token operator">=</span> <span class="token punctuation">$(</span><span class="token string">'&lt;div style="float:right;margin-right:20px;">&lt;/div>'</span><span class="token punctuation">)</span>.appendTo<span class="token punctuation">(</span><span class="token string">"#t_fa-dialog-gridTable"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    var btn1 <span class="token operator">=</span> <span class="token punctuation">$(</span><span class="token string">'&lt;button type="button" title="导出报表" class="btn btn-default btn-xs" style="font-size:14px;">&lt;i class="fa fa-download" aria-hidden="true">&lt;/i>&lt;/button>'</span><span class="token punctuation">)</span>.appendTo<span class="token punctuation">(</span>div<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    btn1.on<span class="token punctuation">(</span><span class="token string">"click"</span>, <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        alert<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><pre class=" language-bash"><code class="language-bash">    shrinkToFit:false,
@@ -431,6 +440,7 @@
     rowNum: 27, 
     frozen: true,     //固定头部
     rownumbers: true, //启动行码
+   toolbar: <span class="token punctuation">[</span>true, <span class="token string">"top"</span><span class="token punctuation">]</span> //启动toolbar
 </code></pre>
 <p>中文API：<a href="http://blog.mn886.net/jqGrid/" target="_blank" rel="noopener">http://blog.mn886.net/jqGrid/</a><br>github代码下载：<a href="https://github.com/zy20081/web.git" target="_blank" rel="noopener">https://github.com/zy20081/web.git</a></p>
 
@@ -593,44 +603,49 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/11/jquery-zhi-jqgrid-fen-ye-ji-qiao/">
+                <a href="/2019/01/11/xiang-ce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="jQuery之jqgrid分页技巧">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="相册">
                         
-                        <span class="card-title">jQuery之jqgrid分页技巧</span>
+                        <span class="card-title">相册</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
-内存分页index.html&lt;html lang="cn">
-    &lt;head>
-        &lt;meta http-equiv="Content-Type" content="text/html; charset=</div>
+相册学C#的时候，第一个作业练习demo
+主要代码using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category" target="_blank">
-                                    前端
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jQuery/" target="_blank">
-                        <span class="chip bg-color">jQuery</span>
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                    <a href="/tags/C-Demo/" target="_blank">
+                        <span class="chip bg-color">C# Demo</span>
                     </a>
                     
                 </div>
@@ -642,22 +657,24 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/11/qi-che-zu-ren-guan-li-xi-tong/">
+                <a href="/2019/01/10/yin-le-bo-fang-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="汽车租赁管理系统">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="音乐播放器">
                         
-                        <span class="card-title">汽车租赁管理系统</span>
+                        <span class="card-title">音乐播放器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">汽车租赁管理系统一个小demo写的蛮简单，主要练习用，写了2个版本，一个是把数据存到数据库的版本，一个把数据存到本地文件的版本
-数据存到本地文件的版本核心代码using System;
-using System.Collections.Ge</div>
+                    <div class="summary">
+音乐播放器大学时期，蛮流行写音乐播放器，也写了个，蛮有意思的，这种就属于代码简单，但是有个成果，这都好多年了，把代码发大家看看
+主要代码using System;
+using System.Collections.Generic;
+usi</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-10
                             </span>
                         <span class="publish-author">
                             

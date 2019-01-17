@@ -1,0 +1,1271 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="面向接口编程框架, Zhou•Yong">
+    <meta name="description" content="面向接口编程框架框架：MVC+EF模型+面向接口式三层架构+工厂模式，UnitWork模式，使用了t4模板，框架用于分享 github代码下载：https://github.com/zy20081/practice.git
+前台代码展示  ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>面向接口编程框架 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        面向接口编程框架
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/ASP-NET/" target="_blank">
+                    <span class="chip bg-color">ASP.NET</span>
+                </a>
+                
+                <a href="/tags/框架/" target="_blank">
+                    <span class="chip bg-color">框架</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                        ASP.NET
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-17
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="面向接口编程框架"><a href="#面向接口编程框架" class="headerlink" title="面向接口编程框架"></a>面向接口编程框架</h2><p>框架：MVC+EF模型+面向接口式三层架构+工厂模式，UnitWork模式，使用了t4模板，框架用于分享 <br><br>github代码下载：<a href="https://github.com/zy20081/practice.git" target="_blank" rel="noopener">https://github.com/zy20081/practice.git</a></p>
+<h2 id="前台代码展示"><a href="#前台代码展示" class="headerlink" title="前台代码展示"></a>前台代码展示</h2><pre class=" language-bash"><code class="language-bash">  public class LoginController <span class="token keyword">:</span> Controller
+    <span class="token punctuation">{</span>
+        public IUserInfoService UserInfoService <span class="token operator">=</span> new UserInfoService<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        public ActionResult LogOn<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> View<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">#region 创建验证码</span>
+        public ActionResult GetValidateCode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            ValidateCode vCode <span class="token operator">=</span> new ValidateCode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            string code <span class="token operator">=</span> vCode.CreateValidateCode<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>//获取随机的数字
+            Session<span class="token punctuation">[</span><span class="token string">"ValidateCode"</span><span class="token punctuation">]</span> <span class="token operator">=</span> code<span class="token punctuation">;</span>////把验证码防到  session
+            byte<span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> vCode.CreateValidateGraphic<span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> File<span class="token punctuation">(</span>bytes, @<span class="token string">"image/jpeg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+        <span class="token comment" spellcheck="true">#endregion</span>
+
+        <span class="token comment" spellcheck="true">#region 用户名/验证码校验</span>
+        public ActionResult ProcessUserLogin<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //校验用户验证码
+            //var code <span class="token operator">=</span> Request<span class="token punctuation">[</span><span class="token string">"ValidateCode"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            //if <span class="token punctuation">(</span>Session<span class="token punctuation">[</span><span class="token string">"ValidateCode"</span><span class="token punctuation">]</span> <span class="token operator">==</span> null <span class="token operator">||</span> code <span class="token operator">!=</span> Session<span class="token punctuation">[</span><span class="token string">"ValidateCode"</span><span class="token punctuation">]</span>.ToString<span class="token punctuation">(</span><span class="token punctuation">))</span>
+            //<span class="token punctuation">{</span>
+            //    <span class="token keyword">return</span> Content<span class="token punctuation">(</span><span class="token string">"验证码错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //<span class="token punctuation">}</span>
+            //校验用户名密码是否匹配
+            string userName <span class="token operator">=</span> Request<span class="token punctuation">[</span><span class="token string">"UserName"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            string userPwd <span class="token operator">=</span> Request<span class="token punctuation">[</span><span class="token string">"UserPwd"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            var currentUser <span class="token operator">=</span> UserInfoService.LoadEntities<span class="token punctuation">(</span>u <span class="token operator">=</span><span class="token operator">></span> u.UserName <span class="token operator">==</span> userName <span class="token operator">&amp;&amp;</span> u.UPwd <span class="token operator">==</span> userPwd<span class="token punctuation">)</span>.FirstOrDefault<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>currentUser <span class="token operator">==</span> null<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> Content<span class="token punctuation">(</span><span class="token string">"用户名错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            //将用户放到session
+            Session<span class="token punctuation">[</span><span class="token string">"UserInfo"</span><span class="token punctuation">]</span> <span class="token operator">=</span> currentUser<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> Content<span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> 
+        <span class="token comment" spellcheck="true">#endregion</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="IDAL"><a href="#IDAL" class="headerlink" title="IDAL"></a>IDAL</h2><h3 id="IBaseRepository-cs"><a href="#IBaseRepository-cs" class="headerlink" title="IBaseRepository.cs"></a>IBaseRepository.cs</h3><pre class=" language-bash"><code class="language-bash">    public  interface IBaseRepository<span class="token operator">&lt;</span>T<span class="token operator">></span> where T:class,new<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadEntities<span class="token punctuation">(</span>Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadPageEntities<span class="token operator">&lt;</span>S<span class="token operator">></span><span class="token punctuation">(</span>int pageSize, int pageIndex, out int total, Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda, Func<span class="token operator">&lt;</span>T, S<span class="token operator">></span> orderByLambda, bool isAsc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T AddEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bool UpdateEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bool DeleteEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="IDbSession-tt"><a href="#IDbSession-tt" class="headerlink" title="IDbSession.tt"></a>IDbSession.tt</h3><pre class=" language-bash"><code class="language-bash">    public partial interface IDbSession
+    <span class="token punctuation">{</span>
+        IActionGroupRepository ActionGroupRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IActionInfoRepository ActionInfoRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IDepartmentRepository DepartmentRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IProductRepository ProductRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IR_UserInfo_AcitonInfoRepository R_UserInfo_AcitonInfoRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IRoleRepository RoleRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+        IUserInfoRepository UserInfoRepository<span class="token punctuation">{</span>get<span class="token punctuation">;</span><span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>    
+</code></pre>
+<h3 id="IDbSession-cs"><a href="#IDbSession-cs" class="headerlink" title="IDbSession.cs"></a>IDbSession.cs</h3><p>上面和下面是2个部分类，也可以写到一个文件里</p>
+<pre class=" language-bash"><code class="language-bash"> public partial  interface IDbSession
+    <span class="token punctuation">{</span>
+        //IUserInfoRepository UserInfoRepository <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        //IProductRepository ProductRepository <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        int ExcuteSql<span class="token punctuation">(</span>string sql, params ObjectParameter<span class="token punctuation">[</span><span class="token punctuation">]</span> Parameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 将整个数据库访问层的所有的修改都一次性的提交回数据库
+        /// 业务逻辑层：一个业务场景，肯定会对多个表做修改，和对多表进行处理，
+        /// 有此方法的存在，能极大的提高数据库访问层批量提交sql的性能，提高数据库的吞吐率，减少          了跟数据库的交互次数
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        int SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//UnitWork模式
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Reposiotroy-cs"><a href="#Reposiotroy-cs" class="headerlink" title="Reposiotroy.cs"></a>Reposiotroy.cs</h3><pre class=" language-bash"><code class="language-bash">public partial interface IActionGroupRepository :IBaseRepository<span class="token operator">&lt;</span>ActionGroup<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IActionInfoRepository :IBaseRepository<span class="token operator">&lt;</span>ActionInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IDepartmentRepository :IBaseRepository<span class="token operator">&lt;</span>Department<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IProductRepository :IBaseRepository<span class="token operator">&lt;</span>Product<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IR_UserInfo_AcitonInfoRepository :IBaseRepository<span class="token operator">&lt;</span>R_UserInfo_AcitonInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IRoleRepository :IBaseRepository<span class="token operator">&lt;</span>Role<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    public partial interface IUserInfoRepository :IBaseRepository<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="IUserInfoRepository-cs"><a href="#IUserInfoRepository-cs" class="headerlink" title="IUserInfoRepository.cs"></a>IUserInfoRepository.cs</h3><pre class=" language-bash"><code class="language-bash"> public partial interface IUserInfoRepository:IBaseRepository<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h2 id="IBLL"><a href="#IBLL" class="headerlink" title="IBLL"></a>IBLL</h2><h3 id="IServices-tt-生成类"><a href="#IServices-tt-生成类" class="headerlink" title="IServices.tt 生成类"></a>IServices.tt 生成类</h3><pre class=" language-bash"><code class="language-bash">    public partial interface IActionGroupService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>ActionGroup<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IActionInfoService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>ActionInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IDepartmentService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>Department<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IProductService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>Product<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IR_UserInfo_AcitonInfoService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>R_UserInfo_AcitonInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IRoleService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>Role<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+    public partial interface IUserInfoService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>   
+</code></pre>
+<h3 id="IBaseService-cs"><a href="#IBaseService-cs" class="headerlink" title="IBaseService.cs"></a>IBaseService.cs</h3><pre class=" language-bash"><code class="language-bash"> public interface IBaseService<span class="token operator">&lt;</span>T<span class="token operator">></span> where T:class,new <span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        IDbSession DbSession <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        IBaseRepository<span class="token operator">&lt;</span>T<span class="token operator">></span> CurrentReposiotry <span class="token punctuation">{</span> get<span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadEntities<span class="token punctuation">(</span>Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadPageEntities<span class="token operator">&lt;</span>S<span class="token operator">></span><span class="token punctuation">(</span>int pageSize, int pageIndex, out int total, Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda, Func<span class="token operator">&lt;</span>T, S<span class="token operator">></span> orderByLambda, bool isAsc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T AddEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bool UpdateEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        bool DeleteEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="IUserInfoService-cs"><a href="#IUserInfoService-cs" class="headerlink" title="IUserInfoService.cs"></a>IUserInfoService.cs</h3><pre class=" language-bash"><code class="language-bash">    public partial interface IUserInfoService <span class="token keyword">:</span> IBaseService<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>
+    <span class="token punctuation">{</span>
+       IQueryable<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span> LoadUsers<span class="token punctuation">(</span>Model.UserInfoSearchParam param<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       int DeleteUsers<span class="token punctuation">(</span>List<span class="token operator">&lt;</span>int<span class="token operator">></span> listIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="DAL"><a href="#DAL" class="headerlink" title="DAL"></a>DAL</h2><h3 id="DbSession-tt-生成类"><a href="#DbSession-tt-生成类" class="headerlink" title="DbSession.tt 生成类"></a>DbSession.tt 生成类</h3><pre class=" language-bash"><code class="language-bash">public partial class DbSession :IDbSession
+    <span class="token punctuation">{</span>
+
+
+        private IActionGroupRepository _ActionGroupRepository<span class="token punctuation">;</span>
+        public IActionGroupRepository ActionGroupRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_ActionGroupRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _ActionGroupRepository <span class="token operator">=</span> new ActionGroupRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _ActionGroupRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _ActionGroupRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IActionInfoRepository _ActionInfoRepository<span class="token punctuation">;</span>
+        public IActionInfoRepository ActionInfoRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_ActionInfoRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _ActionInfoRepository <span class="token operator">=</span> new ActionInfoRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _ActionInfoRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _ActionInfoRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IDepartmentRepository _DepartmentRepository<span class="token punctuation">;</span>
+        public IDepartmentRepository DepartmentRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_DepartmentRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _DepartmentRepository <span class="token operator">=</span> new DepartmentRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _DepartmentRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _DepartmentRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IProductRepository _ProductRepository<span class="token punctuation">;</span>
+        public IProductRepository ProductRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_ProductRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _ProductRepository <span class="token operator">=</span> new ProductRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _ProductRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _ProductRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IR_UserInfo_AcitonInfoRepository _R_UserInfo_AcitonInfoRepository<span class="token punctuation">;</span>
+        public IR_UserInfo_AcitonInfoRepository R_UserInfo_AcitonInfoRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_R_UserInfo_AcitonInfoRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _R_UserInfo_AcitonInfoRepository <span class="token operator">=</span> new R_UserInfo_AcitonInfoRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _R_UserInfo_AcitonInfoRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _R_UserInfo_AcitonInfoRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IRoleRepository _RoleRepository<span class="token punctuation">;</span>
+        public IRoleRepository RoleRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_RoleRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _RoleRepository <span class="token operator">=</span> new RoleRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _RoleRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _RoleRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        private IUserInfoRepository _UserInfoRepository<span class="token punctuation">;</span>
+        public IUserInfoRepository UserInfoRepository
+        <span class="token punctuation">{</span>
+            get
+            <span class="token punctuation">{</span>
+                if<span class="token punctuation">(</span>_UserInfoRepository <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    _UserInfoRepository <span class="token operator">=</span> new UserInfoRepository<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> _UserInfoRepository<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">set</span> <span class="token punctuation">{</span> _UserInfoRepository <span class="token operator">=</span> value<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>    
+</code></pre>
+<h3 id="DbSession-cs"><a href="#DbSession-cs" class="headerlink" title="DbSession.cs"></a>DbSession.cs</h3><pre class=" language-bash"><code class="language-bash"> public partial class DbSession:IDbSession
+    <span class="token punctuation">{</span>
+        //public ObjectContext DbContext <span class="token operator">=</span> new HeimaShopDBEntities<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//EF上下文实例怎么进行管理:保证线程内唯一
+       public ObjectContext DbContext <span class="token operator">=</span> DbContentFactory.GetCurrentDbContext<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        public int ExcuteSql<span class="token punctuation">(</span>string sql, params ObjectParameter<span class="token punctuation">[</span><span class="token punctuation">]</span> Parameters<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> DbContext.ExecuteFunction<span class="token punctuation">(</span>sql, Parameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public int SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span>//可以写一个批量保存，最后保存下，别的DAL层可以不写保存,把DAL的SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span>提高倒也BLL层
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> DbContext.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="BaseRepository-cs"><a href="#BaseRepository-cs" class="headerlink" title="BaseRepository.cs"></a>BaseRepository.cs</h3><pre class=" language-bash"><code class="language-bash">public  class BaseRepository<span class="token operator">&lt;</span>T<span class="token operator">></span> where T:class
+    <span class="token punctuation">{</span>
+        //public HeimaShopDBEntities db <span class="token operator">=</span> new HeimaShopDBEntities<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         public ObjectContext db <span class="token operator">=</span> DbContentFactory.GetCurrentDbContext<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 查询
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>param name<span class="token operator">=</span><span class="token string">"whereLambda"</span><span class="token operator">></span><span class="token operator">&lt;</span>/param<span class="token operator">></span>
+        /// <span class="token operator">&lt;</span>returns<span class="token operator">></span><span class="token operator">&lt;</span>/returns<span class="token operator">></span>
+        public IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadEntities<span class="token punctuation">(</span>Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> db.CreateObjectSet<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>.Where<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span>whereLambda<span class="token punctuation">)</span>.AsQueryable<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 分页
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+
+        public IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadPageEntities<span class="token operator">&lt;</span>S<span class="token operator">></span><span class="token punctuation">(</span>int pageSize, int pageIndex, out int total, Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda, Func<span class="token operator">&lt;</span>T, S<span class="token operator">></span> orderByLambda, bool isAsc<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            var temp <span class="token operator">=</span> db.CreateObjectSet<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>.Where<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span>whereLambda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            total <span class="token operator">=</span> temp.Count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>isAsc<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                temp <span class="token operator">=</span> temp.OrderBy<span class="token operator">&lt;</span>T, S<span class="token operator">></span><span class="token punctuation">(</span>orderByLambda<span class="token punctuation">)</span>.Skip<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">((</span>pageIndex - 1<span class="token punctuation">)</span> * pageSize<span class="token punctuation">)</span>.
+                    Take<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span>pageSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                temp <span class="token operator">=</span> temp.OrderByDescending<span class="token punctuation">(</span>orderByLambda<span class="token punctuation">)</span>.Skip<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">((</span>pageIndex - 1<span class="token punctuation">)</span> * pageSize<span class="token punctuation">)</span>.Take<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span>pageSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> temp.AsQueryable<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 添加
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+
+        public T AddEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            db.CreateObjectSet<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>.AddObject<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //db.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> entity<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 删
+        /// <span class="token operator">&lt;</span>/summary
+        public bool DeleteEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            db.CreateObjectSet<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>.Attach<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            db.ObjectStateManager.ChangeObjectState<span class="token punctuation">(</span>entity, System.Data.EntityState.Deleted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //return db.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> 0<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 更新
+        /// <span class="token operator">&lt;</span>/summary
+        public bool UpdateEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            db.CreateObjectSet<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>.Attach<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            db.ObjectStateManager.ChangeObjectState<span class="token punctuation">(</span>entity, System.Data.EntityState.Modified<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //db.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="DbContentFactory-cs"><a href="#DbContentFactory-cs" class="headerlink" title="DbContentFactory.cs"></a>DbContentFactory.cs</h3><pre class=" language-bash"><code class="language-bash"> /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+    /// 实现对EF上下文实例进行管理，保证线程内唯一
+    /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+   public  class DbContentFactory
+    <span class="token punctuation">{</span>
+        //CallContext 是类似于方法调用的线程本地存储区的专用集合对象，并提供对每个逻辑执行线程都唯一的数据槽。 数据槽不在其他逻辑线程上的调用上下文之间共享。 当 CallContext 沿执行代码路径往返传播并且由该路径中的各个对象检查时，可将对象添加到其中。
+       public static ObjectContext GetCurrentDbContext<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token punctuation">{</span>
+           ObjectContext context <span class="token operator">=</span> <span class="token punctuation">(</span>ObjectContext<span class="token punctuation">)</span>CallContext.GetData<span class="token punctuation">(</span><span class="token string">"DbContext"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">if</span> <span class="token punctuation">(</span>context <span class="token operator">==</span> null<span class="token punctuation">)</span>
+           <span class="token punctuation">{</span>
+               context <span class="token operator">=</span> new HeimaShopDBEntities<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               CallContext.SetData<span class="token punctuation">(</span><span class="token string">"DbContext"</span>, context<span class="token punctuation">)</span><span class="token punctuation">;</span>//要存储在调用上下文中的对象,1名字，2对象
+           <span class="token punctuation">}</span>
+           <span class="token keyword">return</span> context<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="DbSessionFactory-cs"><a href="#DbSessionFactory-cs" class="headerlink" title="DbSessionFactory.cs"></a>DbSessionFactory.cs</h3><pre class=" language-bash"><code class="language-bash">public class DbSessionFactory
+    <span class="token punctuation">{</span>
+       /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+       /// 保证DbSession的实例是线程内唯一的
+       /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+       /// <span class="token operator">&lt;</span>returns<span class="token operator">></span><span class="token operator">&lt;</span>/returns<span class="token operator">></span>
+       public static IDbSession GetCurrentDbSession<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+       //从线程内数据槽获取数据，保证线程内数据不被其它线程所访问到
+           IDbSession dbSession <span class="token operator">=</span> <span class="token punctuation">(</span>IDbSession<span class="token punctuation">)</span>CallContext.GetData<span class="token punctuation">(</span><span class="token string">"DbSession"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">if</span> <span class="token punctuation">(</span>dbSession <span class="token operator">==</span> null<span class="token punctuation">)</span> 
+           <span class="token punctuation">{</span>
+               dbSession <span class="token operator">=</span> new DbSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               CallContext.SetData<span class="token punctuation">(</span><span class="token string">"DbSession"</span>, dbSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
+           <span class="token keyword">return</span> dbSession<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Repository-tt生成的cs"><a href="#Repository-tt生成的cs" class="headerlink" title="Repository.tt生成的cs"></a>Repository.tt生成的cs</h3><pre class=" language-bash"><code class="language-bash">public partial class ActionGroupRepository :BaseRepository<span class="token operator">&lt;</span>ActionGroup<span class="token operator">></span>,IActionGroupRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class ActionInfoRepository :BaseRepository<span class="token operator">&lt;</span>ActionInfo<span class="token operator">></span>,IActionInfoRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class DepartmentRepository :BaseRepository<span class="token operator">&lt;</span>Department<span class="token operator">></span>,IDepartmentRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class ProductRepository :BaseRepository<span class="token operator">&lt;</span>Product<span class="token operator">></span>,IProductRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class R_UserInfo_AcitonInfoRepository :BaseRepository<span class="token operator">&lt;</span>R_UserInfo_AcitonInfo<span class="token operator">></span>,IR_UserInfo_AcitonInfoRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class RoleRepository :BaseRepository<span class="token operator">&lt;</span>Role<span class="token operator">></span>,IRoleRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    public partial class UserInfoRepository :BaseRepository<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>,IUserInfoRepository
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="UserInfoRepository-cs"><a href="#UserInfoRepository-cs" class="headerlink" title="UserInfoRepository.cs"></a>UserInfoRepository.cs</h3><pre class=" language-bash"><code class="language-bash">  public partial class UserInfoRepository <span class="token keyword">:</span> BaseRepository<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>, IUserInfoRepository
+    <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="BLL"><a href="#BLL" class="headerlink" title="BLL"></a>BLL</h2><h3 id="IServices-tt"><a href="#IServices-tt" class="headerlink" title="IServices.tt"></a>IServices.tt</h3><pre class=" language-bash"><code class="language-bash">    public partial class ActionGroupService :BaseService<span class="token operator">&lt;</span>ActionGroup<span class="token operator">></span>,IActionGroupService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.ActionGroupRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class ActionInfoService :BaseService<span class="token operator">&lt;</span>ActionInfo<span class="token operator">></span>,IActionInfoService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.ActionInfoRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class DepartmentService :BaseService<span class="token operator">&lt;</span>Department<span class="token operator">></span>,IDepartmentService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.DepartmentRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class ProductService :BaseService<span class="token operator">&lt;</span>Product<span class="token operator">></span>,IProductService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.ProductRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class R_UserInfo_AcitonInfoService :BaseService<span class="token operator">&lt;</span>R_UserInfo_AcitonInfo<span class="token operator">></span>,IR_UserInfo_AcitonInfoService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.R_UserInfo_AcitonInfoRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class RoleService :BaseService<span class="token operator">&lt;</span>Role<span class="token operator">></span>,IRoleService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.RoleRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>   
+
+    public partial class UserInfoService :BaseService<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>,IUserInfoService
+    <span class="token punctuation">{</span>
+        public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry <span class="token operator">=</span> this.DbSession.UserInfoRepository<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="BaseService-cs"><a href="#BaseService-cs" class="headerlink" title="BaseService.cs"></a>BaseService.cs</h3><pre class=" language-bash"><code class="language-bash">public abstract class BaseService<span class="token operator">&lt;</span>T<span class="token operator">></span> where T:class,new<span class="token punctuation">(</span><span class="token punctuation">)</span> //构造函数
+    <span class="token punctuation">{</span>
+        public IDbSession DbSession 
+        <span class="token punctuation">{</span>
+            get <span class="token punctuation">{</span> <span class="token keyword">return</span> DbSessionFactory.GetCurrentDbSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 基类中直接调用此抽象方法，那么必须在子类中实现
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public BaseService<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 当前仓储
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public IBaseRepository<span class="token operator">&lt;</span>T<span class="token operator">></span> CurrentReposiotry
+        <span class="token punctuation">{</span>
+            get<span class="token punctuation">;</span>
+            <span class="token keyword">set</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 设置下当前的仓储
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public abstract void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //最基本的crud方法
+        public virtual IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadEntities<span class="token punctuation">(</span>Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //调用数据库访问层来实现  过滤查询
+            //这个地方我们不知当前仓储是谁。那么就调用 当前仓储的属性
+            <span class="token keyword">return</span> CurrentReposiotry.LoadEntities<span class="token punctuation">(</span>whereLambda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 分页
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public IQueryable<span class="token operator">&lt;</span>T<span class="token operator">></span> LoadPageEntities<span class="token operator">&lt;</span>S<span class="token operator">></span><span class="token punctuation">(</span>int pageSize, int pageIndex, out int total, Func<span class="token operator">&lt;</span>T, bool<span class="token operator">></span> whereLambda, Func<span class="token operator">&lt;</span>T, S<span class="token operator">></span> orderByLambda, bool isAsc<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> CurrentReposiotry.LoadPageEntities<span class="token operator">&lt;</span>S<span class="token operator">></span><span class="token punctuation">(</span>pageSize, pageIndex, out total, whereLambda, orderByLambda, isAsc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 添加
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public T AddEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            CurrentReposiotry.AddEntity<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            DbSession.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> entity<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 删除
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public bool DeleteEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //return CurrentReposiotry.DeleteEntity<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            CurrentReposiotry.DeleteEntity<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> DbSession.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> 0<span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+        /// <span class="token operator">&lt;</span>summary<span class="token operator">></span>
+        /// 修改
+        /// <span class="token operator">&lt;</span>/summary<span class="token operator">></span>
+        public bool UpdateEntity<span class="token punctuation">(</span>T entity<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //return CurrentReposiotry.UpdateEntity<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            CurrentReposiotry.UpdateEntity<span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">return</span> DbSession.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="UserInfoService-cs"><a href="#UserInfoService-cs" class="headerlink" title="UserInfoService.cs"></a>UserInfoService.cs</h3><pre class=" language-bash"><code class="language-bash">  public partial class UserInfoService <span class="token keyword">:</span> BaseService<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span>,IUserInfoService
+    <span class="token punctuation">{</span>
+       // public override void SetCurrentReposiotry<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       //<span class="token punctuation">{</span>
+       //    CurrentReposiotry <span class="token operator">=</span> this.DbSession.UserInfoRepository<span class="token punctuation">;</span>
+       //<span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">#region 多条件查询</span>
+        public IQueryable<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span> LoadUsers<span class="token punctuation">(</span>UserInfoSearchParam param<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            //先过滤，在分页
+
+            var temp <span class="token operator">=</span> DbSession.UserInfoRepository.LoadEntities<span class="token punctuation">(</span>u <span class="token operator">=</span><span class="token operator">></span> true<span class="token punctuation">)</span><span class="token punctuation">;</span>//会延迟加载
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>string.IsNullOrEmpty<span class="token punctuation">(</span>param.Email<span class="token punctuation">))</span>
+            <span class="token punctuation">{</span>
+                temp <span class="token operator">=</span> temp.Where<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span><span class="token punctuation">(</span>u <span class="token operator">=</span><span class="token operator">></span> u.Email.Contains<span class="token punctuation">(</span>param.Email<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>string.IsNullOrEmpty<span class="token punctuation">(</span>param.UserName<span class="token punctuation">))</span>
+            <span class="token punctuation">{</span>
+                temp <span class="token operator">=</span> temp.Where<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span><span class="token punctuation">(</span>u <span class="token operator">=</span><span class="token operator">></span> u.UserName.Contains<span class="token punctuation">(</span>param.UserName<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            param.Total <span class="token operator">=</span> temp.Count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> temp.OrderByDescending<span class="token punctuation">(</span>u <span class="token operator">=</span><span class="token operator">></span> u.ID<span class="token punctuation">)</span>.Skip<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span><span class="token punctuation">((</span>param.PageIndex - 1<span class="token punctuation">)</span> * param.PageSize<span class="token punctuation">)</span>.Take<span class="token operator">&lt;</span>UserInfo<span class="token operator">></span><span class="token punctuation">(</span>param.PageSize<span class="token punctuation">)</span>.AsQueryable<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+        <span class="token comment" spellcheck="true">#endregion</span>
+
+        <span class="token comment" spellcheck="true">#region 批量删除</span>
+        public int DeleteUsers<span class="token punctuation">(</span>List<span class="token operator">&lt;</span>int<span class="token operator">></span> listIds<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            var Users <span class="token operator">=</span> DbSession.UserInfoRepository.LoadEntities<span class="token punctuation">(</span>a <span class="token operator">=</span><span class="token operator">></span> listIds.Contains<span class="token punctuation">(</span>a.ID<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            foreach <span class="token punctuation">(</span>var user <span class="token keyword">in</span> Users<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                DbSession.UserInfoRepository.DeleteEntity<span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">return</span> DbSession.SaveChanges<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+        <span class="token comment" spellcheck="true">#endregion</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/17/mian-xiang-jie-kou-bian-cheng-kuang-jia/" class="b-link-green">面向接口编程框架</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/17/mian-xiang-jie-kou-bian-cheng-kuang-jia/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="面向接口编程框架">
+                        
+                        <span class="card-title">面向接口编程框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">面向接口编程框架框架：MVC+EF模型+面向接口式三层架构+工厂模式，UnitWork模式，使用了t4模板，框架用于分享 github代码下载：https://github.com/zy20081/practice.git
+前台代码展示  </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                    <a href="/tags/框架/" target="_blank">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/17/shang-chuan-yu-xia-zai/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="上传与下载">
+                        
+                        <span class="card-title">上传与下载</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">上传与下载听说好多面试的时候喜欢出上传与下载的题目，这里我就写winform版本和.net版本都写一个，写核心代码，细节就不写了，仅供参考
+Form
+ //上传
+        private void btnUpload_Click(ob</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

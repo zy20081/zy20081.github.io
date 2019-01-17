@@ -1,0 +1,840 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="上传与下载, Zhou•Yong">
+    <meta name="description" content="上传与下载听说好多面试的时候喜欢出上传与下载的题目，这里我就写winform版本和.net版本都写一个，写核心代码，细节就不写了，仅供参考
+Form
+ //上传
+        private void btnUpload_Click(ob">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>上传与下载 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        上传与下载
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/ASP-NET/" target="_blank">
+                    <span class="chip bg-color">ASP.NET</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                        ASP.NET
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-17
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="上传与下载"><a href="#上传与下载" class="headerlink" title="上传与下载"></a>上传与下载</h2><p>听说好多面试的时候喜欢出上传与下载的题目，这里我就写winform版本和.net版本都写一个，写核心代码，细节就不写了，仅供参考</p>
+<h2 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h2><p><img src="/2019/01/17/shang-chuan-yu-xia-zai/1.jpg" alt="图1"></p>
+<pre class=" language-bash"><code class="language-bash"> //上传
+        private void btnUpload_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            openFile.ShowDialog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            using <span class="token punctuation">(</span>FileStream fileStream <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span>openFile.FileName, FileMode.Open<span class="token punctuation">))</span>
+            <span class="token punctuation">{</span>
+                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>fileStream.Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                fileStream.Read<span class="token punctuation">(</span>buffer, 0, buffer.Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                using <span class="token punctuation">(</span>FileStream <span class="token function">file</span> <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span>@<span class="token string">"../../images/11.jpg"</span>, FileMode.CreateNew<span class="token punctuation">))</span>
+                <span class="token punctuation">{</span>
+                    file.Write<span class="token punctuation">(</span>buffer, 0, buffer.Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            MessageBox.Show<span class="token punctuation">(</span><span class="token string">"成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //下载
+        private void btnDowload_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            string path <span class="token operator">=</span> @<span class="token string">"../../images/11.jpg"</span><span class="token punctuation">;</span>
+            using <span class="token punctuation">(</span>FileStream filestream <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span>path, FileMode.Open<span class="token punctuation">))</span>
+            <span class="token punctuation">{</span>
+                byte<span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> new byte<span class="token punctuation">[</span>filestream.Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                filestream.Read<span class="token punctuation">(</span>buffer, 0, buffer.Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                using <span class="token punctuation">(</span>FileStream <span class="token function">file</span> <span class="token operator">=</span> new FileStream<span class="token punctuation">(</span>@<span class="token string">"C://1.jpg"</span>, FileMode.CreateNew<span class="token punctuation">))</span>
+                <span class="token punctuation">{</span>
+                    file.Write<span class="token punctuation">(</span>buffer, 0, buffer.Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            MessageBox.Show<span class="token punctuation">(</span><span class="token string">"成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+
+
+</code></pre>
+<h2 id="asp-net"><a href="#asp-net" class="headerlink" title="asp.net"></a>asp.net</h2><p><img src="/2019/01/17/shang-chuan-yu-xia-zai/2.jpg" alt="图2"></p>
+<pre class=" language-bash"><code class="language-bash">
+前台：
+  <span class="token operator">&lt;</span>form name<span class="token operator">=</span><span class="token string">"form1"</span> method<span class="token operator">=</span><span class="token string">"post"</span> action<span class="token operator">=</span><span class="token string">"index.aspx"</span>
+enctype<span class="token operator">=</span><span class="token string">"multipart/form-data"</span> runat<span class="token operator">=</span><span class="token string">"server"</span><span class="token operator">></span>  
+    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"file"</span> id<span class="token operator">=</span><span class="token string">"txtFile"</span> name<span class="token operator">=</span><span class="token string">"picfile"</span> /<span class="token operator">></span>
+    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"submit"</span> value<span class="token operator">=</span><span class="token string">"上传"</span>/<span class="token operator">></span>  
+     <span class="token operator">&lt;</span>asp:Button ID<span class="token operator">=</span><span class="token string">"btnDowloand"</span> runat<span class="token operator">=</span><span class="token string">"server"</span> Text<span class="token operator">=</span><span class="token string">"下载"</span> 
+            onclick<span class="token operator">=</span><span class="token string">"btnDowloand_Click"</span> /<span class="token operator">></span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span>  
+cs代码：
+namespace 上传与下载
+<span class="token punctuation">{</span>
+    public partial class index <span class="token keyword">:</span> System.Web.UI.Page
+    <span class="token punctuation">{</span>
+        protected void Page_Load<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>IsPostBack<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                string directoryPath <span class="token operator">=</span> Server.MapPath<span class="token punctuation">(</span>@<span class="token string">"~/images"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                string path <span class="token operator">=</span> directoryPath + <span class="token string">"\\13.jpg"</span><span class="token punctuation">;</span>
+                Request.Files<span class="token punctuation">[</span>0<span class="token punctuation">]</span>.SaveAs<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Response.Write<span class="token punctuation">(</span><span class="token string">"上传成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        //下载
+        protected void btnDowloand_Click<span class="token punctuation">(</span>object sender, EventArgs e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            string path <span class="token operator">=</span> Server.MapPath<span class="token punctuation">(</span>@<span class="token string">"~/images/13.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            string fileName<span class="token operator">=</span>Path.GetFileName<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Response.AddHeader<span class="token punctuation">(</span><span class="token string">"content-Disposition"</span>, string.Format<span class="token punctuation">(</span><span class="token string">"attachment;filename=\"{0}\""</span>,path<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            Response.WriteFile<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Response.End<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="asp-net-一般处理器"><a href="#asp-net-一般处理器" class="headerlink" title="asp.net 一般处理器"></a>asp.net 一般处理器</h2><pre class=" language-bash"><code class="language-bash">    <span class="token operator">&lt;</span>form id<span class="token operator">=</span><span class="token string">"form1"</span> runat<span class="token operator">=</span><span class="token string">"server"</span> method<span class="token operator">=</span><span class="token string">"post"</span> enctype<span class="token operator">=</span><span class="token string">"multipart/form-data"</span> action<span class="token operator">=</span><span class="token string">"upLoadHandler.ashx"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span>
+       上传： <span class="token operator">&lt;</span>input id<span class="token operator">=</span><span class="token string">"FileUpload"</span> type<span class="token operator">=</span><span class="token string">"file"</span> name<span class="token operator">=</span><span class="token string">"upload"</span> /<span class="token operator">></span>
+        <span class="token operator">&lt;</span>input id<span class="token operator">=</span><span class="token string">"SubmitUpload"</span> type<span class="token operator">=</span><span class="token string">"submit"</span> value<span class="token operator">=</span><span class="token string">"上传"</span> /<span class="token operator">></span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"DownLoadHandler.ashx"</span><span class="token operator">></span>下载<span class="token operator">&lt;</span>/a<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/form<span class="token operator">></span>
+
+upLoadHandler.ashx：    
+<span class="token operator">&lt;</span>%@ WebHandler Language<span class="token operator">=</span><span class="token string">"C#"</span> Class<span class="token operator">=</span><span class="token string">"upLoadHandler"</span> %<span class="token operator">></span>
+
+using System<span class="token punctuation">;</span>
+using System.Web<span class="token punctuation">;</span>
+using System.IO<span class="token punctuation">;</span>
+using System.Drawing<span class="token punctuation">;</span>
+public class upLoadHandler <span class="token keyword">:</span> IHttpHandler <span class="token punctuation">{</span>
+
+    public void ProcessRequest <span class="token punctuation">(</span>HttpContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   HttpPostedFile file<span class="token operator">=</span>  context.Request.Files<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   string fileName <span class="token operator">=</span> Path.GetFileName<span class="token punctuation">(</span>file.FileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   var filepostfix <span class="token operator">=</span> fileName.Split<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>filepostfix.Equals<span class="token punctuation">(</span><span class="token string">"jpg"</span><span class="token punctuation">)</span> <span class="token operator">||</span> filepostfix.Equals<span class="token punctuation">(</span><span class="token string">"png"</span><span class="token punctuation">))</span>
+   <span class="token punctuation">{</span>   //直接上传图片
+       file.SaveAs<span class="token punctuation">(</span>context.Server.MapPath<span class="token punctuation">(</span>@<span class="token string">"~\upLaodFile\" +Guid.NewGuid().ToString()+ fileName));
+       //上传缩略图
+       //CreateImageOutput(80, 80, file);
+       context.Response.Write("</span>上传成功<span class="token string">");
+   }
+   else 
+   {
+       context.Response.Write("</span>只能上传图片格式"<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    public bool IsReusable <span class="token punctuation">{</span>
+        get <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/17/shang-chuan-yu-xia-zai/" class="b-link-green">上传与下载</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/17/mian-xiang-jie-kou-bian-cheng-kuang-jia/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="面向接口编程框架">
+                        
+                        <span class="card-title">面向接口编程框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">面向接口编程框架框架：MVC+EF模型+面向接口式三层架构+工厂模式，UnitWork模式，使用了t4模板，框架用于分享 github代码下载：https://github.com/zy20081/practice.git
+前台代码展示  </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                    <a href="/tags/框架/" target="_blank">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/16/jian-dan-san-ceng-jia-gou/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="简单三层架构">
+                        
+                        <span class="card-title">简单三层架构</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">简单三层架构Formnamespace 三层架构
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            Init</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ASP-NET/" class="post-category" target="_blank">
+                                    ASP.NET
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ASP-NET/" target="_blank">
+                        <span class="chip bg-color">ASP.NET</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

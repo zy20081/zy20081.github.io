@@ -1,0 +1,2306 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hibernate 总结, Zhou•Yong">
+    <meta name="description" content="Hibernate基本使用主配置1.导包，导入约束 2.主配置文件hibernate.cfg.xml
+&amp;lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&amp;lt;!DOCTYPE hibernate-conf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hibernate 总结 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Hibernate 总结
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/框架/" target="_blank">
+                    <span class="chip bg-color">框架</span>
+                </a>
+                
+                <a href="/tags/SSH/" target="_blank">
+                    <span class="chip bg-color">SSH</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/JAVA/" class="post-category" target="_blank">
+                        JAVA
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2018-10-25
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Hibernate基本使用"><a href="#Hibernate基本使用" class="headerlink" title="Hibernate基本使用"></a>Hibernate基本使用</h2><h3 id="主配置"><a href="#主配置" class="headerlink" title="主配置"></a>主配置</h3><p>1.导包，导入约束 <br><br>2.主配置文件hibernate.cfg.xml</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-configuration PUBLIC
+    <span class="token string">"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-configuration<span class="token operator">></span>
+    <span class="token operator">&lt;</span>session-factory<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+        <span class="token comment" spellcheck="true">#hibernate.dialect org.hibernate.dialect.MySQLDialect</span>
+        <span class="token comment" spellcheck="true">#hibernate.dialect org.hibernate.dialect.MySQLInnoDBDialect</span>
+        <span class="token comment" spellcheck="true">#hibernate.dialect org.hibernate.dialect.MySQLMyISAMDialect</span>
+        <span class="token comment" spellcheck="true">#hibernate.connection.driver_class com.mysql.jdbc.Driver</span>
+        <span class="token comment" spellcheck="true">#hibernate.connection.url jdbc:mysql:///test</span>
+        <span class="token comment" spellcheck="true">#hibernate.connection.username gavin</span>
+        <span class="token comment" spellcheck="true">#hibernate.connection.password</span>
+         --<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 数据库驱动 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.connection.driver_class"</span><span class="token operator">></span>com.mysql.jdbc.Driver<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 数据库url --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.connection.url"</span><span class="token operator">></span>jdbc:mysql:///hibernate_32<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 数据库连接用户名 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.connection.username"</span><span class="token operator">></span>root<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 数据库连接密码 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.connection.password"</span><span class="token operator">></span>1234<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 数据库方言
+            不同的数据库中,sql语法略有区别. 指定方言可以让hibernate框架在生成sql语句时.针对数据库的方言生成.
+            sql99标准: DDL 定义语言  库表的增删改查
+                      DCL 控制语言  事务 权限
+                      DML 操纵语言  增删改查
+            注意: MYSQL在选择方言时,请选择最短的方言.
+         --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.dialect"</span><span class="token operator">></span>org.hibernate.dialect.MySQLDialect<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- <span class="token comment" spellcheck="true">#hibernate.show_sql true </span>
+             <span class="token comment" spellcheck="true">#hibernate.format_sql true</span>
+        --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 将hibernate生成的sql语句打印到控制台 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.show_sql"</span><span class="token operator">></span>true<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 将hibernate生成的sql语句格式化<span class="token punctuation">(</span>语法缩进<span class="token punctuation">)</span> --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.format_sql"</span><span class="token operator">></span>true<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+        <span class="token comment" spellcheck="true">## auto schema export  自动导出表结构. 自动建表</span>
+        <span class="token comment" spellcheck="true">#hibernate.hbm2ddl.auto create        自动建表.每次框架运行都会创建新的表.以前表将会被覆盖,表数据会丢失.(开发环境中测试使用)</span>
+        <span class="token comment" spellcheck="true">#hibernate.hbm2ddl.auto create-drop 自动建表.每次框架运行结束都会将所有表删除.(开发环境中测试使用)</span>
+        <span class="token comment" spellcheck="true">#hibernate.hbm2ddl.auto update(推荐使用) 自动生成表.如果已经存在不会再生成.如果表有变动.自动更新表(不会删除任何数据).</span>
+        <span class="token comment" spellcheck="true">#hibernate.hbm2ddl.auto validate    校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败.</span>
+         --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.hbm2ddl.auto"</span><span class="token operator">></span>update<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 引入orm元数据
+            路径书写: 填写src下的路径
+         --<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 指定hibernate操作数据库时的隔离级别 
+            <span class="token comment" spellcheck="true">#hibernate.connection.isolation 1|2|4|8        </span>
+            0001    1    读未提交
+            0010    2    读已提交
+            0100    4    可重复读
+            1000    8    串行化
+         --<span class="token operator">></span>
+         <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.connection.isolation"</span><span class="token operator">></span>4<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 指定session与当前线程绑定 --<span class="token operator">></span>
+         <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"hibernate.current_session_context_class"</span><span class="token operator">></span>thread<span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span>mapping resource<span class="token operator">=</span><span class="token string">"cn/itheima/domain/Customer.hbm.xml"</span> /<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>/session-factory<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-configuration<span class="token operator">></span>
+</code></pre>
+<h3 id="GenericEncodingFilter-java-乱码解决"><a href="#GenericEncodingFilter-java-乱码解决" class="headerlink" title="GenericEncodingFilter.java 乱码解决"></a>GenericEncodingFilter.java 乱码解决</h3><pre class=" language-bash"><code class="language-bash"> package cn.itheima.web<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.io.IOException<span class="token punctuation">;</span>
+<span class="token function">import</span> java.lang.reflect.InvocationTargetException<span class="token punctuation">;</span>
+
+<span class="token function">import</span> javax.servlet.ServletException<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServlet<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServletRequest<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServletResponse<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.apache.commons.beanutils.BeanUtils<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itheima.domain.Customer<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.service.CustomerService<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.service.impl.CustomerServiceImpl<span class="token punctuation">;</span>
+
+/**
+ * Servlet implementation class AddCustomerServlet
+ */
+public class AddCustomerServlet extends HttpServlet <span class="token punctuation">{</span>
+    private static final long serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+
+    private CustomerService customerService  <span class="token operator">=</span> new CustomerServiceImpl<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    protected void doGet<span class="token punctuation">(</span>HttpServletRequest request, HttpServletResponse response<span class="token punctuation">)</span> throws ServletException, IOException <span class="token punctuation">{</span>
+        //1 获得参数并封装到Customer对象
+        Customer c <span class="token operator">=</span> new Customer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        try <span class="token punctuation">{</span>
+            BeanUtils.populate<span class="token punctuation">(</span>c, request.getParameterMap<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IllegalAccessException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>InvocationTargetException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //2 调用Service保存客户
+        customerService  .save<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3 重定向到客户列表
+        response.sendRedirect<span class="token punctuation">(</span>request.getContextPath<span class="token punctuation">(</span><span class="token punctuation">)</span>+<span class="token string">"/ListCustomerServlet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    protected void doPost<span class="token punctuation">(</span>HttpServletRequest request, HttpServletResponse response<span class="token punctuation">)</span> throws ServletException, IOException <span class="token punctuation">{</span>
+        doGet<span class="token punctuation">(</span>request, response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="web-xml配置"><a href="#web-xml配置" class="headerlink" title="web.xml配置"></a>web.xml配置</h3><pre class=" language-bash"><code class="language-bash"> <span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span>web-app xmlns:xsi<span class="token operator">=</span><span class="token string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns<span class="token operator">=</span><span class="token string">"http://java.sun.com/xml/ns/javaee"</span> xsi:schemaLocation<span class="token operator">=</span><span class="token string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span> id<span class="token operator">=</span><span class="token string">"WebApp_ID"</span> version<span class="token operator">=</span><span class="token string">"2.5"</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span>display-name<span class="token operator">></span>hibernate_crm<span class="token operator">&lt;</span>/display-name<span class="token operator">></span>
+  <span class="token operator">&lt;</span>welcome-file-list<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>index.html<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>index.htm<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>index.jsp<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>default.html<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>default.htm<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+    <span class="token operator">&lt;</span>welcome-file<span class="token operator">></span>default.jsp<span class="token operator">&lt;</span>/welcome-file<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/welcome-file-list<span class="token operator">></span>
+   <span class="token operator">&lt;</span>filter<span class="token operator">></span>
+    <span class="token operator">&lt;</span>filter-name<span class="token operator">></span>encodeFilter<span class="token operator">&lt;</span>/filter-name<span class="token operator">></span>
+    <span class="token operator">&lt;</span>filter-class<span class="token operator">></span>cn.itheima.web.filter.GenericEncodingFilter<span class="token operator">&lt;</span>/filter-class<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/filter<span class="token operator">></span>
+  <span class="token operator">&lt;</span>filter-mapping<span class="token operator">></span>
+    <span class="token operator">&lt;</span>filter-name<span class="token operator">></span>encodeFilter<span class="token operator">&lt;</span>/filter-name<span class="token operator">></span>
+    <span class="token operator">&lt;</span>url-pattern<span class="token operator">></span>/*<span class="token operator">&lt;</span>/url-pattern<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/filter-mapping<span class="token operator">></span>
+  <span class="token operator">&lt;</span>servlet<span class="token operator">></span>
+    <span class="token operator">&lt;</span>description<span class="token operator">></span><span class="token operator">&lt;</span>/description<span class="token operator">></span>
+    <span class="token operator">&lt;</span>display-name<span class="token operator">></span>AddCustomerServlet<span class="token operator">&lt;</span>/display-name<span class="token operator">></span>
+    <span class="token operator">&lt;</span>servlet-name<span class="token operator">></span>AddCustomerServlet<span class="token operator">&lt;</span>/servlet-name<span class="token operator">></span>
+    <span class="token operator">&lt;</span>servlet-class<span class="token operator">></span>cn.itheima.web.AddCustomerServlet<span class="token operator">&lt;</span>/servlet-class<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/servlet<span class="token operator">></span>
+  <span class="token operator">&lt;</span>servlet-mapping<span class="token operator">></span>
+    <span class="token operator">&lt;</span>servlet-name<span class="token operator">></span>AddCustomerServlet<span class="token operator">&lt;</span>/servlet-name<span class="token operator">></span>
+    <span class="token operator">&lt;</span>url-pattern<span class="token operator">></span>/AddCustomerServlet<span class="token operator">&lt;</span>/url-pattern<span class="token operator">></span>
+  <span class="token operator">&lt;</span>/servlet-mapping<span class="token operator">></span>
+<span class="token operator">&lt;</span>/web-app<span class="token operator">></span>
+</code></pre>
+<h3 id="Customer-java-模型"><a href="#Customer-java-模型" class="headerlink" title="Customer.java 模型"></a>Customer.java 模型</h3><pre class=" language-bash"><code class="language-bash">package cn.itheima.domain<span class="token punctuation">;</span>
+
+public class Customer <span class="token punctuation">{</span>
+
+    /*
+     * CREATE TABLE <span class="token variable"><span class="token variable">`</span>cst_customer<span class="token variable">`</span></span> <span class="token punctuation">(</span>
+      <span class="token variable"><span class="token variable">`</span>cust_id<span class="token variable">`</span></span> BIGINT<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL AUTO_INCREMENT COMMENT <span class="token string">'客户编号(主键)'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_name<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL COMMENT <span class="token string">'客户名称(公司名称)'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_source<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户信息来源'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_industry<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户所属行业'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_level<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户级别'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_linkman<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>64<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_phone<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>64<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'固定电话'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_mobile<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'移动电话'</span>,
+      PRIMARY KEY <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>cust_id<span class="token variable">`</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> ENGINE<span class="token operator">=</span>INNODB AUTO_INCREMENT<span class="token operator">=</span>1 DEFAULT CHARSET<span class="token operator">=</span>utf8<span class="token punctuation">;</span>
+     */
+    private Long cust_id<span class="token punctuation">;</span>
+
+    private String cust_name<span class="token punctuation">;</span>
+    private String cust_source<span class="token punctuation">;</span>
+    private String cust_industry<span class="token punctuation">;</span>
+    private String cust_level<span class="token punctuation">;</span>
+    private String cust_linkman<span class="token punctuation">;</span>
+    private String cust_phone<span class="token punctuation">;</span>
+    private String cust_mobile<span class="token punctuation">;</span>
+    public Long getCust_id<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_id<span class="token punctuation">(</span>Long cust_id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_id <span class="token operator">=</span> cust_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_name<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_name<span class="token punctuation">(</span>String cust_name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_name <span class="token operator">=</span> cust_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_source<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_source<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_source<span class="token punctuation">(</span>String cust_source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_source <span class="token operator">=</span> cust_source<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_industry<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_industry<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_industry<span class="token punctuation">(</span>String cust_industry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_industry <span class="token operator">=</span> cust_industry<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_level<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_level<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_level<span class="token punctuation">(</span>String cust_level<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_level <span class="token operator">=</span> cust_level<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_linkman<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_linkman<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_linkman<span class="token punctuation">(</span>String cust_linkman<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_linkman <span class="token operator">=</span> cust_linkman<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_phone<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_phone<span class="token punctuation">(</span>String cust_phone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_phone <span class="token operator">=</span> cust_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_mobile<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_mobile<span class="token punctuation">(</span>String cust_mobile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_mobile <span class="token operator">=</span> cust_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    @Override
+    public String toString<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Customer [cust_id="</span> + cust_id + <span class="token string">", cust_name="</span> + cust_name + <span class="token string">"]"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public static void main<span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="Customer-hbm-xml"><a href="#Customer-hbm-xml" class="headerlink" title="Customer.hbm.xml"></a>Customer.hbm.xml</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-mapping PUBLIC 
+    <span class="token string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-mapping package<span class="token operator">=</span><span class="token string">"cn.itheima.domain"</span> <span class="token operator">></span>
+    <span class="token operator">&lt;</span>class name<span class="token operator">=</span><span class="token string">"Customer"</span> table<span class="token operator">=</span><span class="token string">"cst_customer"</span> <span class="token operator">></span>
+        <span class="token operator">&lt;</span>id name<span class="token operator">=</span><span class="token string">"cust_id"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span>-- generator:主键生成策略.就是每条记录录入时,主键的生成规则.<span class="token punctuation">(</span>7个<span class="token punctuation">)</span>
+                    identity <span class="token keyword">:</span> 主键自增.由数据库来维护主键值.录入时不需要指定主键.
+                    sequence: Oracle中的主键生成策略.
+                    increment<span class="token punctuation">(</span>了解<span class="token punctuation">)</span>: 主键自增.由hibernate来维护.每次插入前会先查询表中id最大值.+1作为新主键值.            
+                    hilo<span class="token punctuation">(</span>了解<span class="token punctuation">)</span>: 高低位算法.主键自增.由hibernate来维护.开发时不使用.
+                    native:hilo+sequence+identity 自动三选一策略.
+                    uuid: 产生随机字符串作为主键. 主键类型必须为string 类型.
+                    assigned:自然主键生成策略. hibernate不会管理主键值.由开发人员自己录入.
+
+             --<span class="token operator">></span>
+            <span class="token operator">&lt;</span>generator class<span class="token operator">=</span><span class="token string">"increment"</span><span class="token operator">></span><span class="token operator">&lt;</span>/generator<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/id<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_name"</span> column<span class="token operator">=</span><span class="token string">"cust_name"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_source"</span> column<span class="token operator">=</span><span class="token string">"cust_source"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_industry"</span> column<span class="token operator">=</span><span class="token string">"cust_industry"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_level"</span> column<span class="token operator">=</span><span class="token string">"cust_level"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_linkman"</span> column<span class="token operator">=</span><span class="token string">"cust_linkman"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_phone"</span> column<span class="token operator">=</span><span class="token string">"cust_phone"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_mobile"</span> column<span class="token operator">=</span><span class="token string">"cust_mobile"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/class<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-mapping<span class="token operator">></span>
+</code></pre>
+<h3 id="HibernateUtils统一获取Session"><a href="#HibernateUtils统一获取Session" class="headerlink" title="HibernateUtils统一获取Session"></a>HibernateUtils统一获取Session</h3><pre class=" language-bash"><code class="language-bash">package cn.itheima.utils<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.hibernate.Session<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.SessionFactory<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.cfg.Configuration<span class="token punctuation">;</span>
+
+public class HibernateUtils <span class="token punctuation">{</span>
+    private static SessionFactory sf<span class="token punctuation">;</span>
+
+    static<span class="token punctuation">{</span>
+        //1 创建,调用空参构造
+        Configuration conf <span class="token operator">=</span> new Configuration<span class="token punctuation">(</span><span class="token punctuation">)</span>.configure<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 根据配置信息,创建 SessionFactory对象
+         sf <span class="token operator">=</span> conf.buildSessionFactory<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //获得session <span class="token operator">=</span><span class="token operator">></span> 获得全新session
+    public static Session openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                //3 获得session
+                Session session <span class="token operator">=</span> sf.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">return</span> session<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    //获得session <span class="token operator">=</span><span class="token operator">></span> 获得与线程绑定的session
+    public static Session getCurrentSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //3 获得session
+        Session session <span class="token operator">=</span> sf.getCurrentSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> session<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public static void main<span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System.out.println<span class="token punctuation">(</span>HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="CustomerDao接口"><a href="#CustomerDao接口" class="headerlink" title="CustomerDao接口"></a>CustomerDao接口</h3><pre class=" language-bash"><code class="language-bash">public interface CustomerDao <span class="token punctuation">{</span>
+    //保存客户
+    void save<span class="token punctuation">(</span>Customer c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><pre class=" language-bash"><code class="language-bash">public class CustomerDaoImpl implements CustomerDao <span class="token punctuation">{</span>
+    public void save<span class="token punctuation">(</span>Customer c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 打开事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3 执行保存
+        session.save<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //4 提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5 关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="AddCustomerServlet实现增加"><a href="#AddCustomerServlet实现增加" class="headerlink" title="AddCustomerServlet实现增加"></a>AddCustomerServlet实现增加</h3><pre class=" language-bash"><code class="language-bash">package cn.itheima.web<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.io.IOException<span class="token punctuation">;</span>
+<span class="token function">import</span> java.lang.reflect.InvocationTargetException<span class="token punctuation">;</span>
+
+<span class="token function">import</span> javax.servlet.ServletException<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServlet<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServletRequest<span class="token punctuation">;</span>
+<span class="token function">import</span> javax.servlet.http.HttpServletResponse<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.apache.commons.beanutils.BeanUtils<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itheima.domain.Customer<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.service.CustomerService<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.service.impl.CustomerServiceImpl<span class="token punctuation">;</span>
+
+/**
+ * Servlet implementation class AddCustomerServlet
+ */
+public class AddCustomerServlet extends HttpServlet <span class="token punctuation">{</span>
+    private static final long serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+
+    private CustomerService customerService  <span class="token operator">=</span> new CustomerServiceImpl<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    protected void doGet<span class="token punctuation">(</span>HttpServletRequest request, HttpServletResponse response<span class="token punctuation">)</span> throws ServletException, IOException <span class="token punctuation">{</span>
+        //1 获得参数并封装到Customer对象
+        Customer c <span class="token operator">=</span> new Customer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        try <span class="token punctuation">{</span>
+            BeanUtils.populate<span class="token punctuation">(</span>c, request.getParameterMap<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IllegalAccessException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>InvocationTargetException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //2 调用Service保存客户
+        customerService  .save<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3 重定向到客户列表
+        response.sendRedirect<span class="token punctuation">(</span>request.getContextPath<span class="token punctuation">(</span><span class="token punctuation">)</span>+<span class="token string">"/ListCustomerServlet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    protected void doPost<span class="token punctuation">(</span>HttpServletRequest request, HttpServletResponse response<span class="token punctuation">)</span> throws ServletException, IOException <span class="token punctuation">{</span>
+        doGet<span class="token punctuation">(</span>request, response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Hibernate三种查询"><a href="#Hibernate三种查询" class="headerlink" title="Hibernate三种查询"></a>Hibernate三种查询</h2><h3 id="hql"><a href="#hql" class="headerlink" title="hql"></a>hql</h3><pre class=" language-bash"><code class="language-bash">package cn.itheima.e_hql<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.util.List<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.hibernate.Query<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Session<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Transaction<span class="token punctuation">;</span>
+<span class="token function">import</span> org.junit.Test<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itheima.domain.Customer<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.utils.HibernateUtils<span class="token punctuation">;</span>
+
+//测试HQL语句
+public class Demo <span class="token punctuation">{</span>
+
+    @Test
+    //基本查询
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1<span class="token operator">></span> 书写HQL语句
+//        String hql <span class="token operator">=</span> <span class="token string">" from cn.itheima.domain.Customer "</span><span class="token punctuation">;</span>
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer "</span><span class="token punctuation">;</span> // 查询所有Customer对象
+        //2<span class="token operator">></span> 根据HQL语句创建查询对象
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 根据查询对象获得查询结果
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    // 返回list结果
+        //query.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//接收唯一的查询结果
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+
+    @Test
+    //条件查询
+    //HQL语句中,不可能出现任何数据库相关的信息的
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1<span class="token operator">></span> 书写HQL语句
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer where cust_id = 1 "</span><span class="token punctuation">;</span> // 查询所有Customer对象
+        //2<span class="token operator">></span> 根据HQL语句创建查询对象
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 根据查询对象获得查询结果
+        Customer c <span class="token operator">=</span> <span class="token punctuation">(</span>Customer<span class="token punctuation">)</span> query.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+
+    @Test
+    //条件查询
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql1 <span class="token operator">=</span> <span class="token string">" from  cn.itcast.domain.Customer where cust_id =? "</span><span class="token punctuation">;</span>//完整写法
+        String hql2 <span class="token operator">=</span> <span class="token string">" from  cn.itcast.domain.Customer where cust_id = :id "</span><span class="token punctuation">;</span>//完整写法
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+//        query.setParameter<span class="token punctuation">(</span>0, 2l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        query.setParameter<span class="token punctuation">(</span><span class="token string">"id"</span>, 2l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        List list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    @Test
+    //统计查询
+    //count    计数
+    //sum     求和
+    //avg    平均数
+    //max
+    //min
+    public void fun5<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql1 <span class="token operator">=</span> <span class="token string">" select count(*) from  cn.itcast.domain.Customer  "</span><span class="token punctuation">;</span>//完整写法
+        String hql2 <span class="token operator">=</span> <span class="token string">" select sum(cust_id) from  cn.itcast.domain.Customer  "</span><span class="token punctuation">;</span>//完整写法
+        String hql3 <span class="token operator">=</span> <span class="token string">" select avg(cust_id) from  cn.itcast.domain.Customer  "</span><span class="token punctuation">;</span>//完整写法
+        String hql4 <span class="token operator">=</span> <span class="token string">" select max(cust_id) from  cn.itcast.domain.Customer  "</span><span class="token punctuation">;</span>//完整写法
+        String hql5 <span class="token operator">=</span> <span class="token string">" select min(cust_id) from  cn.itcast.domain.Customer  "</span><span class="token punctuation">;</span>//完整写法
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Number number  <span class="token operator">=</span> <span class="token punctuation">(</span>Number<span class="token punctuation">)</span> query.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //分页查询
+    public void fun6<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1<span class="token operator">></span> 书写HQL语句
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer  "</span><span class="token punctuation">;</span> // 查询所有Customer对象
+        //2<span class="token operator">></span> 根据HQL语句创建查询对象
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //设置分页信息 limit ?,?
+        query.setFirstResult<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        query.setMaxResults<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 根据查询对象获得查询结果
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span>  query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+//回顾-原生SQL
+    // 交叉连接-笛卡尔积<span class="token punctuation">(</span>避免<span class="token punctuation">)</span>
+//        <span class="token keyword">select</span> * from A,B 
+    // 内连接
+//        <span class="token operator">|</span>-隐式内连接
+//            <span class="token keyword">select</span> * from A,B  where b.aid <span class="token operator">=</span> a.id
+//        <span class="token operator">|</span>-显式内连接
+//            <span class="token keyword">select</span> * from A inner <span class="token function">join</span> B on b.aid <span class="token operator">=</span> a.id
+    // 外连接
+//        <span class="token operator">|</span>- 左外
+//            <span class="token keyword">select</span> * from A left <span class="token punctuation">[</span>outer<span class="token punctuation">]</span> <span class="token function">join</span> B on b.aid <span class="token operator">=</span> a.id
+//        <span class="token operator">|</span>- 右外
+//            <span class="token keyword">select</span> * from A right <span class="token punctuation">[</span>outer<span class="token punctuation">]</span> <span class="token function">join</span> B on b.aid <span class="token operator">=</span> a.id
+//HQL 内连接 <span class="token operator">=</span><span class="token operator">></span> 将连接的两端对象分别返回.放到数组中.
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer c inner join c.linkMens "</span><span class="token punctuation">;</span>
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List<span class="token operator">&lt;</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        for<span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token keyword">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>Arrays.toString<span class="token punctuation">(</span>arr<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //HQL 迫切内连接 <span class="token operator">=</span><span class="token operator">></span> 帮我们进行封装.返回值就是一个对象
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer c inner join fetch c.linkMens "</span><span class="token punctuation">;</span>
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //HQL 左外连接 <span class="token operator">=</span><span class="token operator">></span> 将连接的两端对象分别返回.放到数组中.
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer c left join c.linkMens "</span><span class="token punctuation">;</span>
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List<span class="token operator">&lt;</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        for<span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token keyword">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>Arrays.toString<span class="token punctuation">(</span>arr<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    @Test
+    //HQL 右外连接 <span class="token operator">=</span><span class="token operator">></span> 将连接的两端对象分别返回.放到数组中.
+    public void fun4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        String hql <span class="token operator">=</span> <span class="token string">" from Customer c right join c.linkMens "</span><span class="token punctuation">;</span>
+
+        Query query <span class="token operator">=</span> session.createQuery<span class="token punctuation">(</span>hql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List<span class="token operator">&lt;</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        for<span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token keyword">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>Arrays.toString<span class="token punctuation">(</span>arr<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h3><pre class=" language-bash"><code class="language-bash"> package cn.itheima.f_criteria<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.util.List<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.hibernate.Criteria<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Query<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Session<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Transaction<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.criterion.Projections<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.criterion.Restrictions<span class="token punctuation">;</span>
+<span class="token function">import</span> org.junit.Test<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itheima.domain.Customer<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.utils.HibernateUtils<span class="token punctuation">;</span>
+
+//测试Criteria查询
+public class Demo <span class="token punctuation">{</span>
+
+    @Test
+    //基本查询
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+
+        //查询所有的Customer对象
+        Criteria criteria <span class="token operator">=</span> session.createCriteria<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> criteria.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//        Customer c <span class="token operator">=</span> <span class="token punctuation">(</span>Customer<span class="token punctuation">)</span> criteria.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //条件查询
+    //HQL语句中,不可能出现任何数据库相关的信息的
+    // <span class="token operator">></span>                 gt
+    // <span class="token operator">>=</span>                ge
+    // <span class="token operator">&lt;</span>                lt
+    // <span class="token operator">&lt;=</span>                le
+    // <span class="token operator">==</span>                eq
+    // <span class="token operator">!=</span>                ne
+    // <span class="token keyword">in</span>                <span class="token keyword">in</span>
+    // between and        between
+    // like             like
+    // is not null         isNotNull
+    // is null            isNull
+    // or                or
+    // and                and
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //创建criteria查询对象
+        Criteria criteria <span class="token operator">=</span> session.createCriteria<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //添加查询参数 <span class="token operator">=</span><span class="token operator">></span> 查询cust_id为1的Customer对象
+        criteria.add<span class="token punctuation">(</span>Restrictions.eq<span class="token punctuation">(</span><span class="token string">"cust_id"</span>, 1l<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        //执行查询获得结果
+        Customer c <span class="token operator">=</span> <span class="token punctuation">(</span>Customer<span class="token punctuation">)</span> criteria.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+
+
+
+    @Test
+    //分页查询
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //创建criteria查询对象
+        Criteria criteria <span class="token operator">=</span> session.createCriteria<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //设置分页信息 limit ?,?
+        criteria.setFirstResult<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        criteria.setMaxResults<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //执行查询
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> criteria.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //查询总记录数
+    public void fun4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //创建criteria查询对象
+        Criteria criteria <span class="token operator">=</span> session.createCriteria<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //设置查询的聚合函数 <span class="token operator">=</span><span class="token operator">></span> 总行数
+        criteria.setProjection<span class="token punctuation">(</span>Projections.rowCount<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        //执行查询
+        Long count <span class="token operator">=</span> <span class="token punctuation">(</span>Long<span class="token punctuation">)</span> criteria.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+
+    @Test
+    // 离线
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //Service/web层
+        DetachedCriteria <span class="token function">dc</span>  <span class="token operator">=</span> DetachedCriteria.forClass<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        dc.add<span class="token punctuation">(</span>Restrictions.idEq<span class="token punctuation">(</span>6l<span class="token punctuation">))</span><span class="token punctuation">;</span>//拼装条件<span class="token punctuation">(</span>全部与普通Criteria一致<span class="token punctuation">)</span>
+
+        //----------------------------------------------------
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        Criteria c <span class="token operator">=</span> dc.getExecutableCriteria<span class="token punctuation">(</span>session<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List list <span class="token operator">=</span> c.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><pre class=" language-bash"><code class="language-bash"> package cn.itheima.g_sql<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.util.Arrays<span class="token punctuation">;</span>
+<span class="token function">import</span> java.util.List<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.hibernate.Criteria<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.SQLQuery<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Session<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Transaction<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.criterion.Projections<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.criterion.Restrictions<span class="token punctuation">;</span>
+<span class="token function">import</span> org.junit.Test<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itheima.domain.Customer<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itheima.utils.HibernateUtils<span class="token punctuation">;</span>
+
+//测试原生SQL查询
+public class Demo <span class="token punctuation">{</span>
+
+    @Test
+    //基本查询
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1 书写sql语句
+        String sql <span class="token operator">=</span> <span class="token string">"select * from cst_customer"</span><span class="token punctuation">;</span>
+
+        //2 创建sql查询对象
+        SQLQuery query <span class="token operator">=</span> session.createSQLQuery<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //3 调用方法查询结果
+        List<span class="token operator">&lt;</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //query.uniqueResult<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        for<span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> objs <span class="token keyword">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>Arrays.toString<span class="token punctuation">(</span>objs<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //基本查询
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1 书写sql语句
+        String sql <span class="token operator">=</span> <span class="token string">"select * from cst_customer"</span><span class="token punctuation">;</span>
+
+        //2 创建sql查询对象
+        SQLQuery query <span class="token operator">=</span> session.createSQLQuery<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //指定将结果集封装到哪个对象中
+        query.addEntity<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //3 调用方法查询结果
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+
+
+    <span class="token punctuation">}</span>
+
+    @Test
+    //条件查询
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1 书写sql语句
+        String sql <span class="token operator">=</span> <span class="token string">"select * from cst_customer where cust_id = ? "</span><span class="token punctuation">;</span>
+
+        //2 创建sql查询对象
+        SQLQuery query <span class="token operator">=</span> session.createSQLQuery<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        query.setParameter<span class="token punctuation">(</span>0, 1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //指定将结果集封装到哪个对象中
+        query.addEntity<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //3 调用方法查询结果
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+
+    @Test
+    //分页查询
+    public void fun4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 控制事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3执行操作
+        //-------------------------------------------
+        //1 书写sql语句
+        String sql <span class="token operator">=</span> <span class="token string">"select * from cst_customer  limit ?,? "</span><span class="token punctuation">;</span>
+        //2 创建sql查询对象
+        SQLQuery query <span class="token operator">=</span> session.createSQLQuery<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        query.setParameter<span class="token punctuation">(</span>0, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        query.setParameter<span class="token punctuation">(</span>1, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //指定将结果集封装到哪个对象中
+        query.addEntity<span class="token punctuation">(</span>Customer.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3 调用方法查询结果
+        List<span class="token operator">&lt;</span>Customer<span class="token operator">></span> list <span class="token operator">=</span> query.list<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------
+        //4提交事务.关闭资源
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 游离<span class="token operator">|</span>托管 状态, 有id , 没有关联
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="加载策略"><a href="#加载策略" class="headerlink" title="加载策略"></a>加载策略</h3><pre class=" language-bash"><code class="language-bash">     @Test
+    // load方法<span class="token punctuation">(</span>默认<span class="token punctuation">)</span>:是在执行时,不发送任何sql语句.返回一个对象.使用该对象时,才执行查询.
+    // 延迟加载: 仅仅获得没有使用.不会查询.在使用时才进行查询.
+    // 是否对类进行延迟加载: 可以通过在class元素上配置lazy属性来控制.
+        //lazy:true  加载时,不查询.使用时才查询b
+        //lazy:false 加载时立即查询.
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //----------------------------------------------------
+
+        Customer c <span class="token operator">=</span> session.load<span class="token punctuation">(</span>Customer.class, 2l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //----------------------------------------------------
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="多对一"><a href="#多对一" class="headerlink" title="多对一"></a>多对一</h2><p> <img src="/2018/10/25/hibernate-zong-jie/1.jpg" alt="图1"></p>
+<h3 id="Customer-java"><a href="#Customer-java" class="headerlink" title="Customer.java"></a>Customer.java</h3><pre class=" language-bash"><code class="language-bash">public class Customer <span class="token punctuation">{</span>
+
+    /*
+     * CREATE TABLE <span class="token variable"><span class="token variable">`</span>cst_customer<span class="token variable">`</span></span> <span class="token punctuation">(</span>
+      <span class="token variable"><span class="token variable">`</span>cust_id<span class="token variable">`</span></span> BIGINT<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL AUTO_INCREMENT COMMENT <span class="token string">'客户编号(主键)'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_name<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL COMMENT <span class="token string">'客户名称(公司名称)'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_source<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户信息来源'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_industry<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户所属行业'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_level<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>32<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'客户级别'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_linkman<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>64<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_phone<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>64<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'固定电话'</span>,
+      <span class="token variable"><span class="token variable">`</span>cust_mobile<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'移动电话'</span>,
+      PRIMARY KEY <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>cust_id<span class="token variable">`</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> ENGINE<span class="token operator">=</span>INNODB AUTO_INCREMENT<span class="token operator">=</span>1 DEFAULT CHARSET<span class="token operator">=</span>utf8<span class="token punctuation">;</span>
+     */
+    private Long cust_id<span class="token punctuation">;</span>
+
+    private String cust_name<span class="token punctuation">;</span>
+    private String cust_source<span class="token punctuation">;</span>
+    private String cust_industry<span class="token punctuation">;</span>
+    private String cust_level<span class="token punctuation">;</span>
+    private String cust_linkman<span class="token punctuation">;</span>
+    private String cust_phone<span class="token punctuation">;</span>
+    private String cust_mobile<span class="token punctuation">;</span>
+    //使用set集合,表达一对多关系
+    private Set<span class="token operator">&lt;</span>LinkMan<span class="token operator">></span> linkMens <span class="token operator">=</span> new HashSet<span class="token operator">&lt;</span>LinkMan<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    public Set<span class="token operator">&lt;</span>LinkMan<span class="token operator">></span> getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> linkMens<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLinkMens<span class="token punctuation">(</span>Set<span class="token operator">&lt;</span>LinkMan<span class="token operator">></span> linkMens<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.linkMens <span class="token operator">=</span> linkMens<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Long getCust_id<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_id<span class="token punctuation">(</span>Long cust_id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_id <span class="token operator">=</span> cust_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_name<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_name<span class="token punctuation">(</span>String cust_name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_name <span class="token operator">=</span> cust_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_source<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_source<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_source<span class="token punctuation">(</span>String cust_source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_source <span class="token operator">=</span> cust_source<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_industry<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_industry<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_industry<span class="token punctuation">(</span>String cust_industry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_industry <span class="token operator">=</span> cust_industry<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_level<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_level<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_level<span class="token punctuation">(</span>String cust_level<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_level <span class="token operator">=</span> cust_level<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_linkman<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_linkman<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_linkman<span class="token punctuation">(</span>String cust_linkman<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_linkman <span class="token operator">=</span> cust_linkman<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_phone<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_phone<span class="token punctuation">(</span>String cust_phone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_phone <span class="token operator">=</span> cust_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getCust_mobile<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cust_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCust_mobile<span class="token punctuation">(</span>String cust_mobile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cust_mobile <span class="token operator">=</span> cust_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    @Override
+    public String toString<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Customer [cust_id="</span> + cust_id + <span class="token string">", cust_name="</span> + cust_name + <span class="token string">"]"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="LinkMan-java"><a href="#LinkMan-java" class="headerlink" title="LinkMan.java"></a>LinkMan.java</h3><pre class=" language-bash"><code class="language-bash">//联系人实体
+public class LinkMan <span class="token punctuation">{</span>
+        /*
+         * CREATE TABLE <span class="token variable"><span class="token variable">`</span>cst_linkman<span class="token variable">`</span></span> <span class="token punctuation">(</span>
+          <span class="token variable"><span class="token variable">`</span>lkm_id<span class="token variable">`</span></span> bigint<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL AUTO_INCREMENT COMMENT <span class="token string">'联系人编号(主键)'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_name<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人姓名'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_cust_id<span class="token variable">`</span></span> bigint<span class="token punctuation">(</span>32<span class="token punctuation">)</span> NOT NULL COMMENT <span class="token string">'客户id'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_gender<span class="token variable">`</span></span> char<span class="token punctuation">(</span>1<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人性别'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_phone<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人办公电话'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_mobile<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人手机'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_email<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>64<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人邮箱'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_qq<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人qq'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_position<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>16<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人职位'</span>,
+          <span class="token variable"><span class="token variable">`</span>lkm_memo<span class="token variable">`</span></span> varchar<span class="token punctuation">(</span>512<span class="token punctuation">)</span> DEFAULT NULL COMMENT <span class="token string">'联系人备注'</span>,
+          PRIMARY KEY <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>lkm_id<span class="token variable">`</span></span><span class="token punctuation">)</span>,
+          KEY <span class="token variable"><span class="token variable">`</span>FK_cst_linkman_lkm_cust_id<span class="token variable">`</span></span> <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>lkm_cust_id<span class="token variable">`</span></span><span class="token punctuation">)</span>,
+          CONSTRAINT <span class="token variable"><span class="token variable">`</span>FK_cst_linkman_lkm_cust_id<span class="token variable">`</span></span> FOREIGN KEY <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>lkm_cust_id<span class="token variable">`</span></span><span class="token punctuation">)</span> REFERENCES <span class="token variable"><span class="token variable">`</span>cst_customer<span class="token variable">`</span></span> <span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>cust_id<span class="token variable">`</span></span><span class="token punctuation">)</span> ON DELETE NO ACTION ON UPDATE NO ACTION
+        <span class="token punctuation">)</span> ENGINE<span class="token operator">=</span>InnoDB AUTO_INCREMENT<span class="token operator">=</span>3 DEFAULT CHARSET<span class="token operator">=</span>utf8<span class="token punctuation">;</span>
+         */
+    private Long lkm_id<span class="token punctuation">;</span>
+    private Character lkm_gender<span class="token punctuation">;</span>
+    private String lkm_name<span class="token punctuation">;</span>
+    private String lkm_phone<span class="token punctuation">;</span>
+    private String lkm_email<span class="token punctuation">;</span>
+    private String lkm_qq<span class="token punctuation">;</span>
+    private String lkm_mobile<span class="token punctuation">;</span>
+    private String lkm_memo<span class="token punctuation">;</span>
+    private String lkm_position<span class="token punctuation">;</span>
+
+    //表达多对一关系
+    private Customer customer <span class="token punctuation">;</span>
+
+
+
+    public Customer getCustomer<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> customer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCustomer<span class="token punctuation">(</span>Customer customer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.customer <span class="token operator">=</span> customer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Long getLkm_id<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_id<span class="token punctuation">(</span>Long lkm_id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_id <span class="token operator">=</span> lkm_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Character getLkm_gender<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_gender<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_gender<span class="token punctuation">(</span>Character lkm_gender<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_gender <span class="token operator">=</span> lkm_gender<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_name<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_name<span class="token punctuation">(</span>String lkm_name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_name <span class="token operator">=</span> lkm_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_phone<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_phone<span class="token punctuation">(</span>String lkm_phone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_phone <span class="token operator">=</span> lkm_phone<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_email<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_email<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_email<span class="token punctuation">(</span>String lkm_email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_email <span class="token operator">=</span> lkm_email<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_qq<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_qq<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_qq<span class="token punctuation">(</span>String lkm_qq<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_qq <span class="token operator">=</span> lkm_qq<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_mobile<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_mobile<span class="token punctuation">(</span>String lkm_mobile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_mobile <span class="token operator">=</span> lkm_mobile<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_memo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_memo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_memo<span class="token punctuation">(</span>String lkm_memo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_memo <span class="token operator">=</span> lkm_memo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getLkm_position<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lkm_position<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setLkm_position<span class="token punctuation">(</span>String lkm_position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.lkm_position <span class="token operator">=</span> lkm_position<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="Customer-hbm-xml-1"><a href="#Customer-hbm-xml-1" class="headerlink" title="Customer.hbm.xml"></a>Customer.hbm.xml</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-mapping PUBLIC 
+    <span class="token string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-mapping package<span class="token operator">=</span><span class="token string">"cn.itcast.domain"</span> <span class="token operator">></span>
+    <span class="token operator">&lt;</span>class name<span class="token operator">=</span><span class="token string">"Customer"</span> table<span class="token operator">=</span><span class="token string">"cst_customer"</span> <span class="token operator">></span>
+        <span class="token operator">&lt;</span>id name<span class="token operator">=</span><span class="token string">"cust_id"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span>generator class<span class="token operator">=</span><span class="token string">"native"</span><span class="token operator">></span><span class="token operator">&lt;</span>/generator<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/id<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_name"</span> column<span class="token operator">=</span><span class="token string">"cust_name"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_source"</span> column<span class="token operator">=</span><span class="token string">"cust_source"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_industry"</span> column<span class="token operator">=</span><span class="token string">"cust_industry"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_level"</span> column<span class="token operator">=</span><span class="token string">"cust_level"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_linkman"</span> column<span class="token operator">=</span><span class="token string">"cust_linkman"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_phone"</span> column<span class="token operator">=</span><span class="token string">"cust_phone"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"cust_mobile"</span> column<span class="token operator">=</span><span class="token string">"cust_mobile"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 集合,一对多关系,在配置文件中配置 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+            name属性:集合属性名
+            column属性: 外键列名
+            class属性: 与我关联的对象完整类名
+         --<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+             级联操作:    cascade
+                 save-update: 级联保存更新
+                 delete:级联删除
+                 all:save-update+delete
+             级联操作: 简化操作.目的就是为了少些两行代码.
+          --<span class="token operator">></span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span>-- inverse属性: 配置关系是否维护. 
+                  true: customer不维护关系
+                  false<span class="token punctuation">(</span>默认值<span class="token punctuation">)</span>: customer维护关系
+
+              inverse属性: 性能优化.提高关系维护的性能.
+              原则: 无论怎么放弃,总有一方必须要维护关系.
+              一对多关系中: 一的一方放弃.也只能一的一方放弃.多的一方不能放弃.
+          --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>set name<span class="token operator">=</span><span class="token string">"linkMens"</span> inverse<span class="token operator">=</span><span class="token string">"true"</span> cascade<span class="token operator">=</span><span class="token string">"delete"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span>key column<span class="token operator">=</span><span class="token string">"lkm_cust_id"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/key<span class="token operator">></span>
+            <span class="token operator">&lt;</span>one-to-many class<span class="token operator">=</span><span class="token string">"LinkMan"</span> /<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/set<span class="token operator">></span>
+
+
+    <span class="token operator">&lt;</span>/class<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-mapping<span class="token operator">></span>
+</code></pre>
+<h3 id="LinkMan-hbm-xml"><a href="#LinkMan-hbm-xml" class="headerlink" title="LinkMan.hbm.xml"></a>LinkMan.hbm.xml</h3><pre class=" language-bash"><code class="language-bash"> <span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-mapping PUBLIC 
+    <span class="token string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-mapping package<span class="token operator">=</span><span class="token string">"cn.itcast.domain"</span> <span class="token operator">></span>
+    <span class="token operator">&lt;</span>class name<span class="token operator">=</span><span class="token string">"LinkMan"</span> table<span class="token operator">=</span><span class="token string">"cst_linkman"</span> <span class="token operator">></span>
+        <span class="token operator">&lt;</span>id name<span class="token operator">=</span><span class="token string">"lkm_id"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span>generator class<span class="token operator">=</span><span class="token string">"native"</span><span class="token operator">></span><span class="token operator">&lt;</span>/generator<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/id<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_gender"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_name"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_phone"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_email"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_qq"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_mobile"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_memo"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"lkm_position"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 多对一 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+            name属性:引用属性名
+            column属性: 外键列名
+            class属性: 与我关联的对象完整类名
+         --<span class="token operator">></span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+             级联操作:    cascade
+                 save-update: 级联保存更新
+                 delete:级联删除
+                 all:save-update+delete
+             级联操作: 简化操作.目的就是为了少些两行代码.
+          --<span class="token operator">></span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span>-- 多的一方: 不能放弃维护关系的.外键字段就在多的一方.  --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>many-to-one name<span class="token operator">=</span><span class="token string">"customer"</span> column<span class="token operator">=</span><span class="token string">"lkm_cust_id"</span> class<span class="token operator">=</span><span class="token string">"Customer"</span>  <span class="token operator">></span>
+        <span class="token operator">&lt;</span>/many-to-one<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/class<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-mapping<span class="token operator">></span>
+</code></pre>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><pre class=" language-bash"><code class="language-bash"> //测试级联操作
+public class Demo2 <span class="token punctuation">{</span>
+    @Test
+    //保存客户 以及客户 下的联系人
+    //cascade:save-update
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        Customer c <span class="token operator">=</span> new Customer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c.setCust_name<span class="token punctuation">(</span><span class="token string">"客户"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        LinkMan lm1 <span class="token operator">=</span> new LinkMan<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm1.setLkm_name<span class="token punctuation">(</span><span class="token string">"联系人1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        LinkMan lm2 <span class="token operator">=</span> new LinkMan<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm2.setLkm_name<span class="token punctuation">(</span><span class="token string">"联系人2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达一对多,客户下有多个联系人
+        c.getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c.getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>lm2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达对对对,联系人属于哪个客户
+        lm1.setCustomer<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm2.setCustomer<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        session.save<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//        session.save<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//        session.save<span class="token punctuation">(</span>lm2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Test
+    //测试删除客户时,级联删除客户下的联系人
+    //cascade:delete
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        //1<span class="token operator">></span> 获得要操作的客户对象
+        Customer c <span class="token operator">=</span> session.get<span class="token punctuation">(</span>Customer.class,1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2<span class="token operator">></span>调用delete删除客户
+        session.delete<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Test
+    //保存联系人以及联系人对应的客户
+    //cascade:save-update
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        Customer c <span class="token operator">=</span> new Customer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c.setCust_name<span class="token punctuation">(</span><span class="token string">"客户"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        LinkMan lm1 <span class="token operator">=</span> new LinkMan<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm1.setLkm_name<span class="token punctuation">(</span><span class="token string">"刘总"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达一对多,客户下有多个联系人
+        c.getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达对对对,联系人属于哪个客户
+        lm1.setCustomer<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+        @Test
+    //删除客户
+    public void fun2<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        Customer customer <span class="token operator">=</span> session.get<span class="token punctuation">(</span>Customer.class, 1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        session.delete<span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        Customer c <span class="token operator">=</span> new Customer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c.setCust_name<span class="token punctuation">(</span><span class="token string">"传智播客"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        LinkMan lm1 <span class="token operator">=</span> new LinkMan<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm1.setLkm_name<span class="token punctuation">(</span><span class="token string">"黎活明"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        LinkMan lm2 <span class="token operator">=</span> new LinkMan<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm2.setLkm_name<span class="token punctuation">(</span><span class="token string">"刘悦东"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达一对多,客户下有多个联系人. 
+        // 如果客户放弃维护与联系人的关系. 维护关系的代码可以省略
+        //c.getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //c.getLinkMens<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>lm2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //表达对对对,联系人属于哪个客户
+        lm1.setCustomer<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lm2.setCustomer<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        session.save<span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>lm1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>lm2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><p>  <img src="/2018/10/25/hibernate-zong-jie/2.jpg" alt="图2"></p>
+<h3 id="角色表的配置"><a href="#角色表的配置" class="headerlink" title="角色表的配置"></a>角色表的配置</h3><pre class=" language-bash"><code class="language-bash">  <span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-mapping PUBLIC 
+    <span class="token string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-mapping package<span class="token operator">=</span><span class="token string">"cn.itcast.domain"</span> <span class="token operator">></span>
+    <span class="token operator">&lt;</span>class name<span class="token operator">=</span><span class="token string">"Role"</span> table<span class="token operator">=</span><span class="token string">"sys_role"</span> <span class="token operator">></span>
+        <span class="token operator">&lt;</span>id name<span class="token operator">=</span><span class="token string">"role_id"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span>generator class<span class="token operator">=</span><span class="token string">"native"</span><span class="token operator">></span><span class="token operator">&lt;</span>/generator<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/id<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"role_name"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"role_memo"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span>-- 使用inverse属性
+            true: 放弃维护外键关系
+            false<span class="token punctuation">(</span>默认值<span class="token punctuation">)</span>:维护关系
+
+        结论: 将来在开发中,如果遇到多对多关系.一定要选择一方放弃维护关系.
+             一般谁来放弃要看业务方向. 例如录入员工时,需要为员工指定所属角色.
+             那么业务方向就是由员工维护角色. 角色不需要维护与员工关系.角色放弃维护
+         --<span class="token operator">></span>        
+        <span class="token operator">&lt;</span>set name<span class="token operator">=</span><span class="token string">"users"</span> table<span class="token operator">=</span><span class="token string">"sys_user_role"</span> inverse<span class="token operator">=</span><span class="token string">"true"</span> <span class="token operator">></span>
+            <span class="token operator">&lt;</span>key column<span class="token operator">=</span><span class="token string">"role_id"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/key<span class="token operator">></span>
+            <span class="token operator">&lt;</span>many-to-many class<span class="token operator">=</span><span class="token string">"User"</span> column<span class="token operator">=</span><span class="token string">"user_id"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/many-to-many<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/set<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/class<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-mapping<span class="token operator">></span>
+</code></pre>
+<h3 id="用户表的配置"><a href="#用户表的配置" class="headerlink" title="用户表的配置"></a>用户表的配置</h3><pre class=" language-bash"><code class="language-bash">  <span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE hibernate-mapping PUBLIC 
+    <span class="token string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span>
+    <span class="token string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>hibernate-mapping package<span class="token operator">=</span><span class="token string">"cn.itcast.domain"</span> <span class="token operator">></span>
+    <span class="token operator">&lt;</span>class name<span class="token operator">=</span><span class="token string">"User"</span> table<span class="token operator">=</span><span class="token string">"sys_user"</span> <span class="token operator">></span>
+        <span class="token operator">&lt;</span>id name<span class="token operator">=</span><span class="token string">"user_id"</span>  <span class="token operator">></span>
+            <span class="token operator">&lt;</span>generator class<span class="token operator">=</span><span class="token string">"native"</span><span class="token operator">></span><span class="token operator">&lt;</span>/generator<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/id<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"user_code"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"user_name"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"user_password"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"user_state"</span>  <span class="token operator">></span><span class="token operator">&lt;</span>/property<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 多对多关系表达 --<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>-- 
+            name: 集合属性名
+            table: 配置中间表名
+            key
+             <span class="token operator">|</span>-column:外键,别人引用<span class="token string">"我"</span>的外键列名
+             class: 我与哪个类是多对多关系
+             column:外键.我引用比人的外键列名
+         --<span class="token operator">></span>
+         <span class="token operator">&lt;</span><span class="token operator">!</span>-- cascade级联操作:
+                     save-update: 级联保存更新
+                     delete:级联删除
+                     all:级联保存更新+级联删除
+             结论: cascade简化代码书写.该属性使不使用无所谓. 建议要用只用save-update.
+                  如果使用delete操作太过危险.尤其在多对多中.不建议使用.
+                      --<span class="token operator">></span>
+        <span class="token operator">&lt;</span>set name<span class="token operator">=</span><span class="token string">"roles"</span> table<span class="token operator">=</span><span class="token string">"sys_user_role"</span> cascade<span class="token operator">=</span><span class="token string">"save-update"</span> <span class="token operator">></span>
+            <span class="token operator">&lt;</span>key column<span class="token operator">=</span><span class="token string">"user_id"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/key<span class="token operator">></span>
+            <span class="token operator">&lt;</span>many-to-many class<span class="token operator">=</span><span class="token string">"Role"</span> column<span class="token operator">=</span><span class="token string">"role_id"</span> <span class="token operator">></span><span class="token operator">&lt;</span>/many-to-many<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/set<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>/class<span class="token operator">></span>
+<span class="token operator">&lt;</span>/hibernate-mapping<span class="token operator">></span>
+</code></pre>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><pre class=" language-bash"><code class="language-bash">  package cn.itcast.b_many2many<span class="token punctuation">;</span>
+
+<span class="token function">import</span> org.hibernate.Session<span class="token punctuation">;</span>
+<span class="token function">import</span> org.hibernate.Transaction<span class="token punctuation">;</span>
+<span class="token function">import</span> org.junit.Test<span class="token punctuation">;</span>
+
+<span class="token function">import</span> cn.itcast.domain.Role<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itcast.domain.User<span class="token punctuation">;</span>
+<span class="token function">import</span> cn.itcast.utils.HibernateUtils<span class="token punctuation">;</span>
+
+//多对多关系操作
+public class Demo <span class="token punctuation">{</span>
+    @Test
+    //保存员工以及角色
+    public void fun1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        //1<span class="token operator">></span> 创建两个 User
+        User u1 <span class="token operator">=</span> new User<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        u1.setUser_name<span class="token punctuation">(</span><span class="token string">"小子"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        User u2 <span class="token operator">=</span> new User<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        u2.setUser_name<span class="token punctuation">(</span><span class="token string">"金家"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //2<span class="token operator">></span> 创建两个 Role
+        Role r1 <span class="token operator">=</span> new Role<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r1.setRole_name<span class="token punctuation">(</span><span class="token string">"保洁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Role r2 <span class="token operator">=</span> new Role<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r2.setRole_name<span class="token punctuation">(</span><span class="token string">"保安"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 用户表达关系
+        u1.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        u1.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        u2.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        u2.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //4<span class="token operator">></span> 角色表达关系
+        r1.getUsers<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r1.getUsers<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>u2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        r2.getUsers<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>u1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r2.getUsers<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>u2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //5<span class="token operator">></span> 调用Save方法一次保存
+        session.save<span class="token punctuation">(</span>u1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>u2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        session.save<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    @Test
+    //为郝强勇新增一个角色
+    public void fun3<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        //1<span class="token operator">></span> 获得郝强勇用户
+        User user <span class="token operator">=</span> session.get<span class="token punctuation">(</span>User.class, 1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2<span class="token operator">></span> 创建公关角色
+        Role r <span class="token operator">=</span> new Role<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        r.setRole_name<span class="token punctuation">(</span><span class="token string">"男公关"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 将角色添加到用户中
+        user.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.add<span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //4<span class="token operator">></span> 将角色转换为持久化
+        //session.save<span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Test
+    //为郝强勇解除一个角色
+    public void fun4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //1 获得session
+        Session session <span class="token operator">=</span> HibernateUtils.openSession<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2 开启事务
+        Transaction tx <span class="token operator">=</span> session.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //-------------------------------------------------
+        //3操作
+        //1<span class="token operator">></span> 获得郝强勇用户
+        User user <span class="token operator">=</span> session.get<span class="token punctuation">(</span>User.class, 1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //2<span class="token operator">></span> 获得要操作的角色对象<span class="token punctuation">(</span>保洁,保安<span class="token punctuation">)</span>
+        Role r1 <span class="token operator">=</span> session.get<span class="token punctuation">(</span>Role.class, 1l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Role r2 <span class="token operator">=</span> session.get<span class="token punctuation">(</span>Role.class, 2l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //3<span class="token operator">></span> 将角色从用户的角色集合中移除
+        user.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.remove<span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user.getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span>.remove<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //-------------------------------------------------
+        //4提交事务
+        tx.commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //5关闭资源
+        session.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><pre class=" language-bash"><code class="language-bash">  public class Role <span class="token punctuation">{</span>
+
+    private Long role_id<span class="token punctuation">;</span>
+    private String role_name<span class="token punctuation">;</span>
+    private String role_memo<span class="token punctuation">;</span>
+    //表达多对多
+    private Set<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">users</span> <span class="token operator">=</span> new HashSet<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    public Long getRole_id<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> role_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setRole_id<span class="token punctuation">(</span>Long role_id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.role_id <span class="token operator">=</span> role_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getRole_name<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> role_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setRole_name<span class="token punctuation">(</span>String role_name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.role_name <span class="token operator">=</span> role_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getRole_memo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> role_memo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setRole_memo<span class="token punctuation">(</span>String role_memo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.role_memo <span class="token operator">=</span> role_memo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Set<span class="token operator">&lt;</span>User<span class="token operator">></span> getUsers<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">users</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUsers<span class="token punctuation">(</span>Set<span class="token operator">&lt;</span>User<span class="token operator">></span> users<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.users <span class="token operator">=</span> <span class="token function">users</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+public class User <span class="token punctuation">{</span>
+    private Long user_id<span class="token punctuation">;</span>
+    private String user_code<span class="token punctuation">;</span>
+    private String user_name<span class="token punctuation">;</span>
+    private String user_password<span class="token punctuation">;</span>
+    private Character user_state<span class="token punctuation">;</span>
+    //表达多对多
+    private Set<span class="token operator">&lt;</span>Role<span class="token operator">></span> roles <span class="token operator">=</span> new HashSet<span class="token operator">&lt;</span>Role<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    public Long getUser_id<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> user_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUser_id<span class="token punctuation">(</span>Long user_id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.user_id <span class="token operator">=</span> user_id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getUser_code<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> user_code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUser_code<span class="token punctuation">(</span>String user_code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.user_code <span class="token operator">=</span> user_code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getUser_name<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> user_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUser_name<span class="token punctuation">(</span>String user_name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.user_name <span class="token operator">=</span> user_name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getUser_password<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> user_password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUser_password<span class="token punctuation">(</span>String user_password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.user_password <span class="token operator">=</span> user_password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Character getUser_state<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> user_state<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setUser_state<span class="token punctuation">(</span>Character user_state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.user_state <span class="token operator">=</span> user_state<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Set<span class="token operator">&lt;</span>Role<span class="token operator">></span> getRoles<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> roles<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setRoles<span class="token punctuation">(</span>Set<span class="token operator">&lt;</span>Role<span class="token operator">></span> roles<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.roles <span class="token operator">=</span> roles<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/10/25/hibernate-zong-jie/" class="b-link-green">Hibernate 总结</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/02/orcale-zong-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="orcale总结">
+                        
+                        <span class="card-title">orcale总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">orcale 导出和导入数据有些网友报错，一般都是没有dba权限，授权：
+sqlplus / as sysdba
+进入后直接创建用户并授予dba的权限
+例如：
+sqlplus / as sysdba
+SQL*Plus: Release 11</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/orcale/" target="_blank">
+                        <span class="chip bg-color">orcale</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2018/10/25/hibernate-zong-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Hibernate 总结">
+                        
+                        <span class="card-title">Hibernate 总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Hibernate基本使用主配置1.导包，导入约束 2.主配置文件hibernate.cfg.xml
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE hibernate-conf</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA/" class="post-category" target="_blank">
+                                    JAVA
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/框架/" target="_blank">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                    <a href="/tags/SSH/" target="_blank">
+                        <span class="chip bg-color">SSH</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

@@ -74,32 +74,6 @@
   </entry>
   
   <entry>
-    <title>上传与下载</title>
-    <link href="https://zy20081.github.io/2019/01/17/shang-chuan-yu-xia-zai/"/>
-    <id>https://zy20081.github.io/2019/01/17/shang-chuan-yu-xia-zai/</id>
-    <published>2019-01-17T08:17:11.000Z</published>
-    <updated>2019-01-17T06:45:06.977Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;上传与下载&quot;&gt;&lt;a href=&quot;#上传与下载&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
-    
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
-    
-  </entry>
-  
-  <entry>
     <title>面向接口编程框架</title>
     <link href="https://zy20081.github.io/2019/01/17/mian-xiang-jie-kou-bian-cheng-kuang-jia/"/>
     <id>https://zy20081.github.io/2019/01/17/mian-xiang-jie-kou-bian-cheng-kuang-jia/</id>
@@ -128,6 +102,32 @@
   </entry>
   
   <entry>
+    <title>上传与下载</title>
+    <link href="https://zy20081.github.io/2019/01/17/shang-chuan-yu-xia-zai/"/>
+    <id>https://zy20081.github.io/2019/01/17/shang-chuan-yu-xia-zai/</id>
+    <published>2019-01-17T08:17:11.000Z</published>
+    <updated>2019-01-17T06:45:06.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;上传与下载&quot;&gt;&lt;a href=&quot;#上传与下载&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
     <title>json处理</title>
     <link href="https://zy20081.github.io/2019/01/16/json-chu-li/"/>
     <id>https://zy20081.github.io/2019/01/16/json-chu-li/</id>
@@ -150,32 +150,6 @@
     
     
       <category term="jQuery" scheme="https://zy20081.github.io/tags/jQuery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单三层架构</title>
-    <link href="https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/"/>
-    <id>https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/</id>
-    <published>2019-01-16T08:17:11.000Z</published>
-    <updated>2019-01-16T07:52:57.193Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简单三层架构&quot;&gt;&lt;a href=&quot;#简单三层架构&quot; class=&quot;headerlink&quot; title=&quot;简单三层架构&quot;&gt;&lt;/a&gt;简单三层架构&lt;/h2&gt;&lt;h2 id=&quot;Form&quot;&gt;&lt;a href=&quot;#Form&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
-    
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
     
   </entry>
   
@@ -208,6 +182,32 @@
   </entry>
   
   <entry>
+    <title>简单三层架构</title>
+    <link href="https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/"/>
+    <id>https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/</id>
+    <published>2019-01-16T08:17:11.000Z</published>
+    <updated>2019-01-16T07:52:57.193Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简单三层架构&quot;&gt;&lt;a href=&quot;#简单三层架构&quot; class=&quot;headerlink&quot; title=&quot;简单三层架构&quot;&gt;&lt;/a&gt;简单三层架构&lt;/h2&gt;&lt;h2 id=&quot;Form&quot;&gt;&lt;a href=&quot;#Form&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
     <title>反射</title>
     <link href="https://zy20081.github.io/2019/01/15/fan-she/"/>
     <id>https://zy20081.github.io/2019/01/15/fan-she/</id>
@@ -221,34 +221,6 @@
         
         
           &lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h2 id=&quot;定义一个类，并且生成dll&quot;&gt;&lt;a href=&quot;#定义一个类，并且生成dll&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程</title>
-    <link href="https://zy20081.github.io/2019/01/15/duo-xian-cheng/"/>
-    <id>https://zy20081.github.io/2019/01/15/duo-xian-cheng/</id>
-    <published>2019-01-15T08:17:11.000Z</published>
-    <updated>2019-01-15T07:39:20.950Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h2&gt;&lt;p&gt;
         
       
     
@@ -278,6 +250,34 @@
         
           &lt;h2 id=&quot;递归VS循环&quot;&gt;&lt;a href=&quot;#递归VS循环&quot; class=&quot;headerlink&quot; title=&quot;递归VS循环&quot;&gt;&lt;/a&gt;递归VS循环&lt;/h2&gt;&lt;p&gt;求第三位数前2位之和 ，一列数的规则如下: 1、1、2、3&lt;/p&gt;
 &lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+    
+    
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多线程</title>
+    <link href="https://zy20081.github.io/2019/01/15/duo-xian-cheng/"/>
+    <id>https://zy20081.github.io/2019/01/15/duo-xian-cheng/</id>
+    <published>2019-01-15T08:17:11.000Z</published>
+    <updated>2019-01-15T07:39:20.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h2&gt;&lt;p&gt;
         
       
     
@@ -437,36 +437,6 @@
   </entry>
   
   <entry>
-    <title>ASP.net web自带安全机制</title>
-    <link href="https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/"/>
-    <id>https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T07:08:16.898Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;ASP-net-web自带安全机制&quot;&gt;&lt;a href=&quot;#ASP-net-web自带安全机制&quot; class=&quot;headerlink&quot; title=&quot;ASP.net web自带安全机制&quot;&gt;&lt;/a&gt;ASP.net web自带安全机制&lt;/h2&gt;&lt;h2
-        
-      
-    
-    </summary>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
-    
-  </entry>
-  
-  <entry>
     <title>飞行棋</title>
     <link href="https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/"/>
     <id>https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/</id>
@@ -495,11 +465,11 @@
   </entry>
   
   <entry>
-    <title>简单OOP-消费单计算</title>
-    <link href="https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/"/>
-    <id>https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/</id>
+    <title>Array应用经典冒泡</title>
+    <link href="https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/"/>
+    <id>https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/</id>
     <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T03:58:23.813Z</updated>
+    <updated>2019-01-15T06:59:50.019Z</updated>
     
     <summary type="html">
     
@@ -507,7 +477,7 @@
       
         
         
-          &lt;h2 id=&quot;简单OOP-消费单计算&quot;&gt;&lt;a href=&quot;#简单OOP-消费单计算&quot; class=&quot;headerlink&quot; title=&quot;简单OOP-消费单计算&quot;&gt;&lt;/a&gt;简单OOP-消费单计算&lt;/h2&gt;&lt;p&gt;&lt;img
+          &lt;h2 id=&quot;Array定义&quot;&gt;&lt;a href=&quot;#Array定义&quot; class=&quot;headerlink&quot; title=&quot;Array定义&quot;&gt;&lt;/a&gt;Array定义&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
         
       
     
@@ -551,11 +521,11 @@
   </entry>
   
   <entry>
-    <title>Array应用经典冒泡</title>
-    <link href="https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/"/>
-    <id>https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/</id>
+    <title>ASP.net web自带安全机制</title>
+    <link href="https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/"/>
+    <id>https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/</id>
     <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T06:59:50.019Z</updated>
+    <updated>2019-01-15T07:08:16.898Z</updated>
     
     <summary type="html">
     
@@ -563,7 +533,37 @@
       
         
         
-          &lt;h2 id=&quot;Array定义&quot;&gt;&lt;a href=&quot;#Array定义&quot; class=&quot;headerlink&quot; title=&quot;Array定义&quot;&gt;&lt;/a&gt;Array定义&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
+          &lt;h2 id=&quot;ASP-net-web自带安全机制&quot;&gt;&lt;a href=&quot;#ASP-net-web自带安全机制&quot; class=&quot;headerlink&quot; title=&quot;ASP.net web自带安全机制&quot;&gt;&lt;/a&gt;ASP.net web自带安全机制&lt;/h2&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单OOP-消费单计算</title>
+    <link href="https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/"/>
+    <id>https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/</id>
+    <published>2019-01-13T04:17:11.000Z</published>
+    <updated>2019-01-15T03:58:23.813Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简单OOP-消费单计算&quot;&gt;&lt;a href=&quot;#简单OOP-消费单计算&quot; class=&quot;headerlink&quot; title=&quot;简单OOP-消费单计算&quot;&gt;&lt;/a&gt;简单OOP-消费单计算&lt;/h2&gt;&lt;p&gt;&lt;img
         
       
     

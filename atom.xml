@@ -180,11 +180,11 @@
   </entry>
   
   <entry>
-    <title>简单三层架构</title>
-    <link href="https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/"/>
-    <id>https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/</id>
+    <title>构造函数</title>
+    <link href="https://zy20081.github.io/2019/01/16/gou-zao-han-shu/"/>
+    <id>https://zy20081.github.io/2019/01/16/gou-zao-han-shu/</id>
     <published>2019-01-16T08:17:11.000Z</published>
-    <updated>2019-01-16T07:52:57.193Z</updated>
+    <updated>2019-01-16T07:36:32.211Z</updated>
     
     <summary type="html">
     
@@ -192,16 +192,18 @@
       
         
         
-          &lt;h2 id=&quot;简单三层架构&quot;&gt;&lt;a href=&quot;#简单三层架构&quot; class=&quot;headerlink&quot; title=&quot;简单三层架构&quot;&gt;&lt;/a&gt;简单三层架构&lt;/h2&gt;&lt;h2 id=&quot;Form&quot;&gt;&lt;a href=&quot;#Form&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h2&gt;&lt;p&gt;构造函数主要是用来创建对象时为对象赋初值来初始化对象。总与new运算符一起使用在创建对象的语句中 。A a=new
         
       
     
     </summary>
     
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
     
     
-      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
     
   </entry>
   
@@ -232,11 +234,11 @@
   </entry>
   
   <entry>
-    <title>构造函数</title>
-    <link href="https://zy20081.github.io/2019/01/16/gou-zao-han-shu/"/>
-    <id>https://zy20081.github.io/2019/01/16/gou-zao-han-shu/</id>
+    <title>简单三层架构</title>
+    <link href="https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/"/>
+    <id>https://zy20081.github.io/2019/01/16/jian-dan-san-ceng-jia-gou/</id>
     <published>2019-01-16T08:17:11.000Z</published>
-    <updated>2019-01-16T07:36:32.211Z</updated>
+    <updated>2019-01-16T07:52:57.193Z</updated>
     
     <summary type="html">
     
@@ -244,7 +246,33 @@
       
         
         
-          &lt;h2 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h2&gt;&lt;p&gt;构造函数主要是用来创建对象时为对象赋初值来初始化对象。总与new运算符一起使用在创建对象的语句中 。A a=new
+          &lt;h2 id=&quot;简单三层架构&quot;&gt;&lt;a href=&quot;#简单三层架构&quot; class=&quot;headerlink&quot; title=&quot;简单三层架构&quot;&gt;&lt;/a&gt;简单三层架构&lt;/h2&gt;&lt;h2 id=&quot;Form&quot;&gt;&lt;a href=&quot;#Form&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>反射</title>
+    <link href="https://zy20081.github.io/2019/01/15/fan-she/"/>
+    <id>https://zy20081.github.io/2019/01/15/fan-she/</id>
+    <published>2019-01-15T08:17:11.000Z</published>
+    <updated>2019-01-16T07:34:34.548Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h2 id=&quot;定义一个类，并且生成dll&quot;&gt;&lt;a href=&quot;#定义一个类，并且生成dll&quot; class=&quot;headerlink&quot;
         
       
     
@@ -274,34 +302,6 @@
         
           &lt;h2 id=&quot;递归VS循环&quot;&gt;&lt;a href=&quot;#递归VS循环&quot; class=&quot;headerlink&quot; title=&quot;递归VS循环&quot;&gt;&lt;/a&gt;递归VS循环&lt;/h2&gt;&lt;p&gt;求第三位数前2位之和 ，一列数的规则如下: 1、1、2、3&lt;/p&gt;
 &lt;pre class=&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>反射</title>
-    <link href="https://zy20081.github.io/2019/01/15/fan-she/"/>
-    <id>https://zy20081.github.io/2019/01/15/fan-she/</id>
-    <published>2019-01-15T08:17:11.000Z</published>
-    <updated>2019-01-16T07:34:34.548Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h2 id=&quot;定义一个类，并且生成dll&quot;&gt;&lt;a href=&quot;#定义一个类，并且生成dll&quot; class=&quot;headerlink&quot;
         
       
     
@@ -489,62 +489,6 @@
   </entry>
   
   <entry>
-    <title>简单OOP-消费单计算</title>
-    <link href="https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/"/>
-    <id>https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T03:58:23.813Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简单OOP-消费单计算&quot;&gt;&lt;a href=&quot;#简单OOP-消费单计算&quot; class=&quot;headerlink&quot; title=&quot;简单OOP-消费单计算&quot;&gt;&lt;/a&gt;简单OOP-消费单计算&lt;/h2&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>飞行棋</title>
-    <link href="https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/"/>
-    <id>https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T06:14:09.641Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;控制板飞行棋&quot;&gt;&lt;a href=&quot;#控制板飞行棋&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Array应用经典冒泡</title>
     <link href="https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/"/>
     <id>https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/</id>
@@ -558,6 +502,64 @@
         
         
           &lt;h2 id=&quot;Array定义&quot;&gt;&lt;a href=&quot;#Array定义&quot; class=&quot;headerlink&quot; title=&quot;Array定义&quot;&gt;&lt;/a&gt;Array定义&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+    
+    
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ASP.net web自带安全机制</title>
+    <link href="https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/"/>
+    <id>https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/</id>
+    <published>2019-01-13T04:17:11.000Z</published>
+    <updated>2019-01-15T07:08:16.898Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ASP-net-web自带安全机制&quot;&gt;&lt;a href=&quot;#ASP-net-web自带安全机制&quot; class=&quot;headerlink&quot; title=&quot;ASP.net web自带安全机制&quot;&gt;&lt;/a&gt;ASP.net web自带安全机制&lt;/h2&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
+    
+    
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单OOP-消费单计算</title>
+    <link href="https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/"/>
+    <id>https://zy20081.github.io/2019/01/13/jian-dan-oop-xiao-fei-dan-ji-suan/</id>
+    <published>2019-01-13T04:17:11.000Z</published>
+    <updated>2019-01-15T03:58:23.813Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简单OOP-消费单计算&quot;&gt;&lt;a href=&quot;#简单OOP-消费单计算&quot; class=&quot;headerlink&quot; title=&quot;简单OOP-消费单计算&quot;&gt;&lt;/a&gt;简单OOP-消费单计算&lt;/h2&gt;&lt;p&gt;&lt;img
         
       
     

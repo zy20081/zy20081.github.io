@@ -1,0 +1,905 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="APP手工测试, Zhou•Yong">
+    <meta name="description" content="测试阶段 APP手工测试，流程和测试用例都跟web手工测试一样的，可以见本站的web手工测试帖子，这里主要写不同地方
+APP测试分类1.业务功能测试
+2.APP专项测试
+  - 兼容性测试
+  - 安装、卸载、升级测试
+  - 交叉事件测试">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>APP手工测试 | Zhou•Yong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Zhou•Yong</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>主页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>档案</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>推荐</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Zhou•Yong</div>
+        <div class="logo-desc">
+            
+            你迈出的步伐不非得很大，只要你是在正确的方向前进就行
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                主页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                档案
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                推荐
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        APP手工测试
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/APP手工测试/" target="_blank">
+                    <span class="chip bg-color">APP手工测试</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/测试/" class="post-category" target="_blank">
+                        测试
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2020-09-08
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h2><p> APP手工测试，流程和测试用例都跟web手工测试一样的，可以见本站的web手工测试帖子，这里主要写不同地方</p>
+<h2 id="APP测试分类"><a href="#APP测试分类" class="headerlink" title="APP测试分类"></a>APP测试分类</h2><pre class=" language-bash"><code class="language-bash">1.业务功能测试
+2.APP专项测试
+  - 兼容性测试
+  - 安装、卸载、升级测试
+  - 交叉事件测试
+  - Push消息推送测试
+  - 性能测试
+  - 其他测试
+    - 用户体验
+    - 极限、边界
+    - 权限
+</code></pre>
+<h2 id="测试机的选取原则"><a href="#测试机的选取原则" class="headerlink" title="测试机的选取原则"></a>测试机的选取原则</h2><pre class=" language-bash"><code class="language-bash">1. 借助testin等云测平台（<span class="token operator">&lt;</span>https://www.testin.cn/business/landing/machine.htm<span class="token operator">></span>）
+2.模拟器
+  - Genymotion（<span class="token operator">&lt;</span>http://www.genymotion.net/<span class="token operator">></span>）
+  - Xcode
+  - 夜神模拟器
+</code></pre>
+<h2 id="屏幕分辨率和尺寸"><a href="#屏幕分辨率和尺寸" class="headerlink" title="屏幕分辨率和尺寸"></a>屏幕分辨率和尺寸</h2><pre class=" language-bash"><code class="language-bash">- Android
+  - 1080x1920
+  - 720x1280
+- IOS
+  - 2208*1242
+  - 1334*750
+屏幕参考网站：<span class="token operator">&lt;</span>http://www.woshipm.com/screen/<span class="token operator">></span>
+一般考虑：
+- 4.7
+- 5.5
+</code></pre>
+<h3 id="APP专项测试——交叉事件测试"><a href="#APP专项测试——交叉事件测试" class="headerlink" title="APP专项测试——交叉事件测试"></a>APP专项测试——交叉事件测试</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><pre class=" language-bash"><code class="language-bash">交叉测试又叫**冲突测试**或者**干扰测试**。  
+是指一个功能正在执行过程中，另外一个事件或操作对该过程进行干扰的测试。
+</code></pre>
+<h4 id="测试的关注点"><a href="#测试的关注点" class="headerlink" title="测试的关注点"></a>测试的关注点</h4><pre class=" language-bash"><code class="language-bash">- 拨打/接听电话
+- 接收/发送短信息
+- 插拔耳机
+- 网络切换
+- 系统自带应用（摄像头、计算器等）
+</code></pre>
+<h3 id="APP专项测试——安装、卸载、升级测试"><a href="#APP专项测试——安装、卸载、升级测试" class="headerlink" title="APP专项测试——安装、卸载、升级测试"></a>APP专项测试——安装、卸载、升级测试</h3><h4 id="安装类型"><a href="#安装类型" class="headerlink" title="安装类型"></a>安装类型</h4><pre class=" language-bash"><code class="language-bash">- Andriod：.apk
+- ios: .ipa
+</code></pre>
+<h4 id="安装渠道"><a href="#安装渠道" class="headerlink" title="安装渠道"></a>安装渠道</h4><pre class=" language-bash"><code class="language-bash">- Andriod
+  - 应用商城（小米、华为、vivo等）
+  - 豌豆荚
+  - 应用宝、360手机助手等
+- ios
+  - APP Store
+</code></pre>
+<h4 id="安装测试测试关注点"><a href="#安装测试测试关注点" class="headerlink" title="安装测试测试关注点"></a>安装测试测试关注点</h4><h5 id="正常情况"><a href="#正常情况" class="headerlink" title="正常情况"></a>正常情况</h5><pre class=" language-bash"><code class="language-bash">- 正常安装测试，检查是否安装成功
+- APP版本覆盖测试
+- 回退版本测试
+- 在不同型号、操作系统、屏幕大小、分辨率上的手机进行安装
+- 安装完成后，能否正常启动应用程序
+- 安装完成后，重启手机能否正常启动应用程序
+</code></pre>
+<h5 id="异常情况"><a href="#异常情况" class="headerlink" title="异常情况"></a>异常情况</h5><pre class=" language-bash"><code class="language-bash">- 安装时内存不足
+- 安装过程中的意外情况（强行断电、断网、来电话了、查看信息）等等
+- 能否取消安装
+</code></pre>
+<h4 id="卸载测试关注点"><a href="#卸载测试关注点" class="headerlink" title="卸载测试关注点"></a>卸载测试关注点</h4><h5 id="正常情况-1"><a href="#正常情况-1" class="headerlink" title="正常情况"></a>正常情况</h5><pre class=" language-bash"><code class="language-bash">- 用自己的卸载程序进行卸载，检查是否卸载干净
+- 用第三方工具，检查是否卸载干净
+- 不同系统、硬件环境、网络环境下进行卸载
+- 卸载后再次安装，是否正常使用
+</code></pre>
+<h5 id="异常情况-1"><a href="#异常情况-1" class="headerlink" title="异常情况"></a>异常情况</h5><pre class=" language-bash"><code class="language-bash">- 卸载中出现异常情况能否恢复（比如手机关机，内存、没电等），程序是否还能运行
+- 卸载后是否有残留，是否能够再次进行安装
+- 是否可以取消卸载 软件恢复使用
+</code></pre>
+<h4 id="升级测试关注点"><a href="#升级测试关注点" class="headerlink" title="升级测试关注点"></a>升级测试关注点</h4><h5 id="更新版本需要提示用户"><a href="#更新版本需要提示用户" class="headerlink" title="更新版本需要提示用户"></a>更新版本需要提示用户</h5><h5 id="考虑是否进行强制升级"><a href="#考虑是否进行强制升级" class="headerlink" title="考虑是否进行强制升级"></a>考虑是否进行强制升级</h5><pre class=" language-bash"><code class="language-bash">- 软件存在严重缺陷
+- 软件不能够向前兼容
+</code></pre>
+<h5 id="是否能够跨版本升级"><a href="#是否能够跨版本升级" class="headerlink" title="是否能够跨版本升级"></a>是否能够跨版本升级</h5><pre class=" language-bash"><code class="language-bash">- V5.0 <span class="token operator">==</span>》 V6.0 <span class="token operator">==</span>》 V7.0
+</code></pre>
+<h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><pre class=" language-bash"><code class="language-bash">程序下载中间断开<span class="token punctuation">(</span>断网，关机<span class="token punctuation">)</span>，恢复后，能够接着原来的内容继续下载。
+</code></pre>
+<h3 id="APP专项测试——push消息推送测试"><a href="#APP专项测试——push消息推送测试" class="headerlink" title="APP专项测试——push消息推送测试"></a>APP专项测试——push消息推送测试</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>push即为消息推送测试,主要目的就是为了唤醒或提醒用户</p>
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><pre class=" language-bash"><code class="language-bash">- 全部推送
+- 部分推送
+- 精确推送
+</code></pre>
+<h4 id="消息形式"><a href="#消息形式" class="headerlink" title="消息形式"></a>消息形式</h4><pre class=" language-bash"><code class="language-bash">- 弹窗
+- 消息通知栏
+</code></pre>
+<h4 id="测试关注点"><a href="#测试关注点" class="headerlink" title="测试关注点"></a>测试关注点</h4><pre class=" language-bash"><code class="language-bash">- Push消息应该按设定规则发送特定用户
+- APP在后台运行时，应能正常收到其Push消息
+- 设备锁屏状态下，应能正常收到APP的Push消息
+- 设备网络断开后再一次建立连接时，应能收到Push消息
+- 系统设置不接收该APP通知消息时，用户应该不再收到Push消息
+</code></pre>
+<h3 id="APP专项测试——性能测试"><a href="#APP专项测试——性能测试" class="headerlink" title="APP专项测试——性能测试"></a>APP专项测试——性能测试</h3><h4 id="性能测试指标"><a href="#性能测试指标" class="headerlink" title="性能测试指标"></a>性能测试指标</h4><pre class=" language-bash"><code class="language-bash">- 内存
+- CPU
+- 流量
+- 电量
+- 启动速度
+- 界面切换速度
+</code></pre>
+<h4 id="测试的关注点-1"><a href="#测试的关注点-1" class="headerlink" title="测试的关注点"></a>测试的关注点</h4><pre class=" language-bash"><code class="language-bash">- APP的启动时间是否过长；
+- APP使用时对CPU、内存的占用情况；
+- APP使用时，电量流量的消耗情况；
+- **反复长期的操作情况下，系统资源的使用情况。**
+</code></pre>
+<h4 id="面试题（扩展）"><a href="#面试题（扩展）" class="headerlink" title="面试题（扩展）"></a>面试题（扩展）</h4><h5 id="内存溢出与内存泄漏"><a href="#内存溢出与内存泄漏" class="headerlink" title="内存溢出与内存泄漏"></a>内存溢出与内存泄漏</h5><pre class=" language-bash"><code class="language-bash">1. 内存溢出 out of memory，是指程序在申请内存时，没有足够的内存空间供其使用，出现out of memory；
+2. 内存泄露 memory leak，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但内存泄露堆积后果很严重，无论多少内存,迟早会被占光；
+3. 二者的关系：memory leak会最终会导致out of memory！
+</code></pre>
+<h5 id="冷启动与热启动"><a href="#冷启动与热启动" class="headerlink" title="冷启动与热启动"></a>冷启动与热启动</h5><pre class=" language-bash"><code class="language-bash">1. 指app被后台杀死后，在这个状态打开app，这种启动方式叫做冷启动；
+2. 热启动：指app没有被后台杀死，仍然在后台运行，通常我们再次去打开这个app，这种启动方式叫热启动。
+</code></pre>
+<h3 id="APP专项测试——其他测试"><a href="#APP专项测试——其他测试" class="headerlink" title="APP专项测试——其他测试"></a>APP专项测试——其他测试</h3><h4 id="用户体验"><a href="#用户体验" class="headerlink" title="用户体验"></a>用户体验</h4><h5 id="测试关注点-1"><a href="#测试关注点-1" class="headerlink" title="测试关注点"></a>测试关注点</h5><pre class=" language-bash"><code class="language-bash">- 界面的美观性
+- 保持登录（APP）
+- 页面层级关系在4层左右
+</code></pre>
+<h4 id="边界（极限测试）"><a href="#边界（极限测试）" class="headerlink" title="边界（极限测试）"></a>边界（极限测试）</h4><h5 id="测试关注点-2"><a href="#测试关注点-2" class="headerlink" title="测试关注点"></a>测试关注点</h5><pre class=" language-bash"><code class="language-bash">- 电量不足<span class="token punctuation">(</span><span class="token operator">&lt;</span>5%<span class="token punctuation">)</span>
+- 内存不足
+</code></pre>
+<h4 id="权限测试"><a href="#权限测试" class="headerlink" title="权限测试"></a>权限测试</h4><h5 id="测试关注点-3"><a href="#测试关注点-3" class="headerlink" title="测试关注点"></a>测试关注点</h5><pre class=" language-bash"><code class="language-bash">- 摄像头权限
+- 相册权限
+- 位置权限
+- 通讯录权限
+</code></pre>
+<h3 id="Web测试与APP测试的差异性（面试题）"><a href="#Web测试与APP测试的差异性（面试题）" class="headerlink" title="Web测试与APP测试的差异性（面试题）"></a>Web测试与APP测试的差异性（面试题）</h3><pre class=" language-bash"><code class="language-bash">- APP的兼容性测试尤为重要：由于手机厂商生产的手机型号及相关软硬件存在千千万万的差异性，进而APP端需要着重考虑分辨率、系统版本、尺寸、主流机型等等；
+- APP性能测试指标不一样：除了需要和web一样考虑APP客户端的性能外，我们还需要考虑电量、流量的消耗、GPU渲染等；
+- APP网络测试场景的复杂性：如2G、3G、4G、5G、wifi、弱网环境等
+- APP基于手机载体存在的交叉事件测试、前后台切换、安装/卸载/升级测试 
+- APP基于手机载体特有的一些用户操作习惯类测试，如横竖屏切换、多点触控、事件触发区域等
+</code></pre>
+<h2 id="APP测试环境"><a href="#APP测试环境" class="headerlink" title="APP测试环境"></a>APP测试环境</h2><h3 id="APP的项目环境"><a href="#APP的项目环境" class="headerlink" title="APP的项目环境"></a>APP的项目环境</h3><pre class=" language-bash"><code class="language-bash">- 开发环境<span class="token operator">==</span>》开发工程师
+- 测试环境<span class="token operator">==</span>》测试工程师
+- 生产/线上环境<span class="token operator">==</span>》运维工程师
+</code></pre>
+<h3 id="APP项目环境与项目流程的对照关系"><a href="#APP项目环境与项目流程的对照关系" class="headerlink" title="APP项目环境与项目流程的对照关系"></a>APP项目环境与项目流程的对照关系</h3><pre class=" language-bash"><code class="language-bash">- 开发（开发环境）<span class="token operator">==</span>》测试（测试环境）<span class="token operator">==</span>》上线（生产/线上环境）
+</code></pre>
+<h2 id="APP发布平台"><a href="#APP发布平台" class="headerlink" title="APP发布平台"></a>APP发布平台</h2><h3 id="内测分发平台"><a href="#内测分发平台" class="headerlink" title="内测分发平台"></a>内测分发平台</h3><h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><pre class=" language-bash"><code class="language-bash">1. 开发将打好的程序包上传到内测分发平台上
+2. 内测分发平台基于上传的安装包生成唯一的二维码
+3. 测试扫描此二维码即可进行下载、安装并测试
+</code></pre>
+<h4 id="常见的内测分发平台"><a href="#常见的内测分发平台" class="headerlink" title="常见的内测分发平台"></a>常见的内测分发平台</h4><pre class=" language-bash"><code class="language-bash">- 蒲公英（<span class="token operator">&lt;</span>https://www.pgyer.com/<span class="token operator">></span>）
+- fir.im（<span class="token operator">&lt;</span>https://fir.im/<span class="token operator">></span>）
+</code></pre>
+<h3 id="线上发布平台"><a href="#线上发布平台" class="headerlink" title="线上发布平台"></a>线上发布平台</h3><pre class=" language-bash"><code class="language-bash">- Andriod
+  - 应用商店（华为、小米）
+  - 豌豆荚
+  - 360手机助手等
+- ios
+  - APP Store
+</code></pre>
+<p><strong>注意：需要一定的审核过程、审核周期。</strong></p>
+<h2 id="敏捷开发模式（了解）"><a href="#敏捷开发模式（了解）" class="headerlink" title="敏捷开发模式（了解）"></a>敏捷开发模式（了解）</h2><h3 id="前置基础"><a href="#前置基础" class="headerlink" title="前置基础"></a>前置基础</h3><pre class=" language-bash"><code class="language-bash">- 瀑布模型
+- 快速原型
+</code></pre>
+<h3 id="互联网的特点"><a href="#互联网的特点" class="headerlink" title="互联网的特点"></a>互联网的特点</h3><pre class=" language-bash"><code class="language-bash">- 追求创新
+- 需求的高度不确定性
+</code></pre>
+<h3 id="移动互联网的解决方案"><a href="#移动互联网的解决方案" class="headerlink" title="移动互联网的解决方案"></a>移动互联网的解决方案</h3><pre class=" language-bash"><code class="language-bash">- 快速的反馈机制
+- 快速试错
+- **思考：瀑布模型能解决移动互联网的痛点吗？**
+</code></pre>
+<h3 id="敏捷开发模式"><a href="#敏捷开发模式" class="headerlink" title="敏捷开发模式"></a>敏捷开发模式</h3><h4 id="Scrum"><a href="#Scrum" class="headerlink" title="Scrum"></a>Scrum</h4><h5 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h5><pre class=" language-bash"><code class="language-bash">- 产品负责人（PO）：主要是负责整理需求，需求的呈现形式为用户故事
+- Scrum Master（SM）：负责带领团队完成相关任务
+- 开发团队<span class="token punctuation">(</span>Dev Team<span class="token punctuation">)</span>
+  - 开发
+  - 测试
+  - UI/UE
+</code></pre>
+<h5 id="输出物"><a href="#输出物" class="headerlink" title="输出物"></a>输出物</h5><pre class=" language-bash"><code class="language-bash">- 产品待办列表（用户故事）
+- 迭代待办列表
+- 产品增量（可工作的软件）
+</code></pre>
+<h5 id="5个活动"><a href="#5个活动" class="headerlink" title="5个活动"></a>5个活动</h5><pre class=" language-bash"><code class="language-bash">- 迭代（冲刺）sprint
+- 迭代计划：确定迭代待办列表内容
+- 每日站会
+- 评审会
+- 回顾会
+</code></pre>
+<h2 id="敏捷测试流程（一次迭代）"><a href="#敏捷测试流程（一次迭代）" class="headerlink" title="敏捷测试流程（一次迭代）"></a>敏捷测试流程（一次迭代）</h2><pre class=" language-bash"><code class="language-bash">1. 需求分析与评审
+2. 编写测试计划（测试方案）
+3. 设计测试用例与评审
+4. 执行测试用例与缺陷跟踪
+5. 编写测试报告
+</code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://zy20081.github.io" class="b-link-green">Zhou•Yong</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2020/09/08/app-shou-gong-ce-shi/" class="b-link-green">APP手工测试</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2020/09/08/app-shou-gong-ce-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="APP手工测试">
+                        
+                        <span class="card-title">APP手工测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">测试阶段 APP手工测试，流程和测试用例都跟web手工测试一样的，可以见本站的web手工测试帖子，这里主要写不同地方
+APP测试分类1.业务功能测试
+2.APP专项测试
+  - 兼容性测试
+  - 安装、卸载、升级测试
+  - 交叉事件测试</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/测试/" class="post-category" target="_blank">
+                                    测试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/APP手工测试/" target="_blank">
+                        <span class="chip bg-color">APP手工测试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2020/08/08/web-shou-gong-ce-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="web手工测试">
+                        
+                        <span class="card-title">web手工测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">测试阶段（黑盒） 主要工作阶段分为需求评审，编写测试计划，编写测试方案，熟悉项目的业务和数据库 测试工作步骤分为 主要测试阶段单元测试，集成测试，系统测试，验收测试 其他阶段冒烟测试，回归测试，随机测试，探索性测试
+测试用例模板
+测试用例：</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/测试/" class="post-category" target="_blank">
+                                    测试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web手工测试/" target="_blank">
+                        <span class="chip bg-color">web手工测试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由ZhouYong 技术分享，心得分享.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="#!" class="tooltipped" data-tooltip="邮件联系我: zy20081@126.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 314153271" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+
+<script src="/libs/others/clicklove.js"></script>
+
+<script src="/js/matery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+</body>
+</html>

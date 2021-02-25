@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zy20081.github.io/"/>
-  <updated>2019-01-28T02:09:31.917Z</updated>
+  <updated>2021-02-25T07:01:44.589Z</updated>
   <id>https://zy20081.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>APP手工测试</title>
+    <link href="https://zy20081.github.io/2020/09/08/app-shou-gong-ce-shi/"/>
+    <id>https://zy20081.github.io/2020/09/08/app-shou-gong-ce-shi/</id>
+    <published>2020-09-08T04:17:11.000Z</published>
+    <updated>2021-02-25T07:01:44.589Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;测试阶段&quot;&gt;&lt;a href=&quot;#测试阶段&quot; class=&quot;headerlink&quot; title=&quot;测试阶段&quot;&gt;&lt;/a&gt;测试阶段&lt;/h2&gt;&lt;p&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="测试" scheme="https://zy20081.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="APP手工测试" scheme="https://zy20081.github.io/tags/APP%E6%89%8B%E5%B7%A5%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web手工测试</title>
+    <link href="https://zy20081.github.io/2020/08/08/web-shou-gong-ce-shi/"/>
+    <id>https://zy20081.github.io/2020/08/08/web-shou-gong-ce-shi/</id>
+    <published>2020-08-08T04:17:11.000Z</published>
+    <updated>2021-02-25T06:37:52.027Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;测试阶段（黑盒）&quot;&gt;&lt;a href=&quot;#测试阶段（黑盒）&quot; class=&quot;headerlink&quot; title=&quot;测试阶段（黑盒）&quot;&gt;&lt;/a&gt;测试阶段（黑盒）&lt;/h2&gt;&lt;p&gt; 主要工作阶段分为需求评审，编写测试计划，编写测试方案，熟悉项目的业务和数据库&lt;br&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="测试" scheme="https://zy20081.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="web手工测试" scheme="https://zy20081.github.io/tags/web%E6%89%8B%E5%B7%A5%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Git下载某个文件夹</title>
@@ -154,6 +206,32 @@
   </entry>
   
   <entry>
+    <title>json处理</title>
+    <link href="https://zy20081.github.io/2019/01/16/json-chu-li/"/>
+    <id>https://zy20081.github.io/2019/01/16/json-chu-li/</id>
+    <published>2019-01-16T08:17:11.000Z</published>
+    <updated>2019-01-16T07:40:20.994Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;json常见转换函数&quot;&gt;&lt;a href=&quot;#json常见转换函数&quot; class=&quot;headerlink&quot; title=&quot;json常见转换函数&quot;&gt;&lt;/a&gt;json常见转换函数&lt;/h2&gt;&lt;p&gt;从一个字符串中解析出json对象 ： JSON.parse()
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://zy20081.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="jQuery" scheme="https://zy20081.github.io/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
     <title>构造函数</title>
     <link href="https://zy20081.github.io/2019/01/16/gou-zao-han-shu/"/>
     <id>https://zy20081.github.io/2019/01/16/gou-zao-han-shu/</id>
@@ -178,32 +256,6 @@
       <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
       <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>json处理</title>
-    <link href="https://zy20081.github.io/2019/01/16/json-chu-li/"/>
-    <id>https://zy20081.github.io/2019/01/16/json-chu-li/</id>
-    <published>2019-01-16T08:17:11.000Z</published>
-    <updated>2019-01-16T07:40:20.994Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;json常见转换函数&quot;&gt;&lt;a href=&quot;#json常见转换函数&quot; class=&quot;headerlink&quot; title=&quot;json常见转换函数&quot;&gt;&lt;/a&gt;json常见转换函数&lt;/h2&gt;&lt;p&gt;从一个字符串中解析出json对象 ： JSON.parse()
-        
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://zy20081.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="jQuery" scheme="https://zy20081.github.io/tags/jQuery/"/>
     
   </entry>
   
@@ -465,92 +517,6 @@
   </entry>
   
   <entry>
-    <title>Array应用经典冒泡</title>
-    <link href="https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/"/>
-    <id>https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T06:59:50.019Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Array定义&quot;&gt;&lt;a href=&quot;#Array定义&quot; class=&quot;headerlink&quot; title=&quot;Array定义&quot;&gt;&lt;/a&gt;Array定义&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C#之重写</title>
-    <link href="https://zy20081.github.io/2019/01/13/c-zhi-chong-xie/"/>
-    <id>https://zy20081.github.io/2019/01/13/c-zhi-chong-xie/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T06:27:40.669Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;C-之重写&quot;&gt;&lt;a href=&quot;#C-之重写&quot; class=&quot;headerlink&quot; title=&quot;C#之重写&quot;&gt;&lt;/a&gt;C#之重写&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ASP.net web自带安全机制</title>
-    <link href="https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/"/>
-    <id>https://zy20081.github.io/2019/01/13/asp.net-web-zi-dai-an-quan-ji-zhi/</id>
-    <published>2019-01-13T04:17:11.000Z</published>
-    <updated>2019-01-15T07:08:16.898Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;ASP-net-web自带安全机制&quot;&gt;&lt;a href=&quot;#ASP-net-web自带安全机制&quot; class=&quot;headerlink&quot; title=&quot;ASP.net web自带安全机制&quot;&gt;&lt;/a&gt;ASP.net web自带安全机制&lt;/h2&gt;&lt;h2
-        
-      
-    
-    </summary>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/categories/ASP-NET/"/>
-    
-    
-      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
-    
-      <category term="ASP.NET" scheme="https://zy20081.github.io/tags/ASP-NET/"/>
-    
-  </entry>
-  
-  <entry>
     <title>飞行棋</title>
     <link href="https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/"/>
     <id>https://zy20081.github.io/2019/01/13/kong-zhi-ban-fei-xing-qi/</id>
@@ -564,6 +530,34 @@
         
         
           &lt;h2 id=&quot;控制板飞行棋&quot;&gt;&lt;a href=&quot;#控制板飞行棋&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="C#" scheme="https://zy20081.github.io/categories/C/"/>
+    
+    
+      <category term="C# 基础知识" scheme="https://zy20081.github.io/tags/C-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="C#" scheme="https://zy20081.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Array应用经典冒泡</title>
+    <link href="https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/"/>
+    <id>https://zy20081.github.io/2019/01/13/array-he-lambda-ying-yong-jing-dian-mou-pao/</id>
+    <published>2019-01-13T04:17:11.000Z</published>
+    <updated>2019-01-15T06:59:50.019Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Array定义&quot;&gt;&lt;a href=&quot;#Array定义&quot; class=&quot;headerlink&quot; title=&quot;Array定义&quot;&gt;&lt;/a&gt;Array定义&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
         
       
     
